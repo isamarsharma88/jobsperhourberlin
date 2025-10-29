@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find flexible hourly jobs in Berlin. JobsPerHourBerlin.de connects you with short-term, part-time, and flexible work opportunities.">
   <title>JobsPerHourBerlin.de</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,8 +11,9 @@
 
 <header>
   <div class="logo">
-<img src="logo.png" alt="JobsPerHourBerlin Logo">  </div>
-  <nav>
+    <img src="logo.png" alt="JobsPerHourBerlin Logo">
+  </div>
+  <nav aria-label="Main navigation">
     <ul>
       <li><a href="index.html">Home / Startseite</a></li>
       <li><a href="find-job.html">Find a Job / Job Finden</a></li>
@@ -26,9 +28,13 @@
 <section class="hero">
   <h2>Find flexible jobs in Berlin / Finde flexible Jobs in Berlin</h2>
   <div class="search-bar">
-    <input type="text" placeholder="Search for jobs... / Nach Jobs suchen...">
+    <form action="search.html" method="get">
+      <input type="text" name="q" placeholder="Search for jobs... / Nach Jobs suchen...">
+      <button type="submit">🔍</button>
+    </form>
   </div>
 </section>
+
 <section class="categories">
   <div class="category"><h3>🏠 Household & Cleaning / Haushalt & Reinigung</h3></div>
   <div class="category"><h3>🌿 Gardening & Outdoor / Gartenarbeit & Außenarbeiten</h3></div>
@@ -43,9 +49,9 @@
 <footer>
   <p>© 2025 JobsPerHourBerlin.de | All Rights Reserved</p>
   <div class="social-icons">
-    <a href="#">📷 Instagram</a>
-    <a href="#">💼 LinkedIn</a>
-    <a href="#">📘 Facebook</a>
+    <a href="#" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+    <a href="#" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+    <a href="#" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
   </div>
 </footer>
 
