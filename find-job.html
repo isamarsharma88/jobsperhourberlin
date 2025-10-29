@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find a Job - JobsPerHourBerlin.de</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Basic styling */
+    .filters { padding: 20px; text-align: center; }
+    .filters input, .filters select, .filters button { margin: 5px; padding: 5px; }
+    .job-card { border: 1px solid #ccc; padding: 15px; margin: 10px auto; max-width: 800px; }
+    #job-listings { padding: 20px; }
+    .pagination { text-align: center; margin: 20px; }
+    .pagination button { margin: 0 3px; }
+  </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-<img src="logo.png" alt="JobsPerHourBerlin Logo">
+    <img src="logo.png" alt="JobsPerHourBerlin Logo" style="height: 50px;">
   </div>
   <nav>
     <ul>
@@ -26,8 +34,33 @@
 </header>
 
 <section class="hero"><h2>Find a Job / Job Finden</h2></section>
-<section style="padding:40px;max-width:800px;margin:auto;">
-  <p>Explore hourly, part-time, and flexible jobs across Berlin. Browse opportunities in household services, childcare, delivery, IT, and more.</p>
+
+<section class="filters">
+  <input type="text" id="keyword" placeholder="Keyword (Job title, company)">
+  <select id="jobType">
+    <option value="">All Types</option>
+    <option value="Mini job">Mini job</option>
+    <option value="Part-time">Part-time</option>
+    <option value="Project-based">Project-based</option>
+    <option value="Seasonal">Seasonal</option>
+  </select>
+  <input type="text" id="userLocation" placeholder="Your address or postal code">
+  <select id="radius">
+    <option value="5">5 km</option>
+    <option value="10">10 km</option>
+    <option value="20" selected>20 km</option>
+  </select>
+  <input type="number" id="minPay" placeholder="Min €/hour" style="width: 100px;">
+  <input type="number" id="maxPay" placeholder="Max €/hour" style="width: 100px;">
+  <button id="filterBtn">Search</button>
+</section>
+
+<section id="job-listings">
+  <!-- Jobs will appear here -->
+</section>
+
+<section class="pagination" id="pagination">
+  <!-- Pagination buttons -->
 </section>
 
 <footer>
@@ -38,6 +71,121 @@
     <a href="#">📘 Facebook</a>
   </div>
 </footer>
+
+<!-- Google Maps API for geocoding -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+<script>
+let jobsData = [];
+let currentPage = 1;
+const jobsPerPage = 5;
+const SHEET_ID = "10uXwNU7e5cls3F6aU0RHj9EIk92Qv6nABNzngzA1qow";
+const SHEET_URL = `https://spreadsheets.google.com/feeds/list/${SHEET_ID}/od6/public/values?alt=json`;
+
+// Fetch jobs from Google Sheet
+async function fetchJobs() {
+  const response = await fetch(SHEET_URL);
+  const data = await response.json();
+  jobsData = data.feed.entry.map(entry => ({
+    title: entry.gsx$jobtitleen.$t,
+    titleDE: entry.gsx$jobtitlede.$t,
+    category: entry.gsx$jobtype.$t,
+    pay: parseFloat(entry.gsx$hourlywage.$t),
+    location: entry.gsx$location.$t,
+    address: entry.gsx$address.$t || entry.gsx$location.$t,
+    contact: entry.gsx$contact.$t,
+    description: entry.gsx$descriptionen.$t,
+    descriptionDE: entry.gsx$descriptionde.$t,
+    date: entry.gsx$dateposted.$t
+  }));
+  renderJobs();
+}
+
+// Geocode an address
+async function geocodeAddress(address) {
+  return new Promise((resolve, reject) => {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address }, (results, status) => {
+      if (status === 'OK') resolve(results[0].geometry.location);
+      else reject('Invalid address');
+    });
+  });
+}
+
+// Haversine distance in km
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2-lat1)*Math.PI/180;
+  const dLon = (lon2-lon1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
+  return 2*R*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// Render job cards with filters & pagination
+async function renderJobs(page=1) {
+  const container = document.getElementById('job-listings');
+  const keyword = document.getElementById('keyword').value.toLowerCase();
+  const jobType = document.getElementById('jobType').value;
+  const userLocation = document.getElementById('userLocation').value;
+  const radius = parseFloat(document.getElementById('radius').value);
+  const minPay = parseFloat(document.getElementById('minPay').value) || 0;
+  const maxPay = parseFloat(document.getElementById('maxPay').value) || Infinity;
+
+  let filteredJobs = jobsData.filter(job =>
+    job.title.toLowerCase().includes(keyword) &&
+    (!jobType || job.category === jobType) &&
+    job.pay >= minPay &&
+    job.pay <= maxPay
+  );
+
+  if(userLocation) {
+    let userCoords;
+    try { userCoords = await geocodeAddress(userLocation); }
+    catch(e){ alert("Invalid address"); return; }
+
+    const results = [];
+    for(let job of filteredJobs){
+      try{
+        const jobCoords = await geocodeAddress(job.address);
+        const dist = haversineDistance(userCoords.lat(), userCoords.lng(), jobCoords.lat(), jobCoords.lng());
+        if(dist <= radius) results.push(job);
+      } catch(e){ continue; }
+    }
+    filteredJobs = results;
+  }
+
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+  currentPage = Math.min(page, totalPages);
+  const start = (currentPage-1)*jobsPerPage;
+  const end = start + jobsPerPage;
+
+  container.innerHTML = filteredJobs.slice(start,end).map(job => `
+    <div class="job-card">
+      <h3>${job.title} - ${job.category}</h3>
+      <p><strong>€${job.pay}/hour</strong> - ${job.location}</p>
+      <p>${job.description}</p>
+      <p>Contact: <a href="mailto:${job.contact}">${job.contact}</a></p>
+      <p>Date posted: ${job.date}</p>
+    </div>
+  `).join('');
+
+  // Pagination
+  const paginationContainer = document.getElementById('pagination');
+  paginationContainer.innerHTML = '';
+  for(let i=1;i<=totalPages;i++){
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.disabled = (i === currentPage);
+    btn.addEventListener('click',()=>renderJobs(i));
+    paginationContainer.appendChild(btn);
+  }
+}
+
+// Event listeners
+document.getElementById('filterBtn').addEventListener('click',()=>renderJobs());
+
+// Initial fetch
+fetchJobs();
+</script>
 
 </body>
 </html>
