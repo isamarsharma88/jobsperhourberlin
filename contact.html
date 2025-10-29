@@ -5,6 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact / Kontakt - JobsPerHourBerlin.de</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .dual-option {
+      text-align: center;
+      background-color: var(--sand-tan);
+      padding: 60px 20px;
+    }
+    .dual-option h3 {
+      color: var(--night-blue);
+      margin-bottom: 20px;
+    }
+    .dual-option p {
+      color: var(--night-blue);
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1em;
+    }
+    .btn-primary {
+      background-color: var(--night-blue);
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background-color: var(--night-blue-shadow);
+    }
+  </style>
 </head>
 <body>
 
@@ -17,36 +50,67 @@
       <li><a href="index.html">Home / Startseite</a></li>
       <li><a href="find-job.html">Find a Job / Job Finden</a></li>
       <li><a href="about.html">About Us / Über Uns</a></li>
-      <li><a href="contact.html">Contact / Kontakt</a></li>
+      <li><a href="contact.html" class="active">Contact / Kontakt</a></li>
       <li><a href="login.html">Login</a></li>
       <li><a href="signup.html">Sign Up</a></li>
     </ul>
   </nav>
 </header>
 
-<section class="hero"><h2>Post a Job / Kontaktformular</h2></section>
-
-<section style="padding:20px; text-align:center;">
-  <button id="toggleLang">Deutsch / English</button>
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" style="background-color: var(--night-blue); color: white; text-align: center; padding: 80px 20px;">
+  <h2>Contact Us / Kontakt aufnehmen</h2>
+  <p style="max-width:700px; margin:auto; color:#fff;">
+    We’re here to help you find or post jobs easily. You can either fill out our Google Job Posting Form or reach out via the contact form below.
+  </p>
 </section>
 
-<section id="job-listings" style="padding:40px; max-width:900px; margin:auto;">
-  <!-- Jobs will be loaded here -->
+<!-- ===== GOOGLE FORM OPTION ===== -->
+<section class="dual-option">
+  <h3>📝 Post a Job via Google Form</h3>
+  <p>For quick job postings, fill out our Google Form and we’ll review and publish your job listing shortly.</p>
+  <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
+    Fill Job Posting Form / Jobformular ausfüllen
+  </a>
 </section>
 
-<section id="post-job" style="padding:40px; max-width:900px; margin:auto;">
-  <h3>Post a Job / Jobanzeige einreichen</h3>
-  <iframe 
-      src="https://forms.gle/4qC5AjqPeNPBJUaT8" 
-      width="100%" 
-      height="1200" 
-      frameborder="0" 
-      marginheight="0" 
-      marginwidth="0">
-      Loading…
-  </iframe>
+<!-- ===== CONTACT INFO ===== -->
+<section class="contact-info" style="padding:60px 20px; background-color:#fff; text-align:center;">
+  <h3 style="color:var(--night-blue); margin-bottom:40px;">📧 Contact Information</h3>
+  <div class="info-grid" style="display:flex; flex-wrap:wrap; justify-content:center; gap:40px;">
+    <div>
+      <i class="fa-solid fa-envelope fa-2x" style="color:var(--night-blue);"></i>
+      <p><a href="mailto:contact@jobsperhourberlin.de" style="color:var(--night-blue); text-decoration:none;">contact@jobsperhourberlin.de</a></p>
+    </div>
+    <div>
+      <i class="fa-solid fa-location-dot fa-2x" style="color:var(--night-blue);"></i>
+      <p style="color:var(--night-blue);"> </p>
+    </div>
+  </div>
 </section>
 
+<!-- ===== MAP & FORM SECTION ===== -->
+<section style="display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; padding:40px 0; background-color:#f9f9f9;">
+  <!-- Map -->
+  <div style="flex:1; min-width:300px;">
+    <iframe src="https://maps.google.com/maps?q=Berlin,%20Germany&t=&z=12&ie=UTF8&iwloc=&output=embed" 
+            width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen></iframe>
+  </div>
+
+  <!-- Contact Form -->
+  <div style="flex:1; min-width:300px; padding:40px; background-color:white;">
+    <h3 style="color:var(--night-blue); text-align:center;">Send us a Message / Nachricht senden</h3>
+    <form id="contact-form" action="#" method="post" style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+      <input type="text" name="name" placeholder="Your Name / Dein Name" required style="padding:12px; border-radius:8px; border:1px solid #ccc;">
+      <input type="email" name="email" placeholder="Your Email / Deine E-Mail" required style="padding:12px; border-radius:8px; border:1px solid #ccc;">
+      <input type="text" name="subject" placeholder="Subject / Betreff" style="padding:12px; border-radius:8px; border:1px solid #ccc;">
+      <textarea name="message" rows="6" placeholder="Message / Nachricht" required style="padding:12px; border-radius:8px; border:1px solid #ccc;"></textarea>
+      <button type="submit" style="padding:12px; border:none; background-color:var(--night-blue); color:white; font-weight:bold; border-radius:8px; cursor:pointer;">Send Message / Nachricht senden</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <p>© 2025 JobsPerHourBerlin.de | All Rights Reserved</p>
   <div class="social-icons">
@@ -55,54 +119,6 @@
     <a href="#">📘 Facebook</a>
   </div>
 </footer>
-
-<script>
-let lang = 'EN'; // Default language
-const SHEET_ID = "10uXwNU7e5cls3F6aU0RHj9EIk92Qv6nABNzngzA1qow";
-const SHEET_URL = `https://spreadsheets.google.com/feeds/list/${SHEET_ID}/od6/public/values?alt=json`;
-
-document.getElementById('toggleLang').addEventListener('click', () => {
-    lang = (lang === 'EN') ? 'DE' : 'EN';
-    loadJobs();
-});
-
-async function loadJobs() {
-    const container = document.getElementById('job-listings');
-    container.innerHTML = 'Loading jobs...';
-
-    try {
-        const response = await fetch(SHEET_URL);
-        const data = await response.json();
-        const entries = data.feed.entry;
-
-        container.innerHTML = '';
-        entries.forEach(entry => {
-            const title = (lang === 'EN') ? entry.gsx$jobtitleen.$t : entry.gsx$jobtitlede.$t;
-            const company = entry.gsx$company.$t;
-            const wage = entry.gsx$hourlywage.$t;
-            const location = entry.gsx$location.$t;
-            const contact = entry.gsx$contact.$t;
-            const description = (lang === 'EN') ? entry.gsx$descriptionen.$t : entry.gsx$descriptionde.$t;
-
-            const card = document.createElement('div');
-            card.className = 'job-card';
-            card.innerHTML = `
-                <h3>${title} - ${company}</h3>
-                <p><strong>${wage}</strong> - ${location}</p>
-                <p>${description}</p>
-                <p>Contact: <a href="mailto:${contact}">${contact}</a></p>
-            `;
-            container.appendChild(card);
-        });
-    } catch (err) {
-        container.innerHTML = 'Failed to load jobs. Please try again later.';
-        console.error(err);
-    }
-}
-
-// Initial load
-loadJobs();
-</script>
 
 </body>
 </html>
