@@ -1,83 +1,152 @@
-/* ===== ADVANCED SEARCH BAR ===== */
-.advanced-search form {
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  background: url('berlin-city-bg.jpg') center/cover no-repeat;
+  height: 80vh;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  color: white;
+}
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 900px;
+}
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
 }
 
-.advanced-search input, 
+/* ===== SEARCH BAR ===== */
+.advanced-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.advanced-search input,
 .advanced-search select {
   padding: 12px;
   border: none;
   border-radius: 4px;
-  min-width: 180px;
-  font-size: 16px;
+  min-width: 160px;
+  font-size: 15px;
 }
-
 .advanced-search button {
   background-color: var(--sand-tan);
   color: var(--night-blue);
-  padding: 12px 20px;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
-  font-weight: bold;
+  padding: 12px 20px;
   cursor: pointer;
 }
-
 .advanced-search button:hover {
   background-color: var(--sand-tan-shadow);
 }
 
-/* ===== FAQ SECTION ===== */
-.faqs {
-  background-color: white;
-  padding: 40px;
-  border-radius: 8px;
-  max-width: 900px;
-  margin: 0 auto 40px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* ===== HOW IT WORKS ===== */
+.how-it-works {
+  background: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+.how-it-works .steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+.step {
+  background-color: var(--sand-tan);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 250px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.step:hover {
+  transform: translateY(-5px);
+}
+.step .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
-.faqs h3 {
-  margin-top: 20px;
+/* ===== CATEGORIES ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+.category-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.category-card:hover {
+  background: var(--sand-tan);
   color: var(--night-blue);
+  transform: translateY(-8px);
 }
 
-.faqs ul {
-  list-style: disc;
+/* ===== FAQS ===== */
+.faqs {
+  background-color: #fdfaf6;
+  padding: 60px 30px;
+}
+.faq-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 30px;
+}
+.faq-columns ul {
+  list-style-type: disc;
   padding-left: 20px;
 }
 
-/* ===== FOOTER MENU ===== */
-.footer-menu {
+/* ===== FOOTER ===== */
+.footer-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  text-align: left;
-  margin-bottom: 20px;
+  padding: 40px 20px;
+  background-color: var(--night-blue-shadow);
 }
-
 .footer-column h4 {
   color: var(--sand-tan);
   margin-bottom: 10px;
 }
-
 .footer-column ul {
   list-style: none;
   padding: 0;
 }
-
 .footer-column ul li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
-
 .footer-column a {
   color: white;
   font-size: 15px;
 }
-
-.footer-column a:hover {
-  color: var(--sand-tan-shadow);
+.footer-note {
+  text-align: center;
+  background-color: var(--night-blue);
+  padding: 15px;
+  color: white;
+  margin: 0;
 }
