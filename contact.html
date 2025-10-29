@@ -34,10 +34,17 @@
   <!-- Jobs will be loaded here -->
 </section>
 
-<section id="post-job" style="padding:40px; text-align:center;">
-  <a id="googleFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSdZq8fFfH38kYfDklQ6khzUe7M1qSK7pZqT_Y0gSTJZ7sXb-Q/viewform" target="_blank" class="post-button">
-    Post a Job / Jobanzeige einreichen
-  </a>
+<section id="post-job" style="padding:40px; max-width:900px; margin:auto;">
+  <h3>Post a Job / Jobanzeige einreichen</h3>
+  <iframe 
+      src="https://forms.gle/4qC5AjqPeNPBJUaT8" 
+      width="100%" 
+      height="1200" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0">
+      Loading…
+  </iframe>
 </section>
 
 <footer>
@@ -51,7 +58,6 @@
 
 <script>
 let lang = 'EN'; // Default language
-
 const SHEET_ID = "10uXwNU7e5cls3F6aU0RHj9EIk92Qv6nABNzngzA1qow";
 const SHEET_URL = `https://spreadsheets.google.com/feeds/list/${SHEET_ID}/od6/public/values?alt=json`;
 
