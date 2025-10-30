@@ -2,6 +2,7 @@ backend:
   name: auth0
   auth0_domain: dev-gpz70ghzbu23slix.auth0.com
   auth0_client_id: ykbUi1N7y4w5ivDxQfGfweyZKUp9s2OV
+  auth0_audience: https://dev-gpz70ghzbu23slix.auth0.com/api/v2/
   branch: main
 
 media_folder: "images/uploads"
