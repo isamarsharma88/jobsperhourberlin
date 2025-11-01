@@ -184,7 +184,7 @@ header
   }
 
 .logo img {
-  width: 180px;
+  width: auto;
   height: auto;
 }
 
@@ -1276,4 +1276,5 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
