@@ -181,6 +181,11 @@ header
 .background-header .logo,
 .background-header .main-nav .nav li a {
   color: #232d39!important;
+  }
+
+.logo img {
+  width: 180px;
+  height: auto;
 }
 
 .background-header .main-nav .nav li:hover > a {
@@ -1271,3 +1276,4 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
