@@ -214,3 +214,22 @@ footer a:hover {
   }
 
   .main-banner .caption h
+
+/* --- FIX: logo too large inside header --- */
+.header-area .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-area .logo img {
+  height: 55px !important; /* force a normal, clean size */
+  width: auto !important;
+  max-height: 55px !important;
+  object-fit: contain;
+}
+
+/* keep header height consistent */
+.header-area {
+  height: 80px !important;
+  overflow: hidden;
+}
