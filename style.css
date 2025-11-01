@@ -187,7 +187,7 @@ header
 /* ✅ Resize the logo image here */
 .background-header .logo img {
   height: auto; /* adjust this value as needed (e.g. 40px or 60px) */
-  width: auto;
+  width: 40px;
   transition: all 0.3s ease;
 }
 
@@ -1275,6 +1275,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
