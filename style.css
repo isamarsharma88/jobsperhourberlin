@@ -1276,6 +1276,20 @@ a:hover {
   color: #f9735b;
 }
 
+/* ✅ Force smaller logo size */
+.background-header .logo img,
+.header-area .logo img {
+  height: 60px !important;  /* Try 40px–60px until it looks right */
+  width: auto !important;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: normal !important;
+}
 
 
 
