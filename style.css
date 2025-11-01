@@ -184,13 +184,6 @@ header
   color: #232d39 !important;
 }
 
-/* ✅ Resize the logo image here */
-.background-header .logo img {
-  height: 80px; /* adjust this value as needed (e.g. 40px or 60px) */
-  width: auto;
-  transition: all 0.3s ease;
-}
-
 /* Hover and active states */
 .background-header .main-nav .nav li:hover > a,
 .background-header .nav li a.active {
@@ -1275,6 +1268,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
