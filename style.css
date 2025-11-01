@@ -1270,4 +1270,144 @@ a {
 a:focus,
 a:hover {
   color: #f9735b;
+
+  /* ---------------------------------------------
+CUSTOM FIXES FOR LOGO & STICKY HEADER
+--------------------------------------------- */
+
+/* Make header sticky at top */
+.header-area {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2f2f2f; /* You can change this */
+  z-index: 9999;
+  transition: all 0.3s ease-in-out;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* Prevent content from hiding behind sticky header */
+body {
+  padding-top: 100px; /* Adjust if header taller/shorter */
+}
+
+/* Resize and align logo */
+.header-area .logo img {
+  height: 60px;     /* Try 50–80px depending on your taste */
+  width: auto;
+  object-fit: contain;
+  margin-top: 5px;
+}
+
+/* Align navigation and logo horizontally */
+.header-area .main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style navigation links */
+.header-area .main-nav ul.nav {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-area .main-nav ul.nav li a {
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-area .main-nav ul.nav li a:hover {
+  color: #ED563B;
+}
+
+}
+
+/* ============================================
+   FIXED HEADER + LOGO SIZING
+   ============================================ */
+
+.header-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(47, 47, 47, 0.98);
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9999;
+  padding: 0 40px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Prevent content from hiding behind header */
+body {
+  padding-top: 100px;
+}
+
+/* Properly sized and aligned logo */
+.header-area .logo img {
+  height: 70px;     /* adjust between 60–80px as needed */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Navigation stays aligned to the right */
+.header-area .main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+/* Navigation links styling */
+.header-area .main-nav ul.nav {
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-area .main-nav ul.nav li a {
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-area .main-nav ul.nav li a:hover,
+.header-area .main-nav ul.nav li a.active {
+  color: #ed563b;
+}
+
+/* Optional small shadow for better separation from content */
+.header-area.sticky,
+.header-area.background-header {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+.header-area.sticky .main-nav ul.nav li a {
+  color: #232d39;
+}
+
+.header-area.sticky .main-nav ul.nav li a:hover {
+  color: #ed563b;
 }
