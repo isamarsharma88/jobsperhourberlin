@@ -183,10 +183,10 @@ header
   color: #232d39!important;
   }
 
-.logo img {
+.logo img 
   width: auto;
   height: auto;
-}
+
 
 .background-header .main-nav .nav li:hover > a {
   color: #ed563b!important;
@@ -1276,5 +1276,6 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
