@@ -203,12 +203,12 @@ header
 }
 
 .header-area .main-nav {
-  min-height: 80px;
+  min-height: 100px;
   background: transparent;
 }
 
 .header-area .main-nav .logo {
-  line-height: 60px;
+  line-height: 100px;
   color: #fff;
   font-size: 24px;
   font-weight: 800;
@@ -222,14 +222,14 @@ header
 
 .header-area .main-nav .logo em {
   font-style: normal;
-  font-size: 20px;
+  font-size: 24px;
   color: #ed563b;
   font-weight: 900;
 }
 
 .header-area .main-nav .nav {
   float: right;
-  margin-top: 27px;
+  margin-top: 0px;
   margin-right: 0px;
   background-color: transparent;
   -webkit-transition: all 0.3s ease 0s;
@@ -255,8 +255,8 @@ header
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  height: 40px;
-  line-height: 40px;
+  height: 100px;
+  line-height: 100px;
   border: transparent;
   letter-spacing: 1px;
 }
@@ -1269,6 +1269,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
