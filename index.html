@@ -55,6 +55,38 @@
     </div>
   </div>
 </header>
+      <!-- ✅ Your main content -->
+  <main>
+    <section>
+      <h2>Welcome to JobsPerHourBerlin</h2>
+      <p>Scroll down to see header hide effect...</p>
+      <p style="height:2000px;"></p>
+    </section>
+  </main>
+
+  <!-- ✅ ✨ Add the script right HERE, before </body> -->
+  <script>
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header-area');
+
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // User is scrolling down -> hide header
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // User is scrolling up -> show header
+        header.style.transform = 'translateY(0)';
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // avoid negative scrolling
+    });
+  </script>
+  <!-- ✅ End of added script -->
+
+</body>
+</html>
 <!-- ***** Header Area End ***** -->
 
     <!-- ***** Main Banner Area Start ***** -->
@@ -607,6 +639,7 @@
   </body>
 
 </html>
+
 
 
 
