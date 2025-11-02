@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en/de">
 
   <head>
 
@@ -11,9 +11,11 @@
 
     <title>https://jobsperhourberlin.de</title>
 
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="font-awesome.css">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
 
     </head>
     
@@ -33,68 +35,46 @@
     <!-- ***** Preloader End ***** -->
     
     
-   <!-- ***** Header Area Start ***** -->
-<header class="header-area header-fixed">
-  <div class="container">
-    <div class="main-nav">
-      <!-- Logo -->
-      <a href="index.html" class="logo">
-        <img src="logo.png" alt="JobsPerHourBerlin Logo">
-      </a>
-      <!-- Menu -->
-      <nav>
-        <ul class="nav">
-          <li><a href="index.html" class="active">Home / Startseite</a></li>
-          <li><a href="find-job.html">Find a Job / Job Finden</a></li>
-          <li><a href="about.html">About Us / Über Uns</a></li>
-          <li><a href="contact.html">Contact / Kontakt</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="signup.html">Sign Up</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">jobs per hour <em>Berlin</em></a>
+                        <!-- ***** Logo End ***** -->
+                         
+                        <!-- ***** Menu Start ***** -->
+                         <header>
+  <div class="logo">
+<img src="logo.png" alt="JobsPerHourBerlin Logo">  </div>
+  <nav>
+    <ul class="nav">
+      <li><a href="index.html">Home / Startseite</a></li>
+      <li><a href="find-job.html">Find a Job / Job Finden</a></li>
+      <li><a href="about.html">About Us / Über Uns</a></li>
+      <li><a href="contact.html">Contact / Kontakt</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
+    </ul>
+  </nav>
 </header>
-      <!-- ✅ Your main content -->
-  <main>
-    <section>
-      <h2>Welcome to JobsPerHourBerlin</h2>
-      <p>Scroll down to see header hide effect...</p>
-      <p style="height:2000px;"></p>
-    </section>
-  </main>
-
-  <!-- ✅ ✨ Add the script right HERE, before </body> -->
-  <script>
-    let lastScrollTop = 0;
-    const header = document.querySelector('.header-area');
-
-    window.addEventListener('scroll', function() {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (scrollTop > lastScrollTop) {
-        // User is scrolling down -> hide header
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        // User is scrolling up -> show header
-        header.style.transform = 'translateY(0)';
-      }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // avoid negative scrolling
-    });
-  </script>
-  <!-- ✅ End of added script -->
-
-</body>
-</html>
-<!-- ***** Header Area End ***** -->
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
 
     <!-- ***** Main Banner Area Start ***** -->
-    <div class="main-banner" id="top fixed">
+    <div class="main-banner" id="top">
         <video autoplay muted loop id="bg-video">
-  <source src="video.mp4" type="video/mp4" />
-</video>
- <div class="video-overlay header-text">
+            <source src="assets/images/video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
             <div class="caption">
                 <h6>Your Pocket Money Power-Up</h6>
                 <h2>Find the perfect <em>Job</em></h2>
@@ -619,38 +599,22 @@
 
 
     <!-- jQuery -->
-<script src="jquery-2.1.0.min.js"></script>
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
-   <script src="popper.js"></script>
-<script src="bootstrap.min.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
     <!-- Plugins -->
-    <script src="scrollreveal.min.js"></script>
-<script src="waypoints.min.js"></script>
-<script src="jquery.counterup.min.js"></script>
-<script src="imgfix.min.js"></script>
-<script src="mixitup.js"></script>
-<script src="accordions.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/mixitup.js"></script> 
+    <script src="assets/js/accordions.js"></script>
     
     <!-- Global Init -->
-<script src="custom.js"></script>
+    <script src="assets/js/custom.js"></script>
 
   </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
