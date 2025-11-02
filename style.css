@@ -208,7 +208,9 @@ header
 }
 
 .header-area .main-nav .logo {
-  line-height: 60px;
+  line-height: normal;
+  align-items: center;
+  display: flex;
   color: #fff;
   font-size: 20px;
   font-weight: 800;
@@ -225,6 +227,18 @@ header
   font-size: 20px;
   color: #ed563b;
   font-weight: 900;
+}
+
+.header-area .main-nav .logo img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.background-header .main-nav .logo img {
+  height: 45px;
 }
 
 .header-area .main-nav .nav {
@@ -246,7 +260,7 @@ header
 }
 
 .header-area .main-nav .nav li a {
-  display: block;
+  display: flex;
   font-weight: 500;
   font-size: 13px;
   color: #7a7a7a;
@@ -1077,7 +1091,7 @@ preloader
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
-    justify-content: center;
+    justify-content: space-between;
     opacity: 1;
     visibility: visible;
     z-index: 9999;
@@ -1258,7 +1272,7 @@ responsive
   margin: 0 auto 15px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 a {
@@ -1269,6 +1283,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
