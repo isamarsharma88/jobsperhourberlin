@@ -8,14 +8,14 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
 
-  <!-- Bootstrap + Main CSS -->
+  <!-- Bootstrap + Theme CSS -->
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="font-awesome.css" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
     form#signupForm {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       background: #fff;
       padding: 40px;
@@ -32,7 +32,8 @@
 
     form#signupForm input[type="text"],
     form#signupForm input[type="email"],
-    form#signupForm input[type="password"] {
+    form#signupForm input[type="password"],
+    form#signupForm input[type="url"] {
       width: 100%;
       padding: 10px 12px;
       border: 1px solid #ddd;
@@ -57,12 +58,12 @@
 
     form#signupForm button {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 25px;
       background-color: #ed563b;
       color: #fff;
       border: none;
       border-radius: 5px;
-      padding: 12px 20px;
+      padding: 12px 24px;
       font-size: 14px;
       text-transform: uppercase;
       font-weight: 600;
@@ -77,7 +78,6 @@
       display: none;
     }
 
-    /* Hero Section */
     .section-bg {
       background-image: url('banner-image-1-1920x500.jpg');
       background-position: center;
@@ -105,19 +105,23 @@
     }
 
     footer {
-      margin-top: 60px;
+      margin-top: 80px;
     }
   </style>
 </head>
 
 <body>
-  <!-- ***** Header ***** -->
+
+  <!-- ***** Header Area ***** -->
   <header class="header-area header-sticky">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <nav class="main-nav">
+            <!-- Logo -->
             <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
+
+            <!-- Menu -->
             <ul class="nav">
               <li><a href="index.html">Home / Startseite</a></li>
               <li><a href="find-job.html">Find a Job / Job Finden</a></li>
@@ -126,7 +130,7 @@
               <li><a href="login.html">Login</a></li>
               <li><a href="signup.html" class="active">Sign Up / Registrieren</a></li>
             </ul>
-            <a class="menu-trigger"><span>Menu</span></a>
+            <a class='menu-trigger'><span>Menu</span></a>
           </nav>
         </div>
       </div>
@@ -140,8 +144,8 @@
     </div>
   </section>
 
-  <!-- ***** Sign Up Form ***** -->
-  <section class="section" id="signup-section" style="margin-top: 100px;">
+  <!-- ***** Signup Form Section ***** -->
+  <section class="section" id="signup-section" style="margin-top:100px;">
     <div class="container">
       <form id="signupForm">
         <label>Full Name / Vollständiger Name</label>
@@ -153,13 +157,41 @@
         <label>Password / Passwort</label>
         <input type="password" name="password" required>
 
-        <h3 style="margin-top: 25px; color: #232d39;">Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
-        <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
-        <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
+        <h3 style="margin-top: 25px; color: #232d39;">
+          Wie möchtest du diese Website nutzen? / How would you like to use this website?
+        </h3>
 
+        <label>
+          <input type="radio" name="usertype" value="Private" required> Private / Privat
+        </label>
+        <label>
+          <input type="radio" name="usertype" value="Business" required> Business / Gewerblich
+        </label>
+
+        <!-- Private User -->
         <div id="profileNameField" class="hidden">
           <label>Profile Name / Profilname (nur für Privatnutzer)</label>
           <input type="text" name="profilename">
+        </div>
+
+        <!-- Business User -->
+        <div id="businessFields" class="hidden">
+          <h3 style="margin-top: 25px; color: #232d39;">Business Information / Geschäftsdetails</h3>
+
+          <label>Company Name / Firmenname</label>
+          <input type="text" name="companyname" required>
+
+          <label>Business Email / Geschäfts-E-Mail</label>
+          <input type="email" name="businessemail" required>
+
+          <label>Business Address / Geschäftsadresse</label>
+          <input type="text" name="businessaddress" required>
+
+          <label>VAT / Tax ID (optional)</label>
+          <input type="text" name="taxid">
+
+          <label>Company Website (optional)</label>
+          <input type="url" name="companywebsite" placeholder="https://">
         </div>
 
         <div class="datenschutz">
@@ -193,24 +225,38 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- JS Scripts -->
   <script src="jquery-2.1.0.min.js"></script>
   <script src="bootstrap.min.js"></script>
 
   <script>
+    // Toggle user-type-specific fields
     const radioButtons = document.querySelectorAll('input[name="usertype"]');
     const profileNameField = document.getElementById('profileNameField');
+    const businessFields = document.getElementById('businessFields');
 
     radioButtons.forEach(radio => {
       radio.addEventListener('change', () => {
-        profileNameField.classList.toggle('hidden', radio.value !== 'Private');
+        if (radio.value === 'Private') {
+          profileNameField.classList.remove('hidden');
+          businessFields.classList.add('hidden');
+          businessFields.querySelectorAll('input[required]').forEach(el => el.required = false);
+        } else if (radio.value === 'Business') {
+          profileNameField.classList.add('hidden');
+          businessFields.classList.remove('hidden');
+          businessFields.querySelectorAll('input').forEach(el => {
+            if (el.name !== 'taxid' && el.name !== 'companywebsite') el.required = true;
+          });
+        }
       });
     });
 
+    // Form submission (demo)
     document.getElementById('signupForm').addEventListener('submit', e => {
       e.preventDefault();
       alert('Thank you for signing up! / Danke für Ihre Registrierung!');
     });
   </script>
+
 </body>
 </html>
