@@ -208,7 +208,7 @@ header
 }
 
 .header-area .main-nav .logo {
-  line-height: 100px;
+  line-height: 60px;
   color: #fff;
   font-size: 20px;
   font-weight: 800;
@@ -229,7 +229,7 @@ header
 
 .header-area .main-nav .nav {
   float: right;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-right: 0px;
   background-color: transparent;
   -webkit-transition: all 0.3s ease 0s;
@@ -255,8 +255,8 @@ header
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  height: 100px;
-  line-height: 100px;
+  height: 80px;
+  line-height: normal;
   border: transparent;
   letter-spacing: 1px;
 }
@@ -1269,6 +1269,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
