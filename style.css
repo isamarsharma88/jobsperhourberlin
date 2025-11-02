@@ -1091,7 +1091,7 @@ preloader
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
-    justify-content: space-between;
+    justify-content: center;
     opacity: 1;
     visibility: visible;
     z-index: 9999;
@@ -1172,7 +1172,6 @@ preloader
     background: #fff;
     border-radius: 50%;
 }
-
 
 /* 
 ---------------------------------------------
@@ -1283,6 +1282,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
