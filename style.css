@@ -208,9 +208,9 @@ header
 }
 
 .header-area .main-nav .logo {
-  line-height: 80px;
+  line-height: 60px;
   color: #fff;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 800;
   text-transform: uppercase;
   float: left;
@@ -222,6 +222,7 @@ header
 
 .header-area .main-nav .logo em {
   font-style: normal;
+  font-size: 24px;
   color: #ed563b;
   font-weight: 900;
 }
@@ -1268,6 +1269,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
