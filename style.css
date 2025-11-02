@@ -203,7 +203,7 @@ header
 }
 
 .header-area .main-nav {
-  min-height: 100px;
+  min-height: 80px;
   background: transparent;
 }
 
@@ -1269,6 +1269,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
