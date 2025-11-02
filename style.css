@@ -224,7 +224,7 @@ header
 
 .header-area .main-nav .logo em {
   font-style: normal;
-  font-size: 30px;
+  font-size: 40px;
   color: #ed563b;
   font-weight: 900;
 }
@@ -1282,6 +1282,7 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
 
 
 
