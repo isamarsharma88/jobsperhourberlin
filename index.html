@@ -526,45 +526,49 @@
     </section>
     <!-- ***** Testimonials Item End ***** -->
     
-    <!-- ***** Footer Start ***** -->
-   <footer>
+<!-- ***** Donate Section ***** -->
+<section class="donate-section text-center" style="background-color:#f8f8f8; padding:60px 0;">
   <div class="container">
-    <div class="row align-items-start">
-      
-      <!-- Left Column -->
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <div class="d-flex flex-column align-items-start">
-          <div class="mb-3">
-            <button class="btn btn-primary me-2">Jetzt kaufen</button>
-            <button class="btn btn-outline-primary">Spenden</button>
-          </div>
+    <h3 style="font-family:'Poppins',sans-serif; font-weight:700; color:#232d39; margin-bottom:15px;">
+      Support Our Mission / Unterstützen Sie Uns
+    </h3>
+    <p style="color:#7a7a7a; font-size:15px; max-width:700px; margin:0 auto 25px;">
+      Help us continue connecting people and creating job opportunities across Berlin.<br>
+      Your donation makes a real impact in empowering local workers and businesses.
+    </p>
 
-          <!-- Payment Logos -->
-          <div class="payments mb-3 d-flex flex-wrap align-items-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" height="30" class="me-3 payment-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" height="30" class="me-3 payment-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="30" class="me-3 payment-icon">
-            <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/64/sepa.png" alt="SEPA" height="30" class="me-3 payment-icon">
-            <img src="https://cdn.worldvectorlogo.com/logos/klarna-1.svg" alt="Klarna" height="30" class="payment-icon">
-          </div>
+    <button class="donate-btn" style="background-color:#ed563b; color:#fff; padding:14px 30px; border:none; border-radius:5px; font-weight:600; font-size:14px; transition:all 0.3s ease; cursor:pointer;">
+      💖 Spenden
+    </button>
 
-          <div class="footer-links">
-            <a href="#" class="me-2">Privacy Policy / Datenschutz</a> |
-            <a href="#" class="mx-2">Accessibility Statement / Barrierefreiheit</a> |
-            <a href="#" class="mx-2">Terms & Conditions / AGB</a> |
-            <a href="#" class="ms-2">Refund Policy / Rückerstattungsrichtlinie</a>
-          </div>
+    <div class="payment-icons mt-4">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa" height="32" style="margin:0 10px; opacity:0.9;">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" alt="MasterCard" height="32" style="margin:0 10px; opacity:0.9;">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" alt="PayPal" height="32" style="margin:0 10px; opacity:0.9;">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/sepa.svg" alt="SEPA" height="32" style="margin:0 10px; opacity:0.9;">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/klarna.svg" alt="Klarna" height="32" style="margin:0 10px; opacity:0.9;">
+    </div>
+  </div>
+</section>
+
+<!-- ***** Footer Start ***** -->
+<footer style="background-color:#232d39; color:#fff; text-align:center; padding:60px 0 40px; position:relative;">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Column: Social Links -->
+      <div class="col-lg-6 text-lg-start text-center mb-3 mb-lg-0">
+        <div class="social-icons mb-3">
+          <a href="#" style="color:#fff; margin:0 10px; text-decoration:none;">📷 Instagram</a>
+          <a href="#" style="color:#fff; margin:0 10px; text-decoration:none;">💼 LinkedIn</a>
+          <a href="#" style="color:#fff; margin:0 10px; text-decoration:none;">📘 Facebook</a>
+        </div>
+        <div id="visitor-counter" style="font-size:14px; color:#ccc;">
+          👀 Website Visitors: <span id="visit-count">Loading...</span>
         </div>
       </div>
 
-      <!-- Right Column -->
+      <!-- Right Column: Contact Info -->
       <div class="col-lg-6 text-lg-end text-center">
-        <div class="social-icons mb-3">
-          <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-dark me-3"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-dark"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-
         <div class="contact-info">
           <div><i class="fas fa-phone me-2"></i> +49 1573 0039134</div>
           <div><i class="fas fa-envelope me-2"></i> contact@jobsperhourberlin.de</div>
@@ -573,40 +577,52 @@
       </div>
     </div>
 
-    <!-- Bottom Section -->
-    <div class="row mt-4 pt-3 border-top">
-      <div class="col-lg-12 text-center">
-        <p class="mb-0">
-          © 2025 JobsPerHour Berlin — All rights reserved / Alle Rechte vorbehalten. <br>
-          Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
+    <!-- Bottom Row -->
+    <div class="row mt-4 pt-3 border-top border-light">
+      <div class="col-12 text-center">
+        <p class="mb-0" style="font-size:14px; color:#ccc;">
+          © 2025 JobsPerHourBerlin.de — All rights reserved / Alle Rechte vorbehalten.<br>
+          Template by: <a href="https://www.phpjabbers.com/" style="color:#ed563b;">PHPJabbers.com</a>
         </p>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- ***** Visitor Counter Script ***** -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const counterElement = document.getElementById("visit-count");
+    let count = localStorage.getItem("site_visits");
+    if (!count) count = 0;
+    count++;
+    localStorage.setItem("site_visits", count);
+    counterElement.textContent = count;
 
-    <!-- jQuery -->
+    // Optional global counter using CountAPI:
+    /*
+    fetch('https://api.countapi.xyz/hit/jobsperhourberlin.de/visits')
+      .then(res => res.json())
+      .then(data => { counterElement.textContent = data.value.toLocaleString(); })
+      .catch(() => counterElement.textContent = "Error");
+    */
+  });
+</script>
+
+<!-- JS Dependencies -->
 <script src="jquery-2.1.0.min.js"></script>
-
-    <!-- Bootstrap -->
-   <script src="popper.js"></script>
+<script src="popper.js"></script>
 <script src="bootstrap.min.js"></script>
-
-    <!-- Plugins -->
-    <script src="scrollreveal.min.js"></script>
+<script src="scrollreveal.min.js"></script>
 <script src="waypoints.min.js"></script>
 <script src="jquery.counterup.min.js"></script>
 <script src="imgfix.min.js"></script>
 <script src="mixitup.js"></script>
 <script src="accordions.js"></script>
-    
-    <!-- Global Init -->
 <script src="custom.js"></script>
-
-  </body>
-
+</body>
 </html>
+
 
 
 
