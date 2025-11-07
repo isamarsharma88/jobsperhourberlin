@@ -33,63 +33,44 @@
     <!-- ***** Preloader End ***** -->
     
     
- <!-- ***** Header Area Start ***** -->
-<header class="header-area header-fixed">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <nav class="main-nav navbar navbar-expand-lg navbar-light">
-          
-          <!-- ***** Logo Start ***** -->
-          <a href="index.html" class="logo navbar-brand">
+     <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo navbar-brand">
             <img src="logo.png" alt="JobsPerHourBerlin Logo" style="height:50px;">
           </a>
-          <!-- ***** Logo End ***** -->
-
-          <!-- Mobile Toggle Button -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-            aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- ***** Menu Start ***** -->
-          <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
-            <ul class="navbar-nav">
-
-              <!-- HOME -->
-              <li class="nav-item">
-                <a href="index.html" class="nav-link active">Home / Startseite</a>
-              </li>
-
-              <!-- ABOUT -->
-              <li class="nav-item">
-                <a href="about.html" class="nav-link">About Us / Über Uns</a>
-              </li>
-
-              <!-- JOIN US Dropdown -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Join Us
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="contact.html">Contact / Kontakt</a>
-                  <a class="dropdown-item" href="find-job.html">Find a Job / Job Finden</a>
-                  <a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a>
-                  <a class="dropdown-item" href="create-profile.html">Create Profile</a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html" class="active">Home / Startseite</a></li>
+                            <li><a href="jobs.html">Job finden</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
+                              
+                                <div class="dropdown-menu">
+                                    
+                                    <a class="dropdown-item" href="contact.html">Contact / Kontakt</a>
+                                    <a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a>
+                                    <a class="dropdown-item" href="blog.html">Blog</a>
+                                    <a class="dropdown-item" href="create-profile.html">Create Profile</a>
+                                </div>
+                            </li>
+                            <li><a href="about.html">About Us</a></li> 
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
                 </div>
-              </li>
-
-            </ul>
-          </div>
-          <!-- ***** Menu End ***** -->
-
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- ***** Header Area End ***** -->
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
 
 
 
@@ -596,6 +577,7 @@
 <script src="custom.js"></script>
 </body>
 </html>
+
 
 
 
