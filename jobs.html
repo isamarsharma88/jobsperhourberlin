@@ -1,151 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>JobsPerHourBerlin - Jobs</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs - JobsPerHour Berlin</title>
   <link rel="stylesheet" href="bootstrap.min.css">
-  <link rel="stylesheet" href="font-awesome.css">
   <link rel="stylesheet" href="style.css">
-
   <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-
-    .job-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 15px;
-      margin-bottom: 25px;
-      transition: all 0.3s ease;
+    /* Extra styles for category cards */
+    .job-category {
+      margin-bottom: 30px;
+      text-align: center;
     }
-    .job-card:hover { transform: translateY(-5px); }
-    .job-card img {
-      width: 100%; height: 200px; object-fit: cover; border-radius: 8px;
+    .job-category img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .job-card h4 { font-size: 18px; margin: 10px 0 8px; }
-    .job-card p { font-size: 14px; color: #555; }
-    .btn-view {
-      display: inline-block;
-      background-color: #007bff; color: #fff; padding: 6px 12px;
-      border-radius: 5px; text-decoration: none; font-size: 13px;
+    .job-category img:hover {
+      transform: scale(1.05);
     }
-    .btn-view:hover { background-color: #0056b3; color: #fff; }
-
-    .sidebar label { display: block; font-size: 14px; margin-bottom: 8px; cursor: pointer; }
-    .sidebar input[type="checkbox"] { margin-right: 6px; }
+    .job-category h4 {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .sidebar h5 {
+      margin-top: 25px;
+      font-weight: 600;
+      color: #333;
+    }
+    .sidebar label {
+      display: block;
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
 
-<div class="container my-5">
-  <div class="row">
-    <!-- Sidebar Filters -->
-    <div class="col-lg-4 sidebar">
-      <form id="filterForm">
-        <h5>Type</h5>
-        <label><input type="checkbox" name="type" value="Hourly"> Hourly Jobs (<span class="count-type" data-type="Hourly">0</span>)</label>
-        <label><input type="checkbox" name="type" value="Part-time"> Part-time Jobs (<span class="count-type" data-type="Part-time">0</span>)</label>
-        <label><input type="checkbox" name="type" value="Full-time"> Full-time Jobs (<span class="count-type" data-type="Full-time">0</span>)</label>
+  <!-- Header -->
+  <header class="text-center py-4">
+    <h2>Find Jobs by Category</h2>
+    <p>Browse through different categories to find your next opportunity.</p>
+  </header>
 
-        <h5>Category</h5>
-        <label><input type="checkbox" name="category" value="Household"> Household & Cleaning (<span class="count-category" data-category="Household">0</span>)</label>
-        <label><input type="checkbox" name="category" value="Gardening"> Gardening & Outdoor (<span class="count-category" data-category="Gardening">0</span>)</label>
-        <label><input type="checkbox" name="category" value="Moving"> Moving & Transport (<span class="count-category" data-category="Moving">0</span>)</label>
-        <label><input type="checkbox" name="category" value="Restaurant"> Restaurant & Café (<span class="count-category" data-category="Restaurant">0</span>)</label>
-        <label><input type="checkbox" name="category" value="Babysitting"> Babysitting & Childcare (<span class="count-category" data-category="Babysitting">0</span>)</label>
-        <label><input type="checkbox" name="category" value="PetCare"> Pet Care (<span class="count-category" data-category="PetCare">0</span>)</label>
+  <div class="container my-5">
+    <div class="row">
+      <!-- Main Job Categories -->
+      <div class="col-lg-8">
+        <div class="row">
+          
+          <!-- 1 Household & Cleaning -->
+          <div class="col-md-6 job-category">
+            <img src="cleaning.jpg" alt="Household & Cleaning Jobs">
+            <h4>Household & Cleaning (0)</h4>
+          </div>
 
-        <h5>Career Level</h5>
-        <label><input type="checkbox" name="career" value="Entry"> Entry Level (<span class="count-career" data-career="Entry">0</span>)</label>
-        <label><input type="checkbox" name="career" value="Mid"> Mid Experience (<span class="count-career" data-career="Mid">0</span>)</label>
-        <label><input type="checkbox" name="career" value="Professional"> Professional (<span class="count-career" data-career="Professional">0</span>)</label>
-      </form>
-    </div>
+          <!-- 2 Gardening & Outdoor -->
+          <div class="col-md-6 job-category">
+            <img src="gardening.jpg" alt="Gardening & Outdoor Jobs">
+            <h4>Gardening & Outdoor (0)</h4>
+          </div>
 
-    <!-- Job Cards (Static categories for now) -->
-    <div class="col-lg-8">
-      <div class="row" id="jobContainer">
+          <!-- 3 Moving & Transport -->
+          <div class="col-md-6 job-category">
+            <img src="moving-transport.jpg" alt="Moving & Transport Jobs">
+            <h4>Moving & Transport (0)</h4>
+          </div>
 
-        <div class="col-md-6 job-card" data-category="Household">
-          <img src="cleaning.jpg" alt="Cleaning Jobs">
-          <h4>Household & Cleaning</h4>
-          <p>Keep Berlin homes tidy — cleaning, laundry, and more. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
+          <!-- 4 Restaurant & Café -->
+          <div class="col-md-6 job-category">
+            <img src="restaurant.jpg" alt="Restaurant & Café Jobs">
+            <h4>Restaurant & Café (0)</h4>
+          </div>
+
+          <!-- 5 Babysitting & Childcare -->
+          <div class="col-md-6 job-category">
+            <img src="babysitting.jpg" alt="Babysitting & Childcare Jobs">
+            <h4>Babysitting & Childcare (0)</h4>
+          </div>
+
+          <!-- 6 Pet Care -->
+          <div class="col-md-6 job-category">
+            <img src="pet-care.jpg" alt="Pet Care Jobs">
+            <h4>Pet Care (0)</h4>
+          </div>
+
+          <!-- 7 Delivery & Courier -->
+          <div class="col-md-6 job-category">
+            <img src="delivery-courier.jpg" alt="Delivery & Courier Jobs">
+            <h4>Delivery & Courier (0)</h4>
+          </div>
+
+          <!-- 8 Office & Admin Support -->
+          <div class="col-md-6 job-category">
+            <img src="office-admin.jpg" alt="Office & Admin Support Jobs">
+            <h4>Office & Admin Support (0)</h4>
+          </div>
+
+          <!-- 9 Tutoring & Teaching -->
+          <div class="col-md-6 job-category">
+            <img src="teaching.jpg" alt="Tutoring & Teaching Jobs">
+            <h4>Tutoring & Teaching (0)</h4>
+          </div>
+
+          <!-- 10 Creative & Design -->
+          <div class="col-md-6 job-category">
+            <img src="creative-design.jpg" alt="Creative & Design Jobs">
+            <h4>Creative & Design (0)</h4>
+          </div>
+
+          <!-- 11 IT & Tech Support -->
+          <div class="col-md-6 job-category">
+            <img src="it-tech-support.jpg" alt="IT & Tech Support Jobs">
+            <h4>IT & Tech Support (0)</h4>
+          </div>
+
+          <!-- 12 Event & Promotion -->
+          <div class="col-md-6 job-category">
+            <img src="event-promotion.jpg" alt="Event & Promotion Jobs">
+            <h4>Event & Promotion (0)</h4>
+          </div>
+
         </div>
-
-        <div class="col-md-6 job-card" data-category="Gardening">
-          <img src="gardening.jpg" alt="Gardening Jobs">
-          <h4>Gardening & Outdoor</h4>
-          <p>Green up Berlin — gardening, planting, or outdoor maintenance. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
-        </div>
-
-        <div class="col-md-6 job-card" data-category="Moving">
-          <img src="moving-transport.jpg" alt="Moving Jobs">
-          <h4>Moving & Transport</h4>
-          <p>Help Berlin move — lifting, packing, or driving jobs. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
-        </div>
-
-        <div class="col-md-6 job-card" data-category="Restaurant">
-          <img src="restaurant.jpg" alt="Restaurant Jobs">
-          <h4>Restaurant & Café</h4>
-          <p>Work in Berlin’s lively food scene — serving, kitchen help, and more. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
-        </div>
-
-        <div class="col-md-6 job-card" data-category="Babysitting">
-          <img src="babysitting.jpg" alt="Babysitting Jobs">
-          <h4>Babysitting & Childcare</h4>
-          <p>Support Berlin families with babysitting, tutoring, or childcare. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
-        </div>
-
-        <div class="col-md-6 job-card" data-category="PetCare">
-          <img src="delivery-courier.jpg" alt="Pet Care Jobs">
-          <h4>Pet Care</h4>
-          <p>Love animals? Walk, feed, or sit for Berlin’s furry friends. (No listings yet)</p>
-          <a href="#" class="btn-view">Coming Soon</a>
-        </div>
-
       </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4 sidebar">
+        <form>
+          <h5>Type</h5>
+          <label><input type="checkbox"> Hourly Jobs (0)</label>
+          <label><input type="checkbox"> Part-time Jobs (0)</label>
+          <label><input type="checkbox"> Full-time Jobs (0)</label>
+
+          <h5>Category</h5>
+          <label><input type="checkbox"> Household & Cleaning (0)</label>
+          <label><input type="checkbox"> Gardening & Outdoor (0)</label>
+          <label><input type="checkbox"> Moving & Transport (0)</label>
+          <label><input type="checkbox"> Restaurant & Café (0)</label>
+          <label><input type="checkbox"> Babysitting & Childcare (0)</label>
+          <label><input type="checkbox"> Pet Care (0)</label>
+          <label><input type="checkbox"> Delivery & Courier (0)</label>
+          <label><input type="checkbox"> Office & Admin Support (0)</label>
+          <label><input type="checkbox"> Tutoring & Teaching (0)</label>
+          <label><input type="checkbox"> Creative & Design (0)</label>
+          <label><input type="checkbox"> IT & Tech Support (0)</label>
+          <label><input type="checkbox"> Event & Promotion (0)</label>
+
+          <h5>Career Level</h5>
+          <label><input type="checkbox"> Entry Level (0)</label>
+          <label><input type="checkbox"> Mid Experience (0)</label>
+          <label><input type="checkbox"> Professional (0)</label>
+
+          <h5>Education Level</h5>
+          <label><input type="checkbox"> Degree (0)</label>
+          <label><input type="checkbox"> Student (0)</label>
+          <label><input type="checkbox"> Certification (0)</label>
+        </form>
+      </div>
+
     </div>
   </div>
-</div>
 
-<script>
-  const form = document.getElementById("filterForm");
-  const jobs = document.querySelectorAll(".job-card");
-
-  function updateCounts() {
-    // Start everything from 0
-    document.querySelectorAll("[class*='count-']").forEach(span => span.textContent = 0);
-
-    jobs.forEach(job => {
-      if (job.style.display !== "none") {
-        const cat = job.dataset.category;
-        const span = document.querySelector(`.count-category[data-category='${cat}']`);
-        if (span) span.textContent = parseInt(span.textContent) + 1;
-      }
-    });
-  }
-
-  function filterJobs() {
-    const categories = Array.from(form.querySelectorAll("input[name='category']:checked")).map(el => el.value);
-
-    jobs.forEach(job => {
-      const matchCat = categories.length === 0 || categories.includes(job.dataset.category);
-      job.style.display = matchCat ? "" : "none";
-    });
-
-    updateCounts();
-  }
-
-  form.addEventListener("change", filterJobs);
-  updateCounts();
-</script>
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p>© 2025 JobsPerHour Berlin. All Rights Reserved.</p>
+  </footer>
 
 </body>
 </html>
