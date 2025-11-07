@@ -33,39 +33,52 @@
     <!-- ***** Preloader End ***** -->
     
     
-  <!-- ***** Header Area Start ***** -->
-<header class="header-area header-fixed">
+ <!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
   <div class="container">
-    <div class="main-nav d-flex justify-content-between align-items-center">
-      
-      <!-- Logo -->
-      <a href="index.html" class="logo">
-        <img src="logo.png" alt="JobsPerHourBerlin Logo">
-      </a>
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav navbar navbar-expand-lg navbar-light">
+          <!-- ***** Logo Start ***** -->
+          <a href="index.html" class="navbar-brand logo">Job Agency<em> Website</em></a>
+          <!-- ***** Logo End ***** -->
 
-      <!-- Main Navigation -->
-      <nav class="d-flex align-items-center">
-        <ul class="nav">
-          <!-- HOME -->
-          <li><a href="index.html" class="active">Home / Startseite</a></li>
+          <!-- Mobile Toggle Button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+            aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          <!-- ABOUT -->
-          <li><a href="about.html">About Us / Über Uns</a></li>
+          <!-- ***** Menu Start ***** -->
+          <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+            <ul class="navbar-nav">
+              <!-- HOME -->
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">Home / Startseite</a>
+              </li>
 
-          <!-- CONTACT with Dropdown -->
-          <li class="dropdown">
-            <a href="contact.html" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Contact / Kontakt
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="find-job.html">Find a Job / Job Finden</a></li>
-              <li><a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a></li>
-              <li><a class="dropdown-item" href="create-profile.html">Create Profile</a></li>
+              <!-- ABOUT -->
+              <li class="nav-item">
+                <a href="about.html" class="nav-link">About Us / Über Uns</a>
+              </li>
+
+              <!-- CONTACT with Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="contact.html" id="navbarDropdown"
+                  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Contact / Kontakt
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="find-job.html">Find a Job / Job Finden</a>
+                  <a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a>
+                  <a class="dropdown-item" href="create-profile.html">Create Profile</a>
+                </div>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </nav>
-
+          </div>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
     </div>
   </div>
 </header>
@@ -575,6 +588,7 @@
 <script src="custom.js"></script>
 </body>
 </html>
+
 
 
 
