@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>JobsPerHourBerlin - Jobs</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="font-awesome.css">
+  <link rel="stylesheet" href="style.css">
+
   <style>
     body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
 
@@ -61,50 +64,52 @@
       </form>
     </div>
 
-    <!-- Job Cards -->
+    <!-- Job Cards (Static categories for now) -->
     <div class="col-lg-8">
       <div class="row" id="jobContainer">
-        <div class="col-md-6 job-card" data-type="Hourly" data-category="Household" data-career="Entry">
-          <img src="assets/images/product-1-720x480.jpg" alt="Household job">
-          <h4>Turn Chaos into Cozy — Make Berlin Homes Shine!</h4>
-          <p>Household & Cleaning Jobs — Apartment cleaning, laundry, ironing — help busy Berliners keep things spotless.</p>
-          <a href="#" class="btn-view">+ View More</a>
+
+        <div class="col-md-6 job-card" data-category="Household">
+          <img src="cleaning.jpg" alt="Cleaning Jobs">
+          <h4>Household & Cleaning</h4>
+          <p>Keep Berlin homes tidy — cleaning, laundry, and more. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
 
-        <div class="col-md-6 job-card" data-type="Part-time" data-category="Gardening" data-career="Mid">
-          <img src="assets/images/product-2-720x480.jpg" alt="Gardening job">
-          <h4>Green Fingers Wanted — Grow, Trim, and Thrive!</h4>
-          <p>Gardening & Outdoor Jobs — Lawn mowing, planting, or clearing snow — enjoy Berlin’s fresh air.</p>
-          <a href="#" class="btn-view">+ View More</a>
+        <div class="col-md-6 job-card" data-category="Gardening">
+          <img src="gardening.jpg" alt="Gardening Jobs">
+          <h4>Gardening & Outdoor</h4>
+          <p>Green up Berlin — gardening, planting, or outdoor maintenance. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
 
-        <div class="col-md-6 job-card" data-type="Full-time" data-category="Moving" data-career="Entry">
-          <img src="assets/images/product-3-720x480.jpg" alt="Moving job">
-          <h4>Berlin on the Move — Help Carry the City!</h4>
-          <p>Moving & Transport Jobs — Lend a hand with furniture, packing, and van loading.</p>
-          <a href="#" class="btn-view">+ View More</a>
+        <div class="col-md-6 job-card" data-category="Moving">
+          <img src="moving-transport.jpg" alt="Moving Jobs">
+          <h4>Moving & Transport</h4>
+          <p>Help Berlin move — lifting, packing, or driving jobs. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
 
-        <div class="col-md-6 job-card" data-type="Hourly" data-category="Restaurant" data-career="Mid">
-          <img src="assets/images/product-4-720x480.jpg" alt="Restaurant job">
-          <h4>Restaurant Hustle — Serve, Smile, and Soak Up the Vibes!</h4>
-          <p>Restaurant & Café Jobs — Wait tables, assist in the kitchen, or clean up.</p>
-          <a href="#" class="btn-view">+ View More</a>
+        <div class="col-md-6 job-card" data-category="Restaurant">
+          <img src="restaurant.jpg" alt="Restaurant Jobs">
+          <h4>Restaurant & Café</h4>
+          <p>Work in Berlin’s lively food scene — serving, kitchen help, and more. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
 
-        <div class="col-md-6 job-card" data-type="Part-time" data-category="Babysitting" data-career="Professional">
-          <img src="assets/images/product-5-720x480.jpg" alt="Babysitting job">
-          <h4>Little Smiles, Big Hearts — Your Care Makes a Difference!</h4>
-          <p>Babysitting & Childcare — Babysit, tutor, or nanny — help Berlin families with trusted childcare.</p>
-          <a href="#" class="btn-view">+ View More</a>
+        <div class="col-md-6 job-card" data-category="Babysitting">
+          <img src="babysitting.jpg" alt="Babysitting Jobs">
+          <h4>Babysitting & Childcare</h4>
+          <p>Support Berlin families with babysitting, tutoring, or childcare. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
 
-        <div class="col-md-6 job-card" data-type="Hourly" data-category="PetCare" data-career="Entry">
-          <img src="assets/images/product-6-720x480.jpg" alt="Pet care job">
-          <h4>Furry Friends Need You — Walk, Feed, or Cuddle!</h4>
-          <p>Pet Care Jobs — Dog walking, pet sitting, or feeding — earn money while spending time with animals.</p>
-          <a href="#" class="btn-view">+ View More</a>
+        <div class="col-md-6 job-card" data-category="PetCare">
+          <img src="delivery-courier.jpg" alt="Pet Care Jobs">
+          <h4>Pet Care</h4>
+          <p>Love animals? Walk, feed, or sit for Berlin’s furry friends. (No listings yet)</p>
+          <a href="#" class="btn-view">Coming Soon</a>
         </div>
+
       </div>
     </div>
   </div>
@@ -115,36 +120,30 @@
   const jobs = document.querySelectorAll(".job-card");
 
   function updateCounts() {
-    const visibleJobs = Array.from(jobs).filter(job => job.style.display !== "none");
-
-    // Reset all counts
+    // Start everything from 0
     document.querySelectorAll("[class*='count-']").forEach(span => span.textContent = 0);
 
-    visibleJobs.forEach(job => {
-      document.querySelector(`.count-type[data-type='${job.dataset.type}']`).textContent++;
-      document.querySelector(`.count-category[data-category='${job.dataset.category}']`).textContent++;
-      document.querySelector(`.count-career[data-career='${job.dataset.career}']`).textContent++;
+    jobs.forEach(job => {
+      if (job.style.display !== "none") {
+        const cat = job.dataset.category;
+        const span = document.querySelector(`.count-category[data-category='${cat}']`);
+        if (span) span.textContent = parseInt(span.textContent) + 1;
+      }
     });
   }
 
   function filterJobs() {
-    const types = Array.from(form.querySelectorAll("input[name='type']:checked")).map(el => el.value);
     const categories = Array.from(form.querySelectorAll("input[name='category']:checked")).map(el => el.value);
-    const careers = Array.from(form.querySelectorAll("input[name='career']:checked")).map(el => el.value);
 
     jobs.forEach(job => {
-      const matchType = types.length === 0 || types.includes(job.dataset.type);
       const matchCat = categories.length === 0 || categories.includes(job.dataset.category);
-      const matchCareer = careers.length === 0 || careers.includes(job.dataset.career);
-      job.style.display = matchType && matchCat && matchCareer ? "" : "none";
+      job.style.display = matchCat ? "" : "none";
     });
 
     updateCounts();
   }
 
   form.addEventListener("change", filterJobs);
-
-  // Initialize counts on page load
   updateCounts();
 </script>
 
