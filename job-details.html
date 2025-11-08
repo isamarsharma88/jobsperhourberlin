@@ -281,7 +281,7 @@
             <!-- Logo -->
             <a href="index.html" class="logo navbar-brand d-flex align-items-center">
               <img src="logo.png" alt="JobsPerHourBerlin Logo">
-              <span>JobsPerHour<em>Berlin</em></span>
+              <span>JobsPerHour<em> Berlin</em></span>
             </a>
 
             <!-- Menu -->
@@ -289,7 +289,7 @@
               <li><a href="index.html" class="active">Home</a></li>
               <li><a href="jobs.html">Jobs</a></li>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">About</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="about.html">About Us</a>
                   <a class="dropdown-item" href="signup.html">Sign Up</a>
@@ -300,7 +300,10 @@
               <li><a href="contact.html">Contact</a></li>
             </ul>
 
-            <a class="menu-trigger"><span>Menu</span></a>
+            <!-- Mobile Menu Trigger (optional for small screens only) -->
+<a class="menu-trigger d-lg-none">
+  <i class="fa fa-bars" style="color:#fff; font-size:22px;"></i>
+</a>
           </nav>
         </div>
       </div>
@@ -309,14 +312,17 @@
 
   <!-- ***** Job Hero Section ***** -->
   <section class="section section-bg" style="background-image: url(banner-image-1-1920x500.jpg)">
-    <div class="container text-center">
-      <h2 id="jobTitle">Loading Job...</h2>
-      <p id="jobCategory">Category: </p>
-      <div class="main-button">
-        <a href="#" data-toggle="modal" data-target="#applyModal" class="btn btn-warning">Apply Now</a>
-      </div>
+  <div class="container text-center">
+    <h2 id="jobTitle" style="color:#ff5a3c; font-weight:700;">Loading Job...</h2>
+    <p id="jobCategory" style="color:#ff5a3c; font-size:18px;">Category:</p>
+    <div class="main-button mt-3">
+      <a href="#" data-toggle="modal" data-target="#applyModal"
+         style="background-color:#ff5a3c; color:#fff; border:none; padding:12px 28px; border-radius:5px; font-weight:600; text-decoration:none; transition:background 0.3s;">
+        Apply Now
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ***** Job Details Section ***** -->
   <section class="section" id="job-details">
