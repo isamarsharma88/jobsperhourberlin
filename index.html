@@ -18,29 +18,56 @@
     </head>
     
     <body>
-    <!-- Under Construction Notice -->
+  <!-- Under Construction Notice -->
 <div class="under-construction">
-  🚧 Our website is currently under progress — full features will be available from December 2025. Thank you for your patience and support! 🙏
+  🚧 Our website is currently under progress — full features will be available from December 2025. Thank you for your patience and support! 🙏<br><br>
+  If you want to post a job, please either 
+  <strong><a href="mailto:contact@jobsperhourberlin.de">drop us an email</a></strong> 
+  or 
+  <strong><a href="contact.html" class="contact-btn">fill the job form</a></strong> under <em>Contact/Kontakt</em>.
 </div>
 
 <style>
 .under-construction {
-  background-color: #fff3cd; /* light yellow for visibility */
+  background-color: #fff3cd; /* light yellow */
   color: #856404; /* dark yellow text */
   border: 1px solid #ffeeba;
   border-radius: 8px;
-  padding: 15px 20px;
+  padding: 10px 15px;
   text-align: center;
-  margin: 100px auto 20px auto; /* pushes the box down from top */
-  width: 90%;
+  width: 95%;
   max-width: 900px;
-  font-size: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed; /* keeps it visible at top */
+  top: 10px; /* distance from top of screen */
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
+  line-height: 1.4;
+}
+
+.under-construction a {
+  color: #856404;
+  text-decoration: underline;
+}
+
+.contact-btn {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 5px 12px;
+  background-color: #856404; /* button color */
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #a07800;
 }
 </style>
-
 
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
@@ -600,6 +627,7 @@
 <script src="custom.js"></script>
 </body>
 </html>
+
 
 
 
