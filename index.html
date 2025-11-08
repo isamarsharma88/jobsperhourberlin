@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-
-    <title>https://jobsperhourberlin.de</title>
-
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>JobsPerHourBerlin.de</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="font-awesome.css">
 <link rel="stylesheet" href="style.css">
-
-    </head>
-    
-    <body>
-  <!-- Under Construction Notice -->
-<div class="under-construction">
-  🚧 Our website is currently under progress — full features will be available from December 2025. Thank you for your patience and support! 🙏<br><br>
-  If you want to post a job, please either 
-  <strong><a href="mailto:contact@jobsperhourberlin.de">drop us an email</a></strong> 
-  or 
-  <strong><a href="contact.html" class="contact-btn">fill the job form</a></strong> under <em>Contact/Kontakt</em>.
-</div>
-
 <style>
+/* Language Toggle Button */
+.lang-toggle {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 9999;
+  background: #ED563B;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.lang-toggle:hover { background: #a03b1b; }
+
+/* Under Construction Notice */
 .under-construction {
   background-color: #fff3cd;
   color: #856404;
@@ -39,15 +39,10 @@
   max-width: 900px;
   font-size: 14px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin: 80px auto 20px; /* creates spacing from the top/navbar */
+  margin: 80px auto 20px;
   line-height: 1.4;
 }
-
-.under-construction a {
-  color: #856404;
-  text-decoration: underline;
-}
-
+.under-construction a { color: #856404; text-decoration: underline; }
 .contact-btn {
   display: inline-block;
   margin-left: 5px;
@@ -59,349 +54,284 @@
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
-
-.contact-btn:hover {
-  background-color: #a07800;
-}
+.contact-btn:hover { background-color: #a07800; }
 </style>
-<!-- Under Construction Notice END -->
-    <!-- ***** Preloader Start ***** -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-    <!-- ***** Preloader End ***** -->
-    
-    
-     <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo navbar-brand">
+</head>
+
+<body>
+
+<!-- Language Toggle Button -->
+<button class="lang-toggle" onclick="toggleLang()">DE / EN</button>
+
+<!-- Under Construction Notice -->
+<div class="under-construction" id="under-construction">
+🚧 <span data-en="Our website is currently under progress — full features will be available from December 2025. Thank you for your patience and support! 🙏" 
+          data-de="Unsere Website ist noch in Arbeit — alle Funktionen werden ab Dezember 2025 verfügbar sein. Vielen Dank für Ihre Geduld! 🙏"></span><br><br>
+If you want to post a job, please either 
+<strong><a href="mailto:contact@jobsperhourberlin.de" id="email-link">drop us an email</a></strong> 
+or 
+<strong><a href="contact.html" class="contact-btn" id="form-link">fill the job form</a></strong> under <em id="contact-text">Contact/Kontakt</em>.
+</div>
+
+<!-- Header -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo navbar-brand">
             <img src="logo.png" alt="JobsPerHourBerlin Logo" style="height:50px;">
           </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a href="index.html" class="active">Home / Startseite</a></li>
-                            <li><a href="jobs.html">Jobs</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
-                              
-                                <div class="dropdown-menu">
-                                    
-                                    <a class="dropdown-item" href="contact.html">Contact / Kontakt</a>
-                                    <a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a>
-                                    <a class="dropdown-item" href="blog.html">Blog</a>
-                                    <a class="dropdown-item" href="create-profile.html">Create Profile</a>
-                                </div>
-                            </li>
-                            <li><a href="about.html">About Us</a></li> 
-                        </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
-
-
-
-    <!-- ***** Main Banner Area Start ***** -->
-    <div class="main-banner" id="top fixed">
-        <video autoplay muted loop id="bg-video">
-  <source src="video.mp4" type="video/mp4" />
-</video>
- <div class="video-overlay header-text">
-            <div class="caption">
-            <h6>Side Hustle. Smart Money. Berlin Style.</h6>
-              
-              <h2>Find the perfect <em>Job</em></h2>
-                <div class="main-button">
-                    <a href="contact.html">Contact Us</a>
-                </div>
-            </div>
-        </div>
+          <ul class="nav">
+            <li><a href="index.html" class="active" data-en="Home" data-de="Startseite">Home / Startseite</a></li>
+            <li><a href="jobs.html" data-en="Jobs" data-de="Jobs">Jobs</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" data-en="Join Us" data-de="Mitmachen">Join Us</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="contact.html" data-en="Contact" data-de="Kontakt">Contact / Kontakt</a>
+                <a class="dropdown-item" href="login.html" data-en="Login / Sign Up" data-de="Login / Registrieren">Login / Sign Up (Registrieren)</a>
+                <a class="dropdown-item" href="blog.html" data-en="Blog" data-de="Blog">Blog</a>
+                <a class="dropdown-item" href="create-profile.html" data-en="Create Profile" data-de="Profil erstellen">Create Profile</a>
+              </div>
+            </li>
+            <li><a href="about.html" data-en="About Us" data-de="Über Uns">About Us</a></li> 
+          </ul>        
+          <a class='menu-trigger'><span>Menu</span></a>
+        </nav>
+      </div>
     </div>
-    <!-- ***** Main Banner Area End ***** -->
+  </div>
+</header>
 
+<!-- Main Banner -->
+<div class="main-banner" id="top">
+  <video autoplay muted loop id="bg-video">
+    <source src="video.mp4" type="video/mp4" />
+  </video>
+  <div class="video-overlay header-text">
+    <div class="caption">
+      <h6 data-en="Side Hustle. Smart Money. Berlin Style." data-de="Nebenjob. Clever Geld. Berliner Style."></h6>
+      <h2 data-en="Find the perfect Job" data-de="Finde den perfekten Job"><em></em></h2>
+      <div class="main-button">
+        <a href="contact.html" data-en="Contact Us" data-de="Kontaktieren Sie uns"></a>
+      </div>
+    </div>
+  </div>
+</div>
 
- <!-- Featured Jobs Section -->
+<!-- Featured Jobs Section -->
 <section class="section" id="featured-jobs">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 offset-lg-3">
-        <div class="section-heading text-center">
-          <h2>Featured <em>Jobs</em></h2>
+      <div class="col-lg-6 offset-lg-3 text-center">
+        <div class="section-heading">
+          <h2 data-en="Featured Jobs" data-de="Beliebte Jobs"></h2>
           <img src="assets/images/line-dec.png" alt="">
-          <p>Explore flexible and local job opportunities in Berlin — find the right role for you!</p>
+          <p data-en="Explore flexible and local job opportunities in Berlin — find the right role for you!"
+             data-de="Entdecke flexible und lokale Jobmöglichkeiten in Berlin — finde die passende Stelle für dich!"></p>
         </div>
       </div>
     </div>
 
-    <!-- Row 1: Household & Cleaning + Gardening -->
     <div class="row">
-      <!-- Household -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/cleaning.jpg" alt="Household jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>🏠 Household & Cleaning <em>/ Haushalt & Reinigung</em></h4>
-            <p>Turn Chaos into Cozy — Make Berlin Homes Shine! Apartment cleaning, laundry, ironing — help busy Berliners keep things spotless while earning steady pay.</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Gardening -->
+      <!-- 1. Household & Cleaning -->
       <div class="col-lg-6">
         <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/gardening.jpg" alt="Gardening jobs in Berlin">
-          </div>
+          <div class="image-thumb"><img src="cleaning.jpg" alt="Household jobs in Berlin"></div>
           <div class="down-content">
-            <h4>🌿 Gardening & Outdoor <em>/ Gartenarbeit & Außenarbeiten</em></h4>
-            <p>Green Fingers Wanted — Grow, Trim, and Thrive! Lawn mowing, planting, or clearing snow — enjoy Berlin’s fresh air while helping gardens bloom.</p>
+            <h4>🏠 <span data-en="Household & Cleaning" data-de="Haushalt & Reinigung"></span></h4>
+            <p data-en="Turn Chaos into Cozy — Make Berlin Homes Shine! Apartment cleaning, laundry, ironing — help busy Berliners keep things spotless while earning steady pay."
+               data-de="Aus Chaos wird Gemütlichkeit — bringe Berliner Wohnungen zum Strahlen! Reinigung, Wäsche, Bügeln — unterstütze vielbeschäftigte Berliner und verdiene Geld."></p>
             <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2: Moving & Restaurant -->
-    <div class="row">
-      <!-- Moving -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/moving.jpg" alt="Moving jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>🚚 Moving & Transport <em>/ Umzug & Transporthilfe</em></h4>
-            <p>Berlin on the Move — Help Carry the City! Lend a hand with furniture, packing, and van loading. Fast jobs, fast pay, real teamwork.</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Restaurant -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/restaurant.jpg" alt="Restaurant jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>🍽️ Restaurant & Café <em>/ Restaurant- & Café-Jobs</em></h4>
-            <p>Restaurant Hustle — Serve, Smile, and Soak Up the Vibes! Wait tables, assist in the kitchen, or clean up — be part of Berlin’s buzzing food scene.</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-            </div>
-          </div>
-        </div>
-     
-
-    <!-- Row 3: Babysitting & Pet Care -->
-    <div class="row">
-      <!-- Babysitting -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/babysitting.jpg" alt="Childcare jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>👶 Babysitting & Childcare <em>/ Kinderbetreuung</em></h4>
-            <p>Little Smiles, Big Hearts — Your Care Makes a Difference! Babysit, tutor, or nanny — help Berlin families with trusted childcare.</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pet Care -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/petcare.jpg" alt="Pet care jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>🐾 Pet Care <em>/ Tierbetreuung</em></h4>
-<p>Furry Friends Need You — Walk, Feed, or Cuddle! Dog walking, pet sitting, or feeding — earn money while spending time with animals.</p>
-<div class="main-button">
-  <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-  <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">
-    Post a Job / Stelle ausschreiben
-  </a>
-</div>
-            </div>
-          </div>
-        </div>
-     
-<!-- Row 4: Delivery & Office Support -->
-    <div class="row">
-      <!-- Delivery -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/delivery.jpg" alt="Delivery jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>🚴 Delivery & Courier <em>/ Lieferung & Kurierdienst</em></h4>
-            <p>Speed through Berlin on your bike or scooter — deliver food, parcels, or documents. Flexible hours and great for students who love being outdoors!</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Office Support -->
+      <!-- 2. Gardening & Outdoor -->
       <div class="col-lg-6">
         <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/office.jpg" alt="Office support jobs in Berlin">
-          </div>
+          <div class="image-thumb"><img src="gardening.jpg" alt="Gardening jobs in Berlin"></div>
           <div class="down-content">
-            <h4>💼 Office & Admin Support <em>/ Bürohilfe & Verwaltung</em></h4>
-            <p>Assist Berlin’s startups and small businesses — handle data entry, emails, or reception tasks. Gain real office experience while earning hourly pay.</p>
+            <h4>🌿 <span data-en="Gardening & Outdoor" data-de="Gartenarbeit & Außenarbeiten"></span></h4>
+            <p data-en="Green Fingers Wanted — Grow, Trim, and Thrive! Lawn mowing, planting, or clearing snow — enjoy Berlin’s fresh air while helping gardens bloom."
+               data-de="Grüne Daumen gesucht — Pflanzen, Rasen mähen oder Schnee räumen — genieße Berlins frische Luft und bringe Gärten zum Blühen."></p>
             <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 5: Tutoring & Events -->
-    <div class="row">
-      <!-- Tutoring -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/tutoring.jpg" alt="Tutoring jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>📚 Tutoring & Teaching <em>/ Nachhilfe & Unterricht</em></h4>
-            <p>Share your knowledge! Teach English, math, or other subjects to students across Berlin — in-person or online, flexible scheduling available.</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Events -->
+      <!-- 3. Moving & Transport -->
       <div class="col-lg-6">
         <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/event.jpg" alt="Event jobs in Berlin">
-          </div>
+          <div class="image-thumb"><img src="moving-transport.jpg" alt="Moving jobs in Berlin"></div>
           <div class="down-content">
-            <h4>🎤 Event & Promotion <em>/ Veranstaltungen & Promotion</em></h4>
-            <p>Help organize Berlin’s concerts, exhibitions, and festivals — from ticketing and setup to guest management. Perfect for social, energetic workers!</p>
+            <h4>🚚 <span data-en="Moving & Transport" data-de="Umzug & Transporthilfe"></span></h4>
+            <p data-en="Berlin on the Move — Help Carry the City! Lend a hand with furniture, packing, and van loading. Fast jobs, fast pay, real teamwork."
+               data-de="Berlin in Bewegung — Hilf mit beim Transport! Möbel, Packen, Transport — schnelle Jobs, schnelle Bezahlung, echtes Teamwork."></p>
             <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 6: IT & Creative Work -->
-    <div class="row">
-      <!-- IT & Tech -->
-      <div class="col-lg-6">
-        <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/it.jpg" alt="IT jobs in Berlin">
-          </div>
-          <div class="down-content">
-            <h4>💻 IT & Technical Support <em>/ IT & Technischer Support</em></h4>
-            <p>Work with local startups or tech companies — help with software updates, websites, or troubleshooting. Great for tech-savvy students!</p>
-            <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Creative & Design -->
+      <!-- 4. Restaurant & Café -->
       <div class="col-lg-6">
         <div class="trainer-item">
-          <div class="image-thumb">
-            <img src="assets/images/design.jpg" alt="Creative jobs in Berlin">
-          </div>
+          <div class="image-thumb"><img src="restaurant.jpg" alt="Restaurant jobs in Berlin"></div>
           <div class="down-content">
-            <h4>🎨 Creative & Design <em>/ Kreativ- & Designarbeit</em></h4>
-            <p>Put your artistic skills to use — graphic design, photography, video editing, or content creation. Help Berlin’s businesses stand out visually!</p>
+            <h4>🍽️ <span data-en="Restaurant & Café" data-de="Restaurant- & Café-Jobs"></span></h4>
+            <p data-en="Restaurant Hustle — Serve, Smile, and Soak Up the Vibes! Wait tables, assist in the kitchen, or clean up — be part of Berlin’s buzzing food scene."
+               data-de="Restaurant-Hektik — Servieren, Lächeln, Atmosphäre genießen! Bedienung, Küche oder Reinigung — sei Teil von Berlins lebendiger Gastronomie."></p>
             <div class="main-button">
-              <a href="find-jobs.html" class="btn-primary">Find Jobs / Jobs ansehen</a>
-              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary">Post a Job / Stelle ausschreiben</a>
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 5. Babysitting & Childcare -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="babysitting.jpg" alt="Childcare jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>👶 <span data-en="Babysitting & Childcare" data-de="Kinderbetreuung"></span></h4>
+            <p data-en="Little Smiles, Big Hearts — Your Care Makes a Difference! Babysit, tutor, or nanny — help Berlin families with trusted childcare."
+               data-de="Kleine Lächeln, großes Herz — Deine Betreuung macht den Unterschied! Babysitten, Nachhilfe, Nanny — unterstütze Berliner Familien zuverlässig."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Pet Care -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="pet-care.jpg" alt="Pet care jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>🐾 <span data-en="Pet Care" data-de="Tierbetreuung"></span></h4>
+            <p data-en="Furry Friends Need You — Walk, Feed, or Cuddle! Dog walking, pet sitting, or feeding — earn money while spending time with animals."
+               data-de="Flauschige Freunde brauchen dich — Gassi gehen, füttern oder kuscheln! Hunde- und Tierbetreuung — verdiene Geld mit Spaß an Tieren."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Delivery & Courier -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="delivery-courier.jpg" alt="Delivery jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>🚴 <span data-en="Delivery & Courier" data-de="Lieferung & Kurierdienst"></span></h4>
+            <p data-en="Speed through Berlin on your bike or scooter — deliver food, parcels, or documents. Flexible hours and great for students who love being outdoors!"
+               data-de="Flitze durch Berlin mit Fahrrad oder Roller — liefere Essen, Pakete oder Dokumente. Flexible Stunden, ideal für Studenten, die draußen aktiv sein wollen."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Office & Admin Support -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="office-admin.jpg" alt="Office support jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>💼 <span data-en="Office & Admin Support" data-de="Bürohilfe & Verwaltung"></span></h4>
+            <p data-en="Assist Berlin’s startups and small businesses — handle data entry, emails, or reception tasks. Gain real office experience while earning hourly pay."
+               data-de="Unterstütze Berliner Startups und KMUs — Datenpflege, E-Mails oder Empfangsaufgaben. Sammle echte Büroerfahrung bei Stundenlohn."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Tutoring & Teaching -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="teaching.jpg" alt="Tutoring jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>📚 <span data-en="Tutoring & Teaching" data-de="Nachhilfe & Unterricht"></span></h4>
+            <p data-en="Share your knowledge! Teach English, math, or other subjects to students across Berlin — in-person or online, flexible scheduling available."
+               data-de="Teile dein Wissen! Unterrichte Englisch, Mathe oder andere Fächer — vor Ort oder online, flexible Zeitplanung möglich."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Event & Promotion -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="event-promotion.jpg" alt="Event jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>🎤 <span data-en="Event & Promotion" data-de="Veranstaltungen & Promotion"></span></h4>
+            <p data-en="Help organize Berlin’s concerts, exhibitions, and festivals — from ticketing and setup to guest management. Perfect for social, energetic workers!"
+               data-de="Unterstütze bei Konzerten, Ausstellungen und Festivals in Berlin — von Ticketing bis Gästebetreuung. Perfekt für soziale, energiegeladene Menschen."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. IT & Technical Support -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="it-tech-support.jpg" alt="IT jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>💻 <span data-en="IT & Technical Support" data-de="IT & Technischer Support"></span></h4>
+            <p data-en="Work with local startups or tech companies — help with software updates, websites, or troubleshooting. Great for tech-savvy students!"
+               data-de="Arbeite mit Berliner Startups oder Tech-Firmen — Software, Webseiten, oder Fehlerbehebung. Ideal für technikaffine Studenten."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Creative & Design -->
+      <div class="col-lg-6">
+        <div class="trainer-item">
+          <div class="image-thumb"><img src="creative-design.jpg" alt="Creative jobs in Berlin"></div>
+          <div class="down-content">
+            <h4>🎨 <span data-en="Creative & Design" data-de="Kreativ- & Designarbeit"></span></h4>
+            <p data-en="Put your artistic skills to use — graphic design, photography, video editing, or content creation. Help Berlin’s businesses stand out visually!"
+               data-de="Setze deine künstlerischen Fähigkeiten ein — Grafikdesign, Fotografie, Video oder Content-Erstellung. Hilf Berliner Unternehmen, visuell aufzufallen."></p>
+            <div class="main-button">
+              <a href="find-jobs.html" class="btn-primary" data-en="Find Jobs" data-de="Jobs ansehen"></a>
+              <a href="https://forms.gle/4qC5AjqPeNPBJUaT8" target="_blank" class="btn-primary" data-en="Post a Job" data-de="Stelle ausschreiben"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-
-                            
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="main-button text-center">
-                <a href="jobs.html">View Jobs</a>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Cars Ends ***** -->
-
- <!-- ***** About Us Start ***** -->
+<!-- ***** About Us Start ***** -->
 <section class="section section-bg" id="schedule" style="background-image: url(assets/images/about-fullscreen-1-1920x700.jpg); color: #FFFFFF;">
     <div class="container">
         <div class="row">
@@ -506,29 +436,24 @@
 <!-- ***** Blog End ***** -->
 
 
-    <!-- ***** Call to Action Start ***** -->
-    <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cta-content">
-                        <h2>Send us a <em>message</em></h2>
-                        <p>Have a question or need assistance? Our team is here to help. Get in touch with us and we’ll respond as soon as possible.</p>
-                        <div class="main-button">
-                            <a href="mailto:contact@jobsperhourberlin.de?subject=Inquiry from JobsPerHourBerlin.de&body=Hello, I would like to get in touch regarding...">Contact us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Call to Action -->
+<section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="cta-content text-center">
+          <h2>Send us a <em>message</em></h2>
+          <p>Have a question or need assistance? Our team is here to help. Get in touch with us and we’ll respond as soon as possible.</p>
+          <div class="main-button">
+            <a href="mailto:contact@jobsperhourberlin.de?subject=Inquiry from JobsPerHourBerlin.de&body=Hello, I would like to get in touch regarding...">Contact us</a>
+          </div>
         </div>
-    </section>
-    <!-- ***** Call to Action End ***** -->
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ***** Testimonials Item Start ***** -->
-   
-    <!-- ***** Testimonials Item End ***** -->
-    
-<!-- ***** Donate Section ***** -->
+<!-- Donate Section -->
 <section class="donate-section text-center" style="background-color:#f8f8f8; padding:60px 0;">
   <div class="container">
     <h3 style="font-family:'Poppins',sans-serif; font-weight:700; color:#232d39; margin-bottom:15px;">
@@ -553,11 +478,10 @@
   </div>
 </section>
 
-<!-- ***** Footer Start ***** -->
+<!-- Footer -->
 <footer style="background-color:#232d39; color:#fff; text-align:center; padding:60px 0 40px; position:relative;">
   <div class="container">
     <div class="row align-items-center">
-      <!-- Left Column: Social Links -->
       <div class="col-lg-6 text-lg-start text-center mb-3 mb-lg-0">
         <div class="social-icons mb-3">
           <a href="#" style="color:#fff; margin:0 10px; text-decoration:none;">📷 Instagram</a>
@@ -568,8 +492,6 @@
           👀 Website Visitors: <span id="visit-count">Loading...</span>
         </div>
       </div>
-
-      <!-- Right Column: Contact Info -->
       <div class="col-lg-6 text-lg-end text-center">
         <div class="contact-info">
           <div><i class="fas fa-phone me-2"></i> +49 157 83716538 Whatsapp </div>
@@ -578,36 +500,25 @@
         </div>
       </div>
     </div>
-
-    <!-- Bottom Row -->
     <div class="row mt-4 pt-3 border-top border-light">
       <div class="col-12 text-center">
         <p class="mb-0" style="font-size:14px; color:#ccc;">
-          © 2025 JobsPerHourBerlin.de — All rights reserved / Alle Rechte vorbehalten.<br>
+          © 2025 JobsPerHourBerlin.de — All rights reserved / Alle Rechte vorbehalten.
         </p>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ***** Visitor Counter Script ***** -->
+<!-- Visitor Counter -->
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const counterElement = document.getElementById("visit-count");
-    let count = localStorage.getItem("site_visits");
-    if (!count) count = 0;
-    count++;
-    localStorage.setItem("site_visits", count);
-    counterElement.textContent = count;
-
-    // Optional global counter using CountAPI:
-    /*
-    fetch('https://api.countapi.xyz/hit/jobsperhourberlin.de/visits')
-      .then(res => res.json())
-      .then(data => { counterElement.textContent = data.value.toLocaleString(); })
-      .catch(() => counterElement.textContent = "Error");
-    */
-  });
+document.addEventListener("DOMContentLoaded", function() {
+  const counterElement = document.getElementById("visit-count");
+  let count = localStorage.getItem("site_visits") || 0;
+  count++;
+  localStorage.setItem("site_visits", count);
+  counterElement.textContent = count;
+});
 </script>
 
 <!-- JS Dependencies -->
@@ -621,5 +532,22 @@
 <script src="mixitup.js"></script>
 <script src="accordions.js"></script>
 <script src="custom.js"></script>
+
+<!-- Language Toggle -->
+<script>
+function toggleLang() {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (!el.dataset.current || el.dataset.current === "de") {
+      el.innerHTML = el.dataset.en;
+      el.dataset.current = "en";
+    } else {
+      el.innerHTML = el.dataset.de;
+      el.dataset.current = "de";
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', toggleLang);
+</script>
+
 </body>
 </html>
