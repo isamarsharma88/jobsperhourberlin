@@ -60,6 +60,8 @@
     /* Banner */
     .main-banner {
       position: relative;
+      margin-bottom: 80px; /* Added to prevent overlap */
+      overflow: hidden;
     }
 
     .main-banner img {
@@ -79,6 +81,7 @@
       justify-content: center;
       text-align: center;
       color: #fff;
+      z-index: 2;
     }
 
     .video-overlay h6 {
@@ -99,6 +102,16 @@
       .video-overlay h6 {
         font-size: 16px;
       }
+    }
+
+    /* Fix logo color */
+    .header-area .logo img {
+      filter: none !important;
+      mix-blend-mode: normal !important;
+    }
+
+    .header-area {
+      background-color: #ffffff;
     }
 
     /* Job Categories */
@@ -412,3 +425,4 @@
 </body>
 
 </html>
+
