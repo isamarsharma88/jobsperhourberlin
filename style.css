@@ -494,3 +494,68 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+
+/* 
+---------------------------------------------
+Responsive Image Fixes
+--------------------------------------------- 
+*/
+
+/* General image rule — ensures all images scale properly */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Job / featured image sizing */
+.job-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Trainer and card images */
+.trainer-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Make sure logos are always proportionate */
+.header-area .main-nav .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .job-img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .job-img {
+    height: 180px;
+  }
+
+  .header-area .main-nav .logo img {
+    height: 45px;
+  }
+}
+
+@media (max-width: 450px) {
+  .job-img {
+    height: 150px;
+  }
+}
