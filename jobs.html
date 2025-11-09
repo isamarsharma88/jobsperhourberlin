@@ -1,875 +1,983 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Find hourly, part-time, and full-time jobs in Berlin across various categories.">
-  <meta name="author" content="JobsPerHour Berlin">
-
-  <title>Jobs in Berlin | JobsPerHourBerlin.de</title>
-
-  <!-- External Fonts & Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="font-awesome.css">
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Inline Styles -->
-  <style>
-    body { background-color: #f8f8f8; font-family: 'Poppins', sans-serif; }
-    .hero { background: #f4f6f8; padding: 50px 20px; text-align: center; border-bottom: 1px solid #ddd; }
-    .hero h1 { font-size: 42px; margin-bottom: 15px; }
-    .hero p { font-size: 18px; margin-bottom: 25px; color: #555; }
-    .search-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-    .search-bar input { padding: 10px 15px; border-radius: 5px; border: 1px solid #ccc; width: 250px; }
-    .search-bar button { padding: 10px 20px; border: none; border-radius: 5px; background: #ed563b; color: #fff; cursor: pointer; transition: background 0.3s; }
-    .search-bar button:hover { background: #d94424; }
-    .main { display: flex; flex-wrap: wrap; padding: 40px 20px; gap: 30px; }
-    aside { flex: 1 1 250px; max-width: 250px; }
-    main { flex: 3 1 700px; }
-    /* Styles for the new accordion/nested list structure */
-    #accordion { border: 1px solid #ccc; border-radius: 5px; padding: 10px; background-color: #fff;}
-    #accordion ul { list-style: none; padding: 0; margin: 0; }
-    #accordion li { margin-bottom: 5px; }
-    #accordion .category-header { font-weight: 600; cursor: pointer; padding: 5px 0; display: block; color: #333; }
-    #accordion .category-header:hover { color: #ed563b; }
-    #accordion .subcategory-list { display: none; padding-left: 15px; border-left: 1px solid #eee; margin-top: 5px; }
-    #accordion .subcategory-list.active { display: block; }
-    #accordion .subcategory-item { padding: 3px 0; cursor: pointer; color: #555; }
-    #accordion .subcategory-item:hover { color: #ed563b; }
-
-    .post-job { margin-top: 30px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .post-job h3 { margin-bottom: 10px; }
-    .donate-btn { padding: 10px 20px; background: #ed563b; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-    .donate-btn:hover { background: #d94424; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jobs in Berlin | JobsPerHourBerlin.de</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{margin:0;background:#f8f8f8;color:#232d39;}
+header{background:#fff;box-shadow:0 2px 5px rgba=0,0,0,.1);position:sticky;top:0;z-index:999;}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:15px 20px;}
+nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;}
+nav a{text-decoration:none;color:#232d39;font-weight:500;}
+nav a:hover{color:#ed563b;}
+.logo img{height:50px;}
+.hero{background:#fff;padding:40px 20px;text-align:center;}
+.hero h1{color:#232d39;font-size:2rem;margin-bottom:10px;}
+.hero p{color:#777;margin-bottom:20px;}
+.search-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
+.search-bar input{padding:10px 15px;border:1px solid #ccc;border-radius:6px;min-width:220px;}
+.search-bar button{background:#ed563b;color:#fff;border:none;padding:10px 25px;border-radius:6px;font-weight:600;cursor:pointer;}
+.main{max-width:1200px;margin:auto;padding:30px 20px;display:flex;gap:25px;flex-wrap:wrap;}
+aside{flex:0 0 300px;background:#fff;border-radius:8px;padding:20px;height:fit-content;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+main{flex:1;}
+.accordion-item{border-bottom:1px solid #ddd;}
+.accordion-header{cursor:pointer;padding:10px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
+.accordion-header:hover{color:#ed563b;}
+.accordion-content{display:none;padding:0 0 10px 15px;}
+.accordion-content label{display:block;margin:4px 0;font-size:13px;}
+.job-card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.company-info{display:flex;align-items:center;gap:12px;}
+.company-logo{width:50px;height:50px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#ed563b;}
+.job-title{font-size:18px;font-weight:600;}
+.salary{color:#38a169;font-weight:600;}
+.job-meta{display:flex;gap:15px;font-size:13px;color:#777;margin:10px 0;flex-wrap:wrap;}
+.job-description{font-size:14px;color:#444;}
+.job-details{display:none;font-size:14px;color:#333;border-top:1px solid #eee;margin-top:10px;padding-top:10px;}
+.job-actions{margin-top:10px;display:flex;gap:10px;}
+.job-actions button{padding:8px 15px;border:none;border-radius:5px;cursor:pointer;font-size:13px;}
+.apply-btn{background:#ed563b;color:#fff;}
+.details-btn{background:#eee;}
+.apply-btn.applied{background:#38a169;}
+.post-job{background:#fff;border-radius:8px;padding:25px;margin-top:20px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+.donate-section{background:#f8f8f8;padding:60px 0;text-align:center;}
+.donate-btn{background:#ed563b;color:#fff;padding:14px 30px;border:none;border-radius:5px;font-weight:600;font-size:14px;cursor:pointer;}
+footer{background:#232d39;color:#fff;text-align:center;padding:60px 0 40px;}
+footer a{color:#fff;margin:0 10px;text-decoration:none;}
+.payment-icons img{margin:0 8px;opacity:.9;}
+</style>
 </head>
-
 <body>
 
-  <!-- Under Construction Notice - Placed at the very top for immediate visibility -->
-  <div class="under-construction">
-    🚧 Our website is currently under progress — full features will be available from December 2025.
-    <br><br>
-    If you want to post a job, please
-    <strong><a href="mailto:contact@jobsperhourberlin.de">drop us an email</a></strong>
-    or
-    <strong><a href="contact.html" class="contact-btn">fill the job form</a></strong> under <em>Contact/Kontakt</em>.
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Logo.png" alt="JobsPerHourBerlin"></a></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="jobs.html" class="active">Jobs</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Find Jobs Near You</h1>
+  <p>Discover hourly Basis, part-time, Project Basis and full-time opportunities across Berlin.</p>
+  <div class="search-bar">
+    <input id="jobSearch" type="text" placeholder="Search job title or category...">
+    <input id="locationInput" type="text" placeholder="Enter postal code or use current location">
+    <button id="useLocationBtn"><i class="fa fa-location-crosshairs"></i> Use My Location</button>
+    <button id="searchBtn">Search</button>
   </div>
+</section>
 
-  <!-- Header Section - Navigation for the entire site -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <a href="index.html" class="logo"><img src="Logo.png" alt="JobsPerHourBerlin Logo" style="height:50px;"></a>
-            <ul class="nav">
-              <li><a href="index.html">Home / Startseite</a></li>
-              <li><a href="jobs.html" class="active">Jobs</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Join Us</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="contact.html">Contact / Kontakt</a>
-                  <a class="dropdown-item" href="login.html">Login / Sign Up</a>
-                  <a class="dropdown-item" href="blog.html">Blog</a>
-                  <a class="dropdown-item" href="create-profile.html">Create Profile</a>
-                </div>
-              </li>
-              <li><a href="about.html">About Us</a></li>
-            </ul>
-            <a class='menu-trigger'><span>Menu</span></a>
-          </nav>
-        </div>
-      </div>
+<div class="main">
+  <aside>
+    <h3 style="margin-bottom:10px;">Categories</h3>
+    <div id="accordion"></div>
+  </aside>
+
+  <main>
+    <div id="jobContainer">
+      <p style="text-align:center;color:#777;">No jobs posted yet.</p>
     </div>
-  </header>
-
-  <!-- New Hero Section - Prominent search and call to action for jobs -->
-  <section class="hero">
-    <h1>Find Jobs Near You</h1>
-    <p>Discover hourly Basis, part-time, Project Basis and full-time opportunities across Berlin.</p>
-    <div class="search-bar">
-      <input id="jobSearch" type="text" placeholder="Search job title or category..." list="jobCategoriesDatalist">
-      <datalist id="jobCategoriesDatalist"></datalist>
-      <input id="locationInput" type="text" placeholder="Enter postal code or use current location">
-      <button id="useLocationBtn"><i class="fa fa-location-crosshairs"></i> Use My Location</button>
-      <button id="searchBtn">Search</button>
+    <div class="post-job">
+      <h3>Post a Job</h3>
+      <p>Employers can post a new job and it will appear instantly below its category.</p>
+      <button id="openPostForm" class="donate-btn">Post a Job</button>
     </div>
-  </section>
+  </main>
+</div>
 
-  <!-- Main Dynamic Job Listing Section with Sidebar - For dynamic content and category filtering -->
-  <div class="main">
-    <aside>
-      <h3 style="margin-bottom:10px;">Categories</h3>
-      <div id="accordion">
-        <p>Loading categories...</p>
-      </div>
-    </aside>
-
-    <main>
-      <div id="jobContainer">
-        <p style="text-align:center;color:#777;">No jobs posted yet.</p>
-      </div>
-      <div class="post-job">
-        <h3>Post a Job</h3>
-        <p>Employers can post a new job and it will appear instantly below its category.</p>
-        <button id="openPostForm" class="donate-btn">Post a Job</button>
-      </div>
-    </main>
+<!-- Post Job Modal -->
+<div id="jobModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:999;">
+  <div style="background:#fff;padding:25px;border-radius:8px;max-width:600px;width:90%;max-height:90vh;overflow:auto;">
+    <h2>Post a New Job</h2>
+    <form id="postForm">
+      <label>Company Name</label>
+      <input type="text" id="companyName" required style="width:100%;padding:8px;margin-bottom:10px;">
+      <label>Job Title</label>
+      <input type="text" id="jobTitle" required style="width:100%;padding:8px;margin-bottom:10px;">
+      <label>Category</label>
+      <select id="jobCategory" required style="width:100%;padding:8px;margin-bottom:10px;"></select>
+      <label>Location</label>
+      <input type="text" id="jobLocation" required style="width:100%;padding:8px;margin-bottom:10px;">
+      <label>Job Type</label>
+      <select id="jobType" required style="width:100%;padding:8px;margin-bottom:10px;">
+        <option value="">Select</option>
+        <option>Hourly</option>
+        <option>Part-time</option>
+        <option>Full-time</option>
+        <option>Project Basis</option>
+      </select>
+      <label>Salary</label>
+      <input type="text" id="jobSalary" required placeholder="e.g. €15/hour" style="width:100%;padding:8px;margin-bottom:10px;">
+      <label>Description</label>
+      <textarea id="jobDesc" required style="width:100%;padding:8px;height:100px;margin-bottom:10px;"></textarea>
+      <label>Full Details</label>
+      <textarea id="jobDetails" required style="width:100%;padding:8px;height:150px;margin-bottom:10px;"></textarea>
+      <button type="submit" class="donate-btn">Post Job</button>
+      <button type="button" id="closeModal" style="margin-left:10px;padding:10px 20px;">Cancel</button>
+    </form>
   </div>
+</div>
 
-  <!-- Post Job Modal - Hidden by default, appears on button click -->
-  <div id="jobModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:999;">
-    <div style="background:#fff;padding:25px;border-radius:8px;max-width:600px;width:90%;max-height:90vh;overflow:auto;">
-      <h2>Post a New Job</h2>
-      <form id="postForm">
-        <label>Company Name</label>
-        <input type="text" id="companyName" required style="width:100%;padding:8px;margin-bottom:10px;">
-        <label>Job Title</label>
-        <input type="text" id="jobTitle" required style="width:100%;padding:8px;margin-bottom:10px;">
-        <label>Category</label>
-        <select id="jobCategory" required style="width:100%;padding:8px;margin-bottom:10px;"></select>
-        <label>Location</label>
-        <input type="text" id="jobLocation" required style="width:100%;padding:8px;margin-bottom:10px;">
-        <label>Job Type</label>
-        <select id="jobType" required style="width:100%;padding:8px;margin-bottom:10px;">
-          <option value="">Select</option>
-          <option>Hourly</option>
-          <option>Part-time</option>
-          <option>Full-time</option>
-          <option>Project Basis</option>
-        </select>
-        <label>Salary</label>
-        <input type="text" id="jobSalary" required placeholder="e.g. €15/hour" style="width:100%;padding:8px;margin-bottom:10px;">
-        <label>Description</label>
-        <textarea id="jobDesc" required style="width:100%;padding:8px;height:100px;margin-bottom:10px;"></textarea>
-        <label>Full Details</label>
-        <textarea id="jobDetails" required style="width:100%;padding:8px;height:150px;margin-bottom:10px;"></textarea>
-        <button type="submit" class="donate-btn">Post Job</button>
-        <button type="button" id="closeModal" style="margin-left:10px;padding:10px 20px;">Cancel</button>
-      </form>
+<!-- Donate Section + Footer -->
+<section class="donate-section">
+  <div class="container">
+    <h3>Support Our Mission / Unterstützen Sie Uns</h3>
+    <p>Help us continue connecting people and creating job opportunities across Berlin.<br>Your donation makes a real impact in empowering local workers and businesses.</p>
+    <button class="donate-btn">💖 Spenden</button>
+    <div class="payment-icons" style="margin-top:20px;">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" height="32" alt="Visa">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" height="32" alt="MasterCard">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" height="32" alt="PayPal">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/sepa.svg" height="32" alt="SEPA">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/klarna.svg" height="32" alt="Klarna">
     </div>
   </div>
+</section>
 
-  <!-- Main Banner - A prominent visual section, likely for marketing or a hero image -->
-  <div class="main-banner" id="top">
-    <img src="job-image-1-1200x600.jpg" alt="Jobs in Berlin">
-    <div class="video-overlay header-text">
-      <div class="caption">
-        <h6>Discover Jobs in Your Field – personalized and modern</h6>
-        <h2>Flexible Work. Real Pay.<em> Berlin Style. </em></h2>
-        <div class="main-button">
-          <a href="contact.html">Post a Job</a>
-        </div>
-      </div>
+<footer>
+  <div>
+    <div class="social-icons">
+      <a href="#">📷 Instagram</a>
+      <a href="#">💼 LinkedIn</a>
+      <a href="#">📘 Facebook</a>
     </div>
+    <div id="visitor-counter" style="margin-top:10px;color:#ccc;">
+      👀 Website Visitors: <span id="visit-count">Loading...</span>
+    </div>
+    <div style="margin-top:20px;font-size:14px;color:#ccc;">
+      📞 +49 157 83716538 Whatsapp • 📧 contact@jobsperhourberlin.de • 📍 Berlin, Germany
+    </div>
+    <p style="margin-top:20px;color:#aaa;">
+      © 2025 JobsPerHourBerlin.de — All rights reserved.
+    </p>
   </div>
+</footer>
 
-  <!-- Featured Job Categories and Filter Sidebar - A more static listing of categories with detailed filters -->
-  <!-- Note: The static 26 job categories and the filter sidebar are kept for now, but in a dynamic system,
-       many of these would be generated or filtered based on the dynamic categories. -->
-  <section class="section" id="featured-jobs">
-    <div class="container">
-      <div class="row">
-        <!-- Main Job Categories Grid -->
-        <div class="col-lg-8">
-          <div class="row">
-            <!-- These would ideally be dynamically generated based on your main categories -->
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="cleaning.jpg" alt="Household & Cleaning Jobs"><h4>Household & Cleaning (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="gardening.jpg" alt="Gardening & Outdoor Jobs"><h4>Gardening & Outdoor (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="moving-transport.jpg" alt="Moving & Transport Jobs"><h4>Moving & Transport (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="restaurant.jpg" alt="Restaurant & Café Jobs"><h4>Restaurant & Café (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="babysitting.jpg" alt="Babysitting & Childcare Jobs"><h4>Babysitting & Childcare (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="pet-care.jpg" alt="Pet Care Jobs"><h4>Pet Care (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="delivery-courier.jpg" alt="Delivery & Courier Jobs"><h4>Delivery & Courier (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="office-admin.jpg" alt="Office & Admin Support Jobs"><h4>Office & Admin Support (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="teaching.jpg" alt="Tutoring & Teaching Jobs"><h4>Tutoring & Teaching (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="creative-design.jpg" alt="Creative & Design Jobs"><h4>Creative & Design (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="it-tech-support.jpg" alt="IT & Tech Support Jobs"><h4>IT & Tech Support (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="event-promotion.jpg" alt="Event & Promotion Jobs"><h4>Event & Promotion (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="construction.jpg" alt="Trades & Construction Jobs"><h4>Trades & Construction (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="electrician-plumbing.jpg" alt="Electrician & Plumbing Jobs"><h4>Electrician & Plumbing (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="beauty-health.jpg" alt="Beauty, Health & Wellness Jobs"><h4>Beauty, Health & Wellness (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="hair-makeup.jpg" alt="Hair & Makeup Artist Jobs"><h4>Hair & Makeup Artists (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="fitness-yoga.jpg" alt="Fitness Trainers / Yoga Instructors (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="handyman.jpg" alt="Home Repairs & Handyman Jobs"><h4>Home Repairs & Handyman (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="interior-design.jpg" alt="Interior Design & Home Improvement Jobs"><h4>Interior Design & Home Improvement (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="photography.jpg" alt="Photography & Videography Jobs"><h4>Photography & Videography (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="writing.jpg" alt="Writing & Editing Jobs"><h4>Writing & Editing (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="elder-care.jpg" alt="Nursing & Elder Care Jobs"><h4>Nursing & Elder Care (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="web-development.jpg" alt="Web Development & Design Jobs"><h4>Web Development & Design (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="digital-marketing.jpg" alt="Digital Marketing & SEO Jobs"><h4>Digital Marketing & SEO (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="event-planning.jpg" alt="Party & Event Planning Jobs"><h4>Party & Event Planning (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
-            <div class="col-md-6 job-category">
-              <a href="job-details.html"><img src="car-services.jpg" alt="Car Services & Mechanics Jobs"><h4>Car Services & Mechanics (0)</h4></a>
-              <ul class="social-icons"><li><a href="job-details.html">+ View More</a></li></ul>
-            </div>
+<script>
+/* ------------------------------
+   Part 2: JavaScript functionality
+   Paste this block into Part 1 (before </body>)
+   ------------------------------ */
+
+/* ---------- Category data (Main -> Subcategories) ---------- */
+const categoriesData = {
+  "All / Miscellaneous": ["Others / Miscellaneous"],
+  "Agriculture & Farming": [
+    "Farm Labor / Field Workers",
+    "Crop Cultivation & Harvest Help",
+    "Livestock Care / Dairy Workers",
+    "Tractor & Equipment Operators",
+    "Organic Farming / Hydroponics Support"
+  ],
+  "Appliance & Electronics Repair": [
+    "Mobile & Laptop Repair",
+    "TV / Audio System Repair",
+    "Refrigerator / Washing Machine Service",
+    "AC / Cooler Maintenance",
+    "Small Gadget Repairs"
+  ],
+  "Arts, Crafts & Culture": [
+    "Handicraft Makers",
+    "Pottery / Sculpture Artists",
+    "Tailoring / Embroidery",
+    "Traditional Art Teachers",
+    "Local Music / Theatre Artists"
+  ],
+  "Babysitting & Childcare": [
+    "Babysitters",
+    "Nannies",
+    "After-School Care",
+    "Special Needs Childcare",
+    "Overnight Care"
+  ],
+  "Beauty, Health & Wellness": [
+    "Massage Therapy",
+    "Spa & Relaxation",
+    "Nutrition Counseling",
+    "Alternative Medicine",
+    "Wellness Coaching"
+  ],
+  "Business & Consulting": [
+    "Management Consulting",
+    "Financial & Tax Advisors",
+    "Business Planning",
+    "Legal Assistance"
+  ],
+  "Car Services & Mechanics": [
+    "Car Repair & Maintenance",
+    "Car Wash & Detailing",
+    "Oil Change & Tire Services",
+    "Auto Electrician",
+    "Vehicle Inspection",
+    "Bike & Scooter Repair"
+  ],
+  "Customer Support & Local Sales": [
+    "Call Center Agents",
+    "Sales Promoters",
+    "Door-to-Door Sales",
+    "Customer Retention Specialists"
+  ],
+  "Creative & Design": [
+    "Graphic Design",
+    "Logo & Branding",
+    "Animation & Motion Graphics",
+    "3D Modeling",
+    "Illustration",
+    "Product Packaging Design"
+  ],
+  "Dance & Performing Arts": [
+    "Dance Classes (Classical, Contemporary, Hip-Hop, etc.)",
+    "Choreographers",
+    "Stage Performance Coaches",
+    "Kids’ Dance Instructors",
+    "Cultural Dance Trainers"
+  ],
+  "Delivery & Courier": [
+    "Food Delivery",
+    "Package Delivery",
+    "Local Errands",
+    "Document Pickup",
+    "E-commerce Fulfillment"
+  ],
+  "Digital Marketing & SEO": [
+    "Social Media Management",
+    "SEO & SEM Specialists",
+    "Content Marketing",
+    "PPC Advertising",
+    "Email Marketing",
+    "Influencer Marketing",
+    "Analytics & Reporting"
+  ],
+  "Emergency & Community Services": [
+    "Ambulance Drivers / Paramedics",
+    "First Aid Responders",
+    "Disaster Relief Volunteers",
+    "Community Health Workers",
+    "Blood Donation / NGO Support"
+  ],
+  "Electrician & Plumbing": [
+    "Electrical Repairs",
+    "Lighting Installation",
+    "Plumbing Maintenance",
+    "Pipe & Drain Services",
+    "Water Heater Installation"
+  ],
+  "Event & Promotion": [
+    "Brand Promoters",
+    "Product Demonstrators",
+    "Event Hosts / MCs",
+    "Booth Setup & Support",
+    "Street Marketing Teams"
+  ],
+  "Fitness Trainers / Yoga Instructors": [
+    "Personal Trainers",
+    "Yoga & Pilates Instructors",
+    "Zumba / Dance Fitness",
+    "Nutrition & Diet Coaching",
+    "Group Fitness Classes"
+  ],
+  "Finance & Microservices": [
+    "Microloan Agents",
+    "Insurance Advisors",
+    "Tax & Accounting Help",
+    "Local Bank Assistants",
+    "Bill Payment & Document Services"
+  ],
+  "Gardening & Outdoor": [
+    "Lawn Mowing",
+    "Landscaping & Design",
+    "Tree Trimming",
+    "Irrigation Setup",
+    "Outdoor Maintenance"
+  ],
+  "Government & Public Services": [
+    "Municipal Workers",
+    "Public Health Assistants",
+    "Rural Development Aides",
+    "Survey & Census Staff",
+    "Voter Registration Help"
+  ],
+  "Hair & Makeup Artists": [
+    "Bridal Makeup",
+    "Hair Styling & Coloring",
+    "Men’s Grooming",
+    "Skincare & Facials",
+    "Nail & Spa Services"
+  ],
+  "Home Repairs & Handyman": [
+    "General Repairs",
+    "Appliance Installation",
+    "Door & Window Fixing",
+    "Furniture Assembly",
+    "Small Carpentry Jobs"
+  ],
+  "Household & Cleaning": [
+    "Home Cleaning",
+    "Deep Cleaning",
+    "Carpet & Upholstery Cleaning",
+    "Window Cleaning",
+    "Post-Construction Cleaning",
+    "Commercial Cleaning (Offices, Shops)",
+    "Sanitization / Disinfection Services",
+    "Pest Control"
+  ],
+  "IT & Tech Support": [
+    "Hardware & Software Support",
+    "Network Setup & Maintenance",
+    "Cybersecurity Services",
+    "Data Recovery",
+    "Cloud Services",
+    "Remote Tech Help",
+    "IT Training / Bootcamps"
+  ],
+  "Interior Design & Home Improvement": [
+    "Interior Designers",
+    "Furniture Design & Assembly",
+    "Home Renovation",
+    "Painting & Wallpaper",
+    "Flooring & Tiling",
+    "Kitchen & Bath Remodeling",
+    "Home Automation / Smart Home Setup"
+  ],
+  "Cooking & Home Food Services": [
+    "Home Chefs",
+    "Meal Prep Services",
+    "Tiffin / Lunch Providers",
+    "Baking & Catering from Home",
+    "Street Food Vendors"
+  ],
+  "Local Produce & Market Vendors": [
+    "Farmers Market Sellers",
+    "Street Food Sellers",
+    "Handicraft & Artisan Vendors",
+    "Local Shop Helpers / Cashiers",
+    "Delivery for Local Markets"
+  ],
+  "Life Coaching & Counseling": [
+    "Career Coaches",
+    "Life Skills Trainers",
+    "Mental Health Counselors",
+    "Relationship / Family Counselors"
+  ],
+  "Music & Audio Services": [
+    "Music Teachers (Vocal, Guitar, Piano, etc.)",
+    "Instrument Repair & Tuning",
+    "Audio Mixing & Recording",
+    "Sound Engineering",
+    "Choir / Band Instructors"
+  ],
+  "Moving & Transport": [
+    "Local Moving Services",
+    "Furniture Delivery",
+    "Packing & Unpacking",
+    "Truck / Van Rentals",
+    "Storage Assistance"
+  ],
+  "Nursing & Elder Care": [
+    "In-Home Nursing",
+    "Elder Companionship",
+    "Disability Care",
+    "Medical Assistance",
+    "Hospice Support",
+    "Rehabilitation Aides"
+  ],
+  "Office & Admin Support": [
+    "Data Entry",
+    "Virtual Assistants",
+    "Receptionists",
+    "Customer Service",
+    "Bookkeeping",
+    "HR & Recruitment Support"
+  ],
+  "Party & Event Planning": [
+    "Event Coordinators",
+    "Wedding Planners",
+    "Birthday & Private Events",
+    "Catering Services",
+    "Sound & Lighting",
+    "DJ & Live Bands",
+    "Event Rentals (Tents, Tables, Decor)"
+  ],
+  "Pet Care": [
+    "Dog Walking",
+    "Pet Grooming",
+    "Pet Sitting",
+    "Veterinary Assistance",
+    "Training & Obedience",
+    "Mobile Grooming Services",
+    "Pet Boarding / Daycare",
+    "Veterinary Teleconsultation"
+  ],
+  "Printing & 3D Printing": [
+    "Digital Printing",
+    "Offset Printing",
+    "3D Design & Printing",
+    "Business Cards / Flyers / Posters",
+    "Prototyping Services"
+  ],
+  "Photography & Videography": [
+    "Event Photography",
+    "Portrait Photography",
+    "Product Photography",
+    "Video Production",
+    "Drone Photography",
+    "Photo/Video Editing"
+  ],
+  "Restaurant & Café": [
+    "Waitstaff & Bartenders",
+    "Chefs & Cooks",
+    "Baristas",
+    "Kitchen Assistants",
+    "Catering Staff"
+  ],
+  "Recycling & Waste Management": [
+    "Waste Collectors",
+    "Recycling Sorters",
+    "E-Waste Handlers",
+    "Composting Services",
+    "Clean-Up Drive Volunteers"
+  ],
+  "Self-Defence & Martial Arts": [
+    "Martial Arts Instructors",
+    "Self-Defence Workshops",
+    "Karate / Taekwondo / MMA Coaches",
+    "Women’s Safety Training",
+    "Kids’ Self-Defence Classes"
+  ],
+  "Security & Safety": [
+    "Security Guards",
+    "Bouncers / Event Security",
+    "CCTV Monitoring",
+    "Fire Safety Inspectors",
+    "Night Watch Personnel"
+  ],
+  "Skilled Labour & Trades": [
+    "Construction & Masonry",
+    "Bricklaying & Concreting",
+    "Scaffolding",
+    "Tiling & Flooring",
+    "Plastering & Drywall",
+    "Wood & Metal Work",
+    "Carpentry & Joinery",
+    "Welding & Fabrication",
+    "Cabinet Making",
+    "Blacksmithing"
+  ],
+  "Machinery & Industrial": [
+    "Machine Operation",
+    "Heavy Equipment Operators",
+    "Forklift & Crane Operators",
+    "Factory & Production Workers"
+  ],
+  "Painting & Finishing": [
+    "Interior & Exterior Painting",
+    "Industrial Coating",
+    "Finishing & Polishing"
+  ],
+  "Maintenance & Installation": [
+    "HVAC Technicians",
+    "Appliance Installers",
+    "Security System Installers"
+  ],
+  "Social & Community Support": [
+    "NGO Volunteers",
+    "Social Workers",
+    "Community Educators",
+    "Mental Health Support Workers",
+    "Women’s Self-Help Group Trainers"
+  ],
+  "Transportation & Logistics": [
+    "Auto / Taxi Drivers",
+    "Delivery Riders",
+    "Truck / Van Drivers",
+    "Transport Scheduling",
+    "Fleet Maintenance"
+  ],
+  "Tutoring & Teaching": [
+    "Academic Tutoring (Math, Science, etc.)",
+    "Language Lessons",
+    "Music & Instrument Coaching",
+    "Test Preparation (SAT, IELTS, etc.)",
+    "Online Course Creation",
+    "Skill-Based Workshops (Coding, Robotics, etc.)"
+  ],
+  "Vocational & Skill Training": [
+    "Driving Instructors",
+    "Computer Literacy Trainers",
+    "Sewing / Tailoring Instructors",
+    "Electrical / Plumbing Training",
+    "Job Readiness & Interview Coaching"
+  ],
+  "Web Development & Design": [
+    "Front-End Development",
+    "Back-End Development",
+    "UI/UX Design",
+    "E-commerce Development",
+    "WordPress / CMS Websites",
+    "App Design & Development",
+    "Game Development",
+    "AR / VR Content Creation"
+  ],
+  "Writing & Editing": [
+    "Content Writing",
+    "Copywriting",
+    "Proofreading & Editing",
+    "Technical Writing",
+    "Resume & Cover Letter Writing",
+    "Script / Story Writing"
+  ]
+};
+
+/* ---------- Globals ---------- */
+const accordionRoot = document.getElementById('accordion');
+const jobCategorySelect = document.getElementById('jobCategory');
+const jobContainer = document.getElementById('jobContainer');
+const openPostFormBtn = document.getElementById('openPostForm');
+const jobModal = document.getElementById('jobModal');
+const closeModalBtn = document.getElementById('closeModal');
+const postForm = document.getElementById('postForm');
+const jobSearchInput = document.getElementById('jobSearch');
+const searchBtn = document.getElementById('searchBtn');
+const locationInput = document.getElementById('locationInput');
+const useLocationBtn = document.getElementById('useLocationBtn');
+
+/* In-memory jobs array (empty by default) */
+let jobs = []; // each job: {id, company, title, mainCategory, subCategory, location, type, salary, desc, details, applicants}
+
+/* ---------- Build accordion & populate select ---------- */
+function buildAccordionAndSelect() {
+  // Clear
+  accordionRoot.innerHTML = '';
+  jobCategorySelect.innerHTML = '<option value="">Select category</option>';
+
+  // Create the "All / Miscellaneous" as top-most special catch-all (already in categoriesData order)
+  for (const mainCat of Object.keys(categoriesData)) {
+    const subs = categoriesData[mainCat];
+
+    const item = document.createElement('div');
+    item.className = 'accordion-item';
+    item.dataset.main = mainCat;
+
+    // Header with count badge
+    const header = document.createElement('div');
+    header.className = 'accordion-header';
+    header.innerHTML = `<span>${mainCat}</span><span class="cat-count" style="font-weight:600;color:#777;">0</span>`;
+    item.appendChild(header);
+
+    // Content with subcategories
+    const content = document.createElement('div');
+    content.className = 'accordion-content';
+    subs.forEach(sub => {
+      // clickable label for subcategory
+      const label = document.createElement('label');
+      label.innerHTML = `<a href="#" class="sub-link" data-main="${mainCat}" data-sub="${sub}" style="color:inherit;text-decoration:none;">${sub}</a>`;
+      content.appendChild(label);
+
+      // add to jobCategory select as "Main > Sub"
+      const opt = document.createElement('option');
+      opt.value = `${mainCat}|||${sub}`; // delimiter to split later
+      opt.textContent = `${mainCat} › ${sub}`;
+      jobCategorySelect.appendChild(opt);
+    });
+
+    // Also add option to post under main category (no sub)
+    const optMain = document.createElement('option');
+    optMain.value = `${mainCat}|||`; // empty sub
+    optMain.textContent = `${mainCat} › (General)`;
+    jobCategorySelect.appendChild(optMain);
+
+    item.appendChild(content);
+    accordionRoot.appendChild(item);
+
+    // header click toggles content and filters jobs by maincat
+    header.addEventListener('click', (e) => {
+      // close other open items
+      document.querySelectorAll('.accordion-content').forEach(c => {
+        if (c !== content) c.style.display = 'none';
+      });
+      // toggle this
+      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+      // show jobs for main category
+      displayJobs({ filterMain: mainCat });
+    });
+
+    // sub-links click: show jobs filtered by that subcategory
+    content.querySelectorAll('.sub-link').forEach(a => {
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const main = a.dataset.main;
+        const sub = a.dataset.sub;
+        // ensure only this content is open
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+        content.style.display = 'block';
+        // display jobs for this subcategory
+        displayJobs({ filterMain: main, filterSub: sub });
+      });
+    });
+  }
+}
+
+/* ---------- Utility: update category counts ---------- */
+function updateCategoryCounts() {
+  // build a map main -> count
+  const counts = {};
+  for (const main of Object.keys(categoriesData)) counts[main] = 0;
+  jobs.forEach(j => {
+    if (counts[j.mainCategory] !== undefined) counts[j.mainCategory] += 1;
+  });
+  // write counts into the headers
+  document.querySelectorAll('.accordion-item').forEach(item => {
+    const main = item.dataset.main;
+    const span = item.querySelector('.cat-count');
+    if (span) span.textContent = counts[main] || 0;
+  });
+}
+
+/* ---------- Display jobs (with optional filters) ---------- */
+function displayJobs({ filterMain = null, filterSub = null, query = null } = {}) {
+  jobContainer.innerHTML = ''; // clear
+
+  // Filter jobs
+  const filtered = jobs.filter(job => {
+    if (filterMain && job.mainCategory !== filterMain) return false;
+    if (filterSub && job.subCategory !== filterSub) return false;
+    if (query) {
+      const q = query.toLowerCase();
+      const combined = (job.title + ' ' + job.company + ' ' + job.mainCategory + ' ' + job.subCategory + ' ' + job.desc).toLowerCase();
+      return combined.includes(q);
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    const p = document.createElement('p');
+    p.style.textAlign = 'center';
+    p.style.color = '#777';
+    p.textContent = 'No jobs posted yet.';
+    jobContainer.appendChild(p);
+    return;
+  }
+
+  // Create job cards
+  filtered.forEach(job => {
+    const card = document.createElement('div');
+    card.className = 'job-card';
+    card.dataset.jobid = job.id;
+
+    // company initials for logo
+    const initials = job.company.split(' ').map(w => w[0] || '').join('').substring(0,3).toUpperCase();
+
+    card.innerHTML = `
+      <div class="job-header">
+        <div class="company-info">
+          <div class="company-logo">${initials}</div>
+          <div>
+            <div class="job-title">${escapeHtml(job.title)}</div>
+            <div style="font-size:14px;color:#777;">${escapeHtml(job.company)} • ${escapeHtml(job.mainCategory)}${job.subCategory ? ' › ' + escapeHtml(job.subCategory) : ''}</div>
           </div>
         </div>
-        <!-- Sidebar for Filters -->
-        <div class="col-lg-4 sidebar">
-          <form>
-            <h5>Type</h5>
-            <label><input type="checkbox"> Hourly Jobs (0)</label><br>
-            <label><input type="checkbox"> Part-time Jobs (0)</label><br>
-            <label><input type="checkbox"> Full-time Jobs (0)</label><br>
-
-            <h5>Category</h5>
-            <!-- This section could also be dynamically populated based on your main categories if desired -->
-            <label><input type="checkbox"> Household & Cleaning (0)</label><br>
-            <label><input type="checkbox"> Gardening & Outdoor (0)</label><br>
-            <label><input type="checkbox"> Moving & Transport (0)</label><br>
-            <label><input type="checkbox"> Restaurant & Café (0)</label><br>
-            <label><input type="checkbox"> Babysitting & Childcare (0)</label><br>
-            <label><input type="checkbox"> Pet Care (0)</label><br>
-            <label><input type="checkbox"> Delivery & Courier (0)</label><br>
-            <label><input type="checkbox"> Office & Admin Support (0)</label><br>
-            <label><input type="checkbox"> Tutoring & Teaching (0)</label><br>
-            <label><input type="checkbox"> Creative & Design (0)</label><br>
-            <label><input type="checkbox"> IT & Tech Support (0)</label><br>
-            <label><input type="checkbox"> Event & Promotion (0)</label><br>
-
-            <h5>Career Level</h5>
-            <label><input type="checkbox"> Entry Level (0)</label><br>
-            <label><input type="checkbox"> Mid Experience (0)</label><br>
-            <label><input type="checkbox"> Professional (0)</label><br>
-
-            <h5>Education Level</h5>
-            <label><input type="checkbox"> Degree (0)</label><br>
-            <label><input type="checkbox"> Student (0)</label><br>
-            <label><input type="checkbox"> Certification (0)</label><br>
-            <label><input type="checkbox"> Hobby & Passion (0)</label><br>
-
-            <h5>Language Required</h5>
-            <label><input type="checkbox"> English (0)</label><br>
-            <label><input type="checkbox"> German (0)</label><br>
-            <label><input type="checkbox"> English & German (0)</label><br>
-            <label><input type="checkbox"> Other (0)</label><br>
-          </form>
+        <div style="text-align:right;">
+          <div class="salary">${escapeHtml(job.salary)}</div>
+          <div style="font-size:13px;color:#777;margin-top:6px;">${escapeHtml(job.location)}</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Footer Section - Copyright and general site information -->
-  <footer>
-    <p>&copy; 2025 JobsPerHourBerlin.de | All Rights Reserved.</p>
-  </footer>
+      <div class="job-meta">
+        <span><i class="fa fa-clock"></i> ${escapeHtml(job.type)}</span>
+        <span class="applicants"><i class="fa fa-users"></i> ${job.applicants} Applied</span>
+      </div>
 
-  <!-- JavaScript - Placed at the end of the body for faster page rendering -->
-  <script>
-    // Modal open/close logic
-    document.getElementById('openPostForm').onclick = () => document.getElementById('jobModal').style.display = 'flex';
-    document.getElementById('closeModal').onclick = () => document.getElementById('jobModal').style.display = 'none';
+      <div class="job-description">${escapeHtml(job.desc)}</div>
 
-    // Detailed Job Categories Data
-    const detailedJobCategories = [
-      {
-        name: "Agriculture & Farming",
-        subcategories: [
-          "Farm Labor / Field Workers", "Crop Cultivation & Harvest Help",
-          "Livestock Care / Dairy Workers", "Tractor & Equipment Operators",
-          "Organic Farming / Hydroponics Support"
-        ]
-      },
-      {
-        name: "Appliance & Electronics Repair",
-        subcategories: [
-          "Mobile & Laptop Repair", "TV / Audio System Repair",
-          "Refrigerator / Washing Machine Service", "AC / Cooler Maintenance",
-          "Small Gadget Repairs"
-        ]
-      },
-      {
-        name: "Arts, Crafts & Culture",
-        subcategories: [
-          "Handicraft Makers", "Pottery / Sculpture Artists",
-          "Tailoring / Embroidery", "Traditional Art Teachers",
-          "Local Music / Theatre Artists"
-        ]
-      },
-      {
-        name: "Babysitting & Childcare",
-        subcategories: [
-          "Babysitters", "Nannies", "After-School Care",
-          "Special Needs Childcare", "Overnight Care"
-        ]
-      },
-      {
-        name: "Beauty, Health & Wellness",
-        subcategories: [
-          "Massage Therapy", "Spa & Relaxation", "Nutrition Counselling",
-          "Alternative Medicine", "Wellness Coaching"
-        ]
-      },
-      {
-        name: "Business & Consulting",
-        subcategories: [
-          "Management Consulting", "Financial & Tax Advisors",
-          "Business Planning", "Legal Assistance"
-        ]
-      },
-      {
-        name: "Car Services & Mechanics",
-        subcategories: [
-          "Car Repair & Maintenance", "Car Wash & Detailing",
-          "Oil Change & Tire Services", "Auto Electrician",
-          "Vehicle Inspection", "Bike & Scooter Repair"
-        ]
-      },
-      {
-        name: "Customer Support & Local Sales",
-        subcategories: [
-          "Call Center Agents", "Sales Promoters", "Door-to-Door Sales",
-          "Customer Retention Specialists"
-        ]
-      },
-      {
-        name: "Creative & Design",
-        subcategories: [
-          "Graphic Design", "Logo & Branding", "Animation & Motion Graphics",
-          "3D Modeling", "Illustration", "Product Packaging Design"
-        ]
-      },
-      {
-        name: "Dance & Performing Arts",
-        subcategories: [
-          "Dance Classes (Classical, Contemporary, Hip-Hop, etc.)", "Choreographers",
-          "Stage Performance Coaches", "Kids’ Dance Instructors",
-          "Cultural Dance Trainers"
-        ]
-      },
-      {
-        name: "Delivery & Courier",
-        subcategories: [
-          "Food Delivery", "Package Delivery", "Local Errands",
-          "Document Pickup", "E-commerce Fulfillment"
-        ]
-      },
-      {
-        name: "Digital Marketing & SEO",
-        subcategories: [
-          "Social Media Management", "SEO & SEM Specialists", "Content Marketing",
-          "PPC Advertising", "Email Marketing", "Influencer Marketing",
-          "Analytics & Reporting"
-        ]
-      },
-      {
-        name: "Emergency & Community Services",
-        subcategories: [
-          "Ambulance Drivers / Paramedics", "First Aid Responders",
-          "Disaster Relief Volunteers", "Community Health Workers",
-          "Blood Donation / NGO Support"
-        ]
-      },
-      {
-        name: "Electrician & Plumbing",
-        subcategories: [
-          "Electrical Repairs", "Lighting Installation", "Plumbing Maintenance",
-          "Pipe & Drain Services", "Water Heater Installation"
-        ]
-      },
-      {
-        name: "Event & Promotion",
-        subcategories: [
-          "Brand Promoters", "Product Demonstrators", "Event Hosts / MCs",
-          "Booth Setup & Support", "Street Marketing Teams"
-        ]
-      },
-      {
-        name: "Fitness Trainers / Yoga Instructors",
-        subcategories: [
-          "Personal Trainers", "Yoga & Pilates Instructors", "Zumba / Dance Fitness",
-          "Nutrition & Diet Coaching", "Group Fitness Classes"
-        ]
-      },
-      {
-        name: "Finance & Micro services",
-        subcategories: [
-          "Microloan Agents", "Insurance Advisors", "Tax & Accounting Help",
-          "Local Bank Assistants", "Bill Payment & Document Services"
-        ]
-      },
-      {
-        name: "Gardening & Outdoor",
-        subcategories: [
-          "Lawn Mowing", "Landscaping & Design", "Tree Trimming",
-          "Irrigation Setup", "Outdoor Maintenance"
-        ]
-      },
-      {
-        name: "Government & Public Services",
-        subcategories: [
-          "Municipal Workers", "Public Health Assistants", "Rural Development Aides",
-          "Survey & Census Staff", "Voter Registration Help"
-        ]
-      },
-      {
-        name: "Hair & Makeup Artists",
-        subcategories: [
-          "Bridal Makeup", "Hair Styling & Coloring", "Men’s Grooming",
-          "Skincare & Facials", "Nail & Spa Services"
-        ]
-      },
-      {
-        name: "Home Repairs & Handyman",
-        subcategories: [
-          "General Repairs", "Appliance Installation", "Door & Window Fixing",
-          "Furniture Assembly", "Small Carpentry Jobs"
-        ]
-      },
-      {
-        name: "Household & Cleaning",
-        subcategories: [
-          "Home Cleaning", "Deep Cleaning", "Carpet & Upholstery Cleaning",
-          "Window Cleaning", "Post-Construction Cleaning",
-          "Commercial Cleaning (Offices, Shops)",
-          "Sanitization / Disinfection Services", "Pest Control"
-        ]
-      },
-      {
-        name: "IT & Tech Support",
-        subcategories: [
-          "Hardware & Software Support", "Network Setup & Maintenance",
-          "Cybersecurity Services", "Data Recovery", "Cloud Services",
-          "Remote Tech Help", "IT Training / Bootcamps"
-        ]
-      },
-      {
-        name: "Interior Design & Home Improvement",
-        subcategories: [
-          "Interior Designers", "Furniture Design & Assembly", "Home Renovation",
-          "Painting & Wallpaper", "Flooring & Tiling",
-          "Kitchen & Bath Remodeling", "Home Automation / Smart Home Setup"
-        ]
-      },
-      {
-        name: "Cooking & Home Food Services",
-        subcategories: [
-          "Home Chefs", "Meal Prep Services", "Tiffin / Lunch Providers",
-          "Baking & Catering from Home", "Street Food Vendors"
-        ]
-      },
-      {
-        name: "Local Produce & Market Vendors",
-        subcategories: [
-          "Farmers Market Sellers", "Street Food Sellers",
-          "Handicraft & Artisan Vendors", "Local Shop Helpers / Cashiers",
-          "Delivery for Local Markets"
-        ]
-      },
-      {
-        name: "Life Coaching & Counseling",
-        subcategories: [
-          "Career Coaches", "Life Skills Trainers", "Mental Health Counselors",
-          "Relationship / Family Counselors"
-        ]
-      },
-      {
-        name: "Music & Audio Services",
-        subcategories: [
-          "Music Teachers (Vocal, Guitar, Piano, etc.)", "Instrument Repair & Tuning",
-          "Audio Mixing & Recording", "Sound Engineering",
-          "Choir / Band Instructors"
-        ]
-      },
-      {
-        name: "Moving & Transport",
-        subcategories: [
-          "Local Moving Services", "Furniture Delivery", "Packing & Unpacking",
-          "Truck / Van Rentals", "Storage Assistance"
-        ]
-      },
-      {
-        name: "Nursing & Elder Care",
-        subcategories: [
-          "In-Home Nursing", "Elder Companionship", "Disability Care",
-          "Medical Assistance", "Hospice Support", "Rehabilitation Aides"
-        ]
-      },
-      {
-        name: "Office & Admin Support",
-        subcategories: [
-          "Data Entry", "Virtual Assistants", "Receptionists",
-          "Customer Service", "Bookkeeping", "HR & Recruitment Support"
-        ]
-      },
-      {
-        name: "Party & Event Planning",
-        subcategories: [
-          "Event Coordinators", "Wedding Planners", "Birthday & Private Events",
-          "Catering Services", "Sound & Lighting", "DJ & Live Bands",
-          "Event Rentals (Tents, Tables, Decor)"
-        ]
-      },
-      {
-        name: "Pet Care",
-        subcategories: [
-          "Dog Walking", "Pet Grooming", "Pet Sitting",
-          "Veterinary Assistance", "Training & Obedience",
-          "Mobile Grooming Services", "Pet Boarding / Daycare",
-          "Veterinary Teleconsultation"
-        ]
-      },
-      {
-        name: "Printing & 3D Printing",
-        subcategories: [
-          "Digital Printing", "Offset Printing", "3D Design & Printing",
-          "Business Cards / Flyers / Posters", "Prototyping Services"
-        ]
-      },
-      {
-        name: "Photography & Videography",
-        subcategories: [
-          "Event Photography", "Portrait Photography", "Product Photography",
-          "Video Production", "Drone Photography", "Photo/Video Editing"
-        ]
-      },
-      {
-        name: "Restaurant & Café",
-        subcategories: [
-          "Waitstaff & Bartenders", "Chefs & Cooks", "Baristas",
-          "Kitchen Assistants", "Catering Staff"
-        ]
-      },
-      {
-        name: "Recycling & Waste Management",
-        subcategories: [
-          "Waste Collectors", "Recycling Sorters", "E-Waste Handlers",
-          "Composting Services", "Clean-Up Drive Volunteers"
-        ]
-      },
-      {
-        name: "Self-Defence & Martial Arts",
-        subcategories: [
-          "Martial Arts Instructors", "Self-Defence Workshops",
-          "Karate / Taekwondo / MMA Coaches", "Women’s Safety Training",
-          "Kids’ Self-Defence Classes"
-        ]
-      },
-      {
-        name: "Security & Safety",
-        subcategories: [
-          "Security Guards", "Bouncers / Event Security", "CCTV Monitoring",
-          "Fire Safety Inspectors", "Night Watch Personnel"
-        ]
-      },
-      {
-        name: "Skilled Labour & Trades",
-        subcategories: [
-          "Construction & Masonry", "Bricklaying & Concreting", "Scaffolding",
-          "Tiling & Flooring", "Plastering & Drywall", "Wood & Metal Work",
-          "Carpentry & Joinery", "Welding & Fabrication", "Cabinet Making",
-          "Blacksmithing",
-          {
-            name: "Machinery & Industrial",
-            subcategories: [
-              "Machine Operation", "Heavy Equipment Operators",
-              "Forklift & Crane Operators", "Factory & Production Workers"
-            ]
-          },
-          {
-            name: "Painting & Finishing",
-            subcategories: [
-              "Interior & Exterior Painting", "Industrial Coating",
-              "Finishing & Polishing"
-            ]
-          },
-          {
-            name: "Maintenance & Installation",
-            subcategories: [
-              "HVAC Technicians", "Appliance Installers",
-              "Security System Installers"
-            ]
-          }
-        ]
-      },
-      {
-        name: "Social & Community Support",
-        subcategories: [
-          "NGO Volunteers", "Social Workers", "Community Educators",
-          "Mental Health Support Workers", "Women’s Self-Help Group Trainers"
-        ]
-      },
-      {
-        name: "Transportation & Logistics",
-        subcategories: [
-          "Auto / Taxi Drivers", "Delivery Riders", "Truck / Van Drivers",
-          "Transport Scheduling", "Fleet Maintenance"
-        ]
-      },
-      {
-        name: "Tutoring & Teaching",
-        subcategories: [
-          "Academic Tutoring (Math, Science, etc.)", "Language Lessons",
-          "Music & Instrument Coaching", "Test Preparation (SAT, IELTS, etc.)",
-          "Online Course Creation", "Skill-Based Workshops (Coding, Robotics, etc.)"
-        ]
-      },
-      {
-        name: "Vocational & Skill Training",
-        subcategories: [
-          "Driving Instructors", "Computer Literacy Trainers",
-          "Sewing / Tailoring Instructors", "Electrical / Plumbing Training",
-          "Job Readiness & Interview Coaching"
-        ]
-      },
-      {
-        name: "Web Development & Design",
-        subcategories: [
-          "Front-End Development", "Back-End Development", "UI/UX Design",
-          "E-commerce Development", "WordPress / CMS Websites",
-          "App Design & Development", "Game Development",
-          "AR / VR Content Creation"
-        ]
-      },
-      {
-        name: "Writing & Editing",
-        subcategories: [
-          "Content Writing", "Copywriting", "Proofreading & Editing",
-          "Technical Writing", "Resume & Cover Letter Writing",
-          "Script / Story Writing"
-        ]
-      }
-    ];
+      <div class="job-details">${escapeHtml(job.details)}</div>
 
-    // Function to populate the category dropdown in the "Post a New Job" form
-    function populateJobCategoryDropdown() {
-      const jobCategorySelect = document.getElementById('jobCategory');
-      jobCategorySelect.innerHTML = '<option value="">Select Category</option>'; // Add a default option
+      <div class="job-actions">
+        <button class="apply-btn">Apply for this Job</button>
+        <button class="details-btn">More Details</button>
+      </div>
+    `;
 
-      detailedJobCategories.forEach(mainCat => {
-        if (mainCat.subcategories && mainCat.subcategories.length > 0) {
-          mainCat.subcategories.forEach(subCat => {
-            if (typeof subCat === 'string') {
-              const option = document.createElement('option');
-              option.value = `${mainCat.name} - ${subCat}`;
-              option.textContent = `${mainCat.name} - ${subCat}`;
-              jobCategorySelect.appendChild(option);
-            } else if (typeof subCat === 'object' && subCat.name && subCat.subcategories) {
-              // Handle nested subcategories
-              subCat.subcategories.forEach(nestedSubCat => {
-                const option = document.createElement('option');
-                option.value = `${mainCat.name} - ${subCat.name} - ${nestedSubCat}`;
-                option.textContent = `${mainCat.name} - ${subCat.name} - ${nestedSubCat}`;
-                jobCategorySelect.appendChild(option);
-              });
-            }
-          });
-        } else {
-          // If a main category has no subcategories (though all in your list do)
-          const option = document.createElement('option');
-          option.value = mainCat.name;
-          option.textContent = mainCat.name;
-          jobCategorySelect.appendChild(option);
-        }
-      });
-    }
+    // hook up buttons
+    const applyBtn = card.querySelector('.apply-btn');
+    const detailsBtn = card.querySelector('.details-btn');
+    const detailsBox = card.querySelector('.job-details');
+    const applicantsSpan = card.querySelector('.applicants');
 
-    // Function to populate the sidebar categories (accordion-like structure)
-    function populateSidebarCategories() {
-      const accordionDiv = document.getElementById('accordion');
-      accordionDiv.innerHTML = ''; // Clear "Loading categories..."
-
-      const ul = document.createElement('ul');
-
-      detailedJobCategories.forEach(mainCat => {
-        const mainLi = document.createElement('li');
-        const mainCatHeader = document.createElement('span');
-        mainCatHeader.classList.add('category-header');
-        mainCatHeader.textContent = mainCat.name;
-        mainLi.appendChild(mainCatHeader);
-
-        // Populate search bar when main category is clicked
-        mainCatHeader.addEventListener('click', (event) => {
-          event.stopPropagation(); // Prevent issues with potential parent clicks
-          document.getElementById('jobSearch').value = mainCat.name;
-          // Toggle subcategory list visibility
-          const subList = mainLi.querySelector('.subcategory-list');
-          if (subList) {
-              subList.classList.toggle('active');
-          }
-        });
-
-        if (mainCat.subcategories && mainCat.subcategories.length > 0) {
-          const subUl = document.createElement('ul');
-          subUl.classList.add('subcategory-list');
-
-          mainCat.subcategories.forEach(subCat => {
-            if (typeof subCat === 'string') {
-              const subLi = document.createElement('li');
-              subLi.classList.add('subcategory-item');
-              subLi.textContent = subCat;
-              subUl.appendChild(subLi);
-
-              // Populate search bar when subcategory is clicked
-              subLi.addEventListener('click', (event) => {
-                  event.stopPropagation(); // Prevent main category click event from firing
-                  document.getElementById('jobSearch').value = subCat;
-              });
-            } else if (typeof subCat === 'object' && subCat.name && subCat.subcategories) {
-              // Handle nested subcategories
-              const nestedCatLi = document.createElement('li');
-              const nestedCatHeader = document.createElement('span');
-              nestedCatHeader.classList.add('subcategory-item'); // Apply subcategory styling for consistent clicks
-              nestedCatHeader.style.fontWeight = 'normal'; // Override potential bold from header
-              nestedCatHeader.textContent = `${subCat.name} >`; // Indicate it has children
-              nestedCatLi.appendChild(nestedCatHeader);
-
-              // Populate search bar when nested category header is clicked
-              nestedCatHeader.addEventListener('click', (event) => {
-                  event.stopPropagation();
-                  document.getElementById('jobSearch').value = subCat.name;
-                  const nestedSubList = nestedCatLi.querySelector('.nested-subcategory-list');
-                  if (nestedSubList) {
-                      nestedSubList.classList.toggle('active');
-                  }
-              });
-
-              const nestedSubUl = document.createElement('ul');
-              nestedSubUl.classList.add('nested-subcategory-list');
-              nestedSubUl.classList.add('subcategory-list'); // So it gets active class
-              nestedSubUl.style.paddingLeft = '10px';
-
-              subCat.subcategories.forEach(nestedSubCat => {
-                const nestedSubLi = document.createElement('li');
-                nestedSubLi.classList.add('subcategory-item');
-                nestedSubLi.textContent = nestedSubCat;
-                nestedSubUl.appendChild(nestedSubLi);
-
-                // Populate search bar when nested subcategory is clicked
-                nestedSubLi.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    document.getElementById('jobSearch').value = nestedSubCat;
-                });
-              });
-              nestedCatLi.appendChild(nestedSubUl);
-              subUl.appendChild(nestedCatLi);
-            }
-          });
-          mainLi.appendChild(subUl);
-        }
-        ul.appendChild(mainLi);
-      });
-      accordionDiv.appendChild(ul);
-    }
-
-    // Function to populate the datalist for search suggestions
-    function populateSearchSuggestions() {
-        const datalist = document.getElementById('jobCategoriesDatalist');
-        const uniqueSuggestions = new Set(); // Use a Set to store unique suggestions
-
-        detailedJobCategories.forEach(mainCat => {
-            uniqueSuggestions.add(mainCat.name); // Add main category
-            if (mainCat.subcategories && mainCat.subcategories.length > 0) {
-                mainCat.subcategories.forEach(subCat => {
-                    if (typeof subCat === 'string') {
-                        uniqueSuggestions.add(subCat); // Add subcategory
-                    } else if (typeof subCat === 'object' && subCat.name && subCat.subcategories) {
-                        uniqueSuggestions.add(subCat.name); // Add nested parent subcategory
-                        subCat.subcategories.forEach(nestedSubCat => {
-                            uniqueSuggestions.add(nestedSubCat); // Add nested sub-subcategory
-                        });
-                    }
-                });
-            }
-        });
-
-        // Clear existing options
-        datalist.innerHTML = '';
-        // Add options from the unique suggestions set
-        uniqueSuggestions.forEach(suggestion => {
-            const option = document.createElement('option');
-            option.value = suggestion;
-            datalist.appendChild(option);
-        });
-    }
-
-
-    // Call the functions when the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      populateJobCategoryDropdown();
-      populateSidebarCategories();
-      populateSearchSuggestions(); // New: populate the search datalist
+    // apply action
+    applyBtn.addEventListener('click', () => {
+      // increment in memory
+      job.applicants += 1;
+      applicantsSpan.innerHTML = `<i class='fa fa-users'></i> ${job.applicants} Applied`;
+      applyBtn.disabled = true;
+      applyBtn.classList.add('applied');
+      applyBtn.textContent = 'Applied';
+      // update category counts (if you want counts to reflect application number, we keep job counts unchanged)
     });
-  </script>
 
+    // details toggle
+    detailsBtn.addEventListener('click', () => {
+      const isShown = detailsBox.style.display === 'block';
+      detailsBox.style.display = isShown ? 'none' : 'block';
+      detailsBtn.textContent = isShown ? 'More Details' : 'Less Details';
+    });
+
+    jobContainer.appendChild(card);
+  });
+}
+
+/* ---------- Escape HTML helper (avoid injection) ---------- */
+function escapeHtml(str) {
+  if (!str && str !== 0) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* ---------- Job posting handler ---------- */
+function setupPosting() {
+  openPostFormBtn.addEventListener('click', () => {
+    jobModal.style.display = 'flex';
+  });
+  closeModalBtn.addEventListener('click', () => {
+    jobModal.style.display = 'none';
+    postForm.reset();
+  });
+
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // gather
+    const company = document.getElementById('companyName').value.trim();
+    const title = document.getElementById('jobTitle').value.trim();
+    const categoryVal = document.getElementById('jobCategory').value; // "main|||sub"
+    const location = document.getElementById('jobLocation').value.trim();
+    const type = document.getElementById('jobType').value;
+    const salary = document.getElementById('jobSalary').value.trim();
+    const desc = document.getElementById('jobDesc').value.trim();
+    const details = document.getElementById('jobDetails').value.trim();
+
+    if (!company || !title || !categoryVal || !location) {
+      alert('Please fill required fields.');
+      return;
+    }
+
+    const [mainCategory, subCategory] = categoryVal.split('|||');
+
+    // create job object
+    const jobObj = {
+      id: 'job_' + Date.now() + '_' + Math.floor(Math.random()*9999),
+      company,
+      title,
+      mainCategory: mainCategory || 'All / Miscellaneous',
+      subCategory: subCategory || '',
+      location,
+      type,
+      salary,
+      desc,
+      details,
+      applicants: 0
+    };
+
+    jobs.push(jobObj);
+
+    // Update UI: close modal, reset form, update counts and show jobs for the category just posted
+    jobModal.style.display = 'none';
+    postForm.reset();
+    updateCategoryCounts();
+    // open main category accordion content
+    const matchingItem = document.querySelector(`.accordion-item[data-main="${jobObj.mainCategory}"]`);
+    if (matchingItem) {
+      const content = matchingItem.querySelector('.accordion-content');
+      // close others
+      document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+      if (content) content.style.display = 'block';
+    }
+    // display jobs for that main category
+    displayJobs({ filterMain: jobObj.mainCategory });
+  });
+}
+
+/* ---------- Search functionality ---------- */
+searchBtn.addEventListener('click', () => {
+  const q = jobSearchInput.value.trim();
+  if (!q) {
+    // if no query, show all jobs
+    displayJobs();
+    return;
+  }
+  // search and show results
+  displayJobs({ query: q });
+});
+
+/* allow enter key in search input */
+jobSearchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchBtn.click();
+  }
+});
+
+/* ---------- Geolocation (Use My Location) ---------- */
+useLocationBtn.addEventListener('click', () => {
+  if (!navigator.geolocation) {
+    alert('Geolocation is not supported by your browser.');
+    return;
+  }
+
+  useLocationBtn.disabled = true;
+  useLocationBtn.textContent = 'Detecting…';
+
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const { latitude, longitude } = pos.coords;
+    try {
+      // Attempt to get a human-readable location using a (conceptual) reverse geocoding service.
+      const humanReadableLocation = await getHumanReadableLocation(latitude, longitude);
+      locationInput.value = humanReadableLocation; // Update with human-readable address
+    } catch (error) {
+      console.error('Error getting human-readable location:', error);
+      // Fallback to displaying coordinates if reverse geocoding fails
+      locationInput.value = `Lat:${latitude.toFixed(5)}, Long:${longitude.toFixed(5)}`;
+    } finally {
+      useLocationBtn.disabled = false;
+      useLocationBtn.innerHTML = `<i class="fa fa-location-crosshairs"></i> Use My Location`;
+    }
+  }, (err) => {
+    alert('Location access denied or unavailable. Please enter postal code manually.');
+    useLocationBtn.disabled = false;
+    useLocationBtn.innerHTML = `<i class="fa fa-location-crosshairs"></i> Use My Location`;
+  }, { timeout: 15000 });
+});
+
+/**
+ * Conceptual function for reverse geocoding.
+ *
+ * In a real application, this would typically involve:
+ * 1. Making an API call to a geocoding service (e.g., from Google Maps Platform).
+ *    This API key should ideally be protected on a backend, possibly using
+ *    Firebase Cloud Functions, to prevent exposure in client-side code.
+ *    Remember your `job-board` project is on the no-cost Spark plan, so be mindful
+ *    of Cloud Functions usage limits if you implement a backend.
+ * 2. Parsing the API response to extract relevant address components like
+ *    city, postal code, or a formatted address.
+ *
+ * For this example, we're simulating the process and returning a placeholder.
+ *
+ * @param {number} latitude
+ * @param {number} longitude
+ * @returns {Promise<string>} A promise that resolves to a human-readable location string.
+ */
+async function getHumanReadableLocation(latitude, longitude) {
+  // Simulate an API call delay for demonstration purposes
+  await new Promise(resolve => setTimeout(resolve, 800));
+
+  // A simple heuristic for demonstrating a "Berlin" result, given your app context.
+  if (latitude > 52 && latitude < 53 && longitude > 13 && longitude < 14) {
+      return `Berlin, Germany`;
+  }
+
+  // Fallback if outside the assumed Berlin range or if a more specific API isn't used.
+  return `Detected location near Lat: ${latitude.toFixed(2)}, Long: ${longitude.toFixed(2)}`;
+}
+
+/* ---------- Hook up click on accordion sub-links to filter ---------- */
+function wireUpSubLinks() {
+  document.querySelectorAll('.accordion-content a.sub-link').forEach(a => {
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const main = a.dataset.main;
+      const sub = a.dataset.sub;
+      displayJobs({ filterMain: main, filterSub: sub });
+      // visually ensure the right accordion open
+      document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+      const parent = a.closest('.accordion-content');
+      if (parent) parent.style.display = 'block';
+    });
+  });
+}
+
+/* ---------- When search includes category name, expand that category ---------- */
+function expandCategoryForQuery(query) {
+  if (!query) return;
+  const q = query.toLowerCase();
+  for (const main of Object.keys(categoriesData)) {
+    if (main.toLowerCase().includes(q)) {
+      // open this main
+      const item = document.querySelector(`.accordion-item[data-main="${main}"]`);
+      if (item) {
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+        const content = item.querySelector('.accordion-content');
+        if (content) content.style.display = 'block';
+      }
+      break;
+    }
+    // check subcategories
+    const subs = categoriesData[main];
+    for (const sub of subs) {
+      if (sub.toLowerCase().includes(q)) {
+        const item = document.querySelector(`.accordion-item[data-main="${main}"]`);
+        if (item) {
+          document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+          const content = item.querySelector('.accordion-content');
+          if (content) content.style.display = 'block';
+        }
+        return;
+      }
+    }
+  }
+}
+
+/* ---------- When user clicks the top-level "All / Miscellaneous" (special) ---------- */
+function handleAllMiscClick() {
+  // The header click handler already calls displayJobs with filterMain.
+  // If it's "All / Miscellaneous", we'll show all jobs (do not filter)
+  const allItem = document.querySelector('.accordion-item[data-main="All / Miscellaneous"]');
+  if (!allItem) return;
+  const header = allItem.querySelector('.accordion-header');
+  header.addEventListener('click', (e) => {
+    // show all jobs (no filter)
+    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+    displayJobs();
+  });
+}
+
+/* ---------- Initialize everything ---------- */
+function init() {
+  buildAccordionAndSelect();
+  wireUpSubLinks();
+  setupPosting();
+  updateCategoryCounts();
+  handleAllMiscClick();
+
+  // If user types something and hits search, try expanding category that matches
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    expandCategoryForQuery(jobSearchInput.value.trim());
+  });
+
+  // Optional: when clicking Job category dropdown, you might want to auto-select that main category in the sidebar,
+  // but we already display jobs after posting.
+
+  // Hide modal when clicking outside
+  jobModal.addEventListener('click', (e) => {
+    if (e.target === jobModal) {
+      jobModal.style.display = 'none';
+      postForm.reset();
+    }
+  });
+}
+
+// Run init on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>
