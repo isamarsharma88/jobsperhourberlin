@@ -6,99 +6,156 @@
   <title>Login - JobsPerHourBerlin.de</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; margin:0; padding:0; }
-    .login-container { max-width: 400px; margin: 80px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-    .login-container h2 { text-align:center; margin-bottom:30px; color:#232d39; }
-    .login-container label { display:block; margin-bottom:5px; font-weight:500; }
-    .login-container input[type="email"], .login-container input[type="password"] { width:100%; padding:10px 12px; margin-bottom:20px; border:1px solid #ddd; border-radius:5px; font-size:14px; }
-    .login-container button { width:100%; padding:12px; background-color:#ed563b; color:#fff; border:none; border-radius:5px; font-size:14px; cursor:pointer; text-transform:uppercase; font-weight:600; transition:0.3s; }
-    .login-container button:hover { background-color:#f9735b; }
-    .login-container a { display:block; text-align:center; margin-top:15px; color:#ed563b; text-decoration:none; cursor:pointer; }
-    .login-container a:hover { text-decoration:underline; }
-    .error-msg { color:red; text-align:center; margin-bottom:15px; }
-    .success-msg { color:green; text-align:center; margin-bottom:15px; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #232d39;
+    }
+    .login-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .login-container input[type="email"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ed563b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .login-container button:hover {
+      background-color: #f9735b;
+    }
+    .login-container a {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #ed563b;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+    .error-msg {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .success-msg {
+      color: green;
+      text-align: center;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
 
-<div class="login-container">
-  <h2>Login / Anmelden</h2>
-  <div id="message"></div>
-  <form id="loginForm">
-    <label for="email">Email / E-Mail-Adresse</label>
-    <input type="email" id="email" name="email" required>
+  <div class="login-container">
+    <h2>Login / Anmelden</h2>
+    <div id="message"></div>
+    <form id="loginForm">
+      <label for="email">Email / E-Mail-Adresse</label>
+      <input type="email" id="email" name="email" required>
 
-    <label for="password">Password / Passwort</label>
-    <input type="password" id="password" name="password" required>
+      <label for="password">Password / Passwort</label>
+      <input type="password" id="password" name="password" required>
 
-    <button type="submit">Login / Anmelden</button>
+      <button type="submit">Login / Anmelden</button>
 
-    <a id="forgotPassword">Forgot Password? / Passwort vergessen?</a>
-    <a href="signup.html">Don’t have an account? Sign Up</a>
-  </form>
-</div>
+      <a class="forgot-password">Forgot Password? / Passwort vergessen?</a>
+      <a href="signup.html">Don’t have an account? Sign Up</a>
+    </form>
+  </div>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+      authDomain: "job-board-da315.firebaseapp.com",
+      projectId: "job-board-da315",
+      storageBucket: "job-board-da315.firebasestorage.app",
+      messagingSenderId: "908048807079",
+      appId: "1:908048807079:web:58f70af2e706f27684d782",
+      measurementId: "G-FHYPY906DE"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  const loginForm = document.getElementById("loginForm");
-  const messageDiv = document.getElementById("message");
-  const forgotPassword = document.getElementById("forgotPassword");
+    const loginForm = document.getElementById("loginForm");
+    const messageDiv = document.getElementById("message");
+    const forgotLink = document.querySelector(".forgot-password");
 
-  // Login functionality
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = loginForm.email.value;
-    const password = loginForm.password.value;
+    // LOGIN FUNCTION
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = loginForm.email.value;
+      const password = loginForm.password.value;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        messageDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
-        setTimeout(() => { window.location.href = "dashboard.html"; }, 1500);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        let errorMessage = "";
-        if (errorCode === "auth/user-not-found") {
-          errorMessage = "User not found / Benutzer nicht gefunden";
-        } else if (errorCode === "auth/wrong-password") {
-          errorMessage = "Incorrect password / Falsches Passwort";
-        } else {
-          errorMessage = error.message;
-        }
-        messageDiv.innerHTML = '<p class="error-msg">' + errorMessage + '</p>';
-      });
-  });
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          if (!user.emailVerified) {
+            messageDiv.innerHTML = `<p class="error-msg">Please verify your email before logging in / Bitte bestätigen Sie Ihre E-Mail-Adresse.</p>`;
+          } else {
+            messageDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
+            setTimeout(() => window.location.href = "dashboard.html", 1500);
+          }
+        })
+        .catch((error) => {
+          let errorMessage = "";
+          if (error.code === "auth/user-not-found") errorMessage = "User not found / Benutzer nicht gefunden";
+          else if (error.code === "auth/wrong-password") errorMessage = "Incorrect password / Falsches Passwort";
+          else errorMessage = error.message;
+          messageDiv.innerHTML = `<p class="error-msg">${errorMessage}</p>`;
+        });
+    });
 
-  // Forgot Password functionality
-  forgotPassword.addEventListener("click", () => {
-    const email = loginForm.email.value;
-    if (!email) {
-      messageDiv.innerHTML = '<p class="error-msg">Please enter your email first / Bitte zuerst E-Mail eingeben</p>';
-      return;
-    }
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        messageDiv.innerHTML = '<p class="success-msg">Password reset email sent! / Passwort-Reset-E-Mail gesendet!</p>';
-      })
-      .catch((error) => {
-        messageDiv.innerHTML = '<p class="error-msg">' + error.message + '</p>';
-      });
-  });
-</script>
+    // FORGOT PASSWORD FUNCTION
+    forgotLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const email = prompt("Enter your email to reset password / Geben Sie Ihre E-Mail-Adresse ein:");
+      if (email) {
+        sendPasswordResetEmail(auth, email)
+          .then(() => alert("Password reset email sent! Check your inbox / Passwort zurücksetzen E-Mail wurde gesendet!"))
+          .catch((error) => alert("Error: " + error.message));
+      }
+    });
+  </script>
 
 </body>
 </html>
