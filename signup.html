@@ -14,59 +14,77 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    form#signupForm { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0px 0px 20px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif; }
+    form#signupForm {
+      max-width: 700px; margin: 0 auto; background: #fff; padding: 40px;
+      border-radius: 8px; box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+      font-family: 'Poppins', sans-serif;
+    }
     form#signupForm label { font-weight: 500; margin-top: 15px; color: #232d39; }
-    form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px; }
+    form#signupForm input[type="text"],
+    input[type="email"], input[type="password"], input[type="url"] {
+      width: 100%; padding: 10px 12px; border: 1px solid #ddd;
+      border-radius: 5px; margin-top: 5px; font-size: 14px;
+    }
     form#signupForm input[type="radio"] { margin-right: 6px; }
-    .datenschutz { font-size: 13px; background: #f8f8f8; padding: 12px; border-radius: 6px; margin-top: 20px; color: #333; line-height: 1.5; }
-    form#signupForm button { display: inline-block; margin-top: 25px; background-color: #ed563b; color: #fff; border: none; border-radius: 5px; padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 600; transition: all 0.3s ease; width: 100%; }
+    .datenschutz {
+      font-size: 13px; background: #f8f8f8; padding: 12px; border-radius: 6px;
+      margin-top: 20px; color: #333; line-height: 1.5;
+    }
+    form#signupForm button {
+      display: inline-block; margin-top: 25px; background-color: #ed563b;
+      color: #fff; border: none; border-radius: 5px; padding: 12px 24px;
+      font-size: 14px; text-transform: uppercase; font-weight: 600;
+      transition: all 0.3s ease; width: 100%;
+    }
     form#signupForm button:hover { background-color: #f9735b; }
     .hidden { display: none; }
-    .section-bg { background-image: url('banner-image-1-1920x500.jpg'); background-position: center; background-size: cover; color: #fff; padding: 100px 0; position: relative; text-align: center; }
-    .section-bg::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(35,45,57,0.8); }
-    .section-bg h2 { position: relative; z-index: 2; font-size: 36px; font-weight: 800; text-transform: uppercase; }
-    footer { margin-top: 80px; }
+    .section-bg {
+      background-image: url('banner-image-1-1920x500.jpg'); background-position: center;
+      background-size: cover; color: #fff; padding: 100px 0; position: relative;
+      text-align: center;
+    }
+    .section-bg::before {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(35,45,57,0.8);
+    }
+    .section-bg h2 {
+      position: relative; z-index: 2; font-size: 36px; font-weight: 800;
+      text-transform: uppercase;
+    }
+    footer { margin-top: 80px; text-align:center; }
     .logo img { height: 50px; width: auto; }
     @media (max-width: 767px) { .logo img { height: 40px; } }
+    #thankYouMessage {
+      display:none; text-align:center; background:#e8fff3; color:#1c6b43;
+      padding:15px; border-radius:6px; margin-top:20px; font-weight:500;
+      border:1px solid #b3e6ca;
+    }
   </style>
 </head>
 
 <body>
-   
-    <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a href="index.html">Home / Startseite</a></li>
-                            <li><a href="jobs.html">Jobs</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="login.html">login</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
-                            <li><a href="contact.html" class="active">Contact</a></li> 
-                        </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
-            </div>
+  <!-- ***** Header Area ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
+            <ul class="nav">
+              <li><a href="index.html">Home / Startseite</a></li>
+              <li><a href="jobs.html">Jobs</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="signup.html" class="active">Sign Up</a></li>
+              <li><a href="contact.html">Contact</a></li> 
+            </ul>        
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+      </div>
+    </div>
+  </header>
 
-    <section class="section section-bg" id="call-to-action" style="background-image: url(about-fullscreen-1-1920x700.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cta-content">
   <!-- ***** Hero Section ***** -->
   <section class="section-bg" id="call-to-action">
     <div class="container">
@@ -80,8 +98,10 @@
       <form id="signupForm">
         <label>Full Name / Vollständiger Name</label>
         <input type="text" name="fullname" required>
+        
         <label>Email / E-Mail-Adresse</label>
         <input type="email" name="email" required>
+        
         <label>Password / Passwort</label>
         <input type="password" name="password" required>
 
@@ -120,6 +140,7 @@
         </div>
 
         <button type="submit">Create Account / Konto Erstellen</button>
+        <div id="thankYouMessage">✅ Thank you for creating an account with us!</div>
       </form>
     </div>
   </section>
@@ -157,6 +178,7 @@
     const radioButtons = document.querySelectorAll('input[name="usertype"]');
     const profileNameField = document.getElementById('profileNameField');
     const businessFields = document.getElementById('businessFields');
+    const thankYouMessage = document.getElementById('thankYouMessage');
 
     radioButtons.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -177,20 +199,46 @@
     document.getElementById('signupForm').addEventListener('submit', async e => {
       e.preventDefault();
       const form = e.target;
-      const email = form.email.value;
+
+      const email = form.email.value.trim();
       const password = form.password.value;
-      const fullname = form.fullname.value;
+      const fullname = form.fullname.value.trim();
       const usertype = form.usertype.value;
-      const profilename = form.profilename?.value || '';
-      const companyname = form.companyname?.value || '';
-      const businessemail = form.businessemail?.value || '';
-      const businessaddress = form.businessaddress?.value || '';
-      const taxid = form.taxid?.value || '';
-      const companywebsite = form.companywebsite?.value || '';
+      const profilename = form.profilename?.value.trim() || '';
+      const companyname = form.companyname?.value.trim() || '';
+      const businessemail = form.businessemail?.value.trim() || '';
+      const businessaddress = form.businessaddress?.value.trim() || '';
+      const taxid = form.taxid?.value.trim() || '';
+      const companywebsite = form.companywebsite?.value.trim() || '';
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const uid = userCredential.user.uid;
 
         await setDoc(doc(db, "users", uid), {
-          fullname, email, usertype, profilena
+          fullname,
+          email,
+          usertype,
+          profilename,
+          companyname,
+          businessemail,
+          businessaddress,
+          taxid,
+          companywebsite,
+          createdAt: new Date().toISOString()
+        });
+
+        // Show thank you message
+        thankYouMessage.style.display = "block";
+        form.reset();
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 3000);
+
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
