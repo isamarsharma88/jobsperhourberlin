@@ -116,7 +116,6 @@
 </head>
 
 <body>
-
   <!-- ***** Header Area ***** -->
   <header class="header-area header-sticky">
     <div class="container">
@@ -183,24 +182,16 @@
     </div>
   </footer>
 
-  <!-- JS Scripts -->
-  <script src="jquery-2.1.0.min.js"></script>
-  <script src="bootstrap.min.js"></script>
+  <!-- Firebase + JS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-  <script>
-    // Simple login handler (demo only)
-    document.getElementById('loginForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const email = e.target.email.value.trim();
-      const password = e.target.password.value.trim();
-
-      if (email && password) {
-        alert(`Welcome back, ${email}! / Willkommen zurück!`);
-      } else {
-        alert('Please enter valid login credentials. / Bitte gültige Zugangsdaten eingeben.');
-      }
-    });
-  </script>
-
-</body>
-</html>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+      authDomain: "job-board-da315.firebaseapp.com",
+      projectId: "job-board-da315",
+      storageBucket: "job-board-da315.appspot.com",
+      messagingSenderId: "908048807079",
+      appId: "1:908048807079:web:58f70af2e706f27684d782",
+      measurementId:
