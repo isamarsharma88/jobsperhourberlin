@@ -12,6 +12,7 @@
       margin: 0;
       padding: 0;
     }
+
     .login-container {
       max-width: 400px;
       margin: 80px auto;
@@ -20,16 +21,19 @@
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
+
     .login-container h2 {
       text-align: center;
       margin-bottom: 30px;
       color: #232d39;
     }
+
     .login-container label {
       display: block;
       margin-bottom: 5px;
       font-weight: 500;
     }
+
     .login-container input[type="email"],
     .login-container input[type="password"] {
       width: 100%;
@@ -39,6 +43,7 @@
       border-radius: 5px;
       font-size: 14px;
     }
+
     .login-container button {
       width: 100%;
       padding: 12px;
@@ -52,9 +57,11 @@
       font-weight: 600;
       transition: 0.3s;
     }
+
     .login-container button:hover {
       background-color: #f9735b;
     }
+
     .login-container a {
       display: block;
       text-align: center;
@@ -63,18 +70,65 @@
       text-decoration: none;
       cursor: pointer;
     }
+
     .login-container a:hover {
       text-decoration: underline;
     }
+
     .error-msg {
       color: red;
       text-align: center;
       margin-bottom: 15px;
     }
+
     .success-msg {
       color: green;
       text-align: center;
       margin-bottom: 15px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .modal-content input[type="email"] {
+      margin-bottom: 15px;
+    }
+
+    .modal-content button {
+      margin-top: 10px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
     }
   </style>
 </head>
@@ -97,6 +151,16 @@
     </form>
   </div>
 
+  <!-- Forgot Password Modal -->
+  <div id="forgotModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Reset Password / Passwort zurücksetzen</h3>
+      <input type="email" id="resetEmail" placeholder="Enter your email / E-Mail-Adresse eingeben">
+      <button id="resetBtn">Send Reset Email / E-Mail senden</button>
+    </div>
+  </div>
+
   <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
@@ -112,13 +176,18 @@
       measurementId: "G-FHYPY906DE"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     const loginForm = document.getElementById("loginForm");
     const messageDiv = document.getElementById("message");
     const forgotLink = document.querySelector(".forgot-password");
+
+    // Modal Elements
+    const modal = document.getElementById("forgotModal");
+    const closeBtn = document.querySelector(".close");
+    const resetEmailInput = document.getElementById("resetEmail");
+    const resetBtn = document.getElementById("resetBtn");
 
     // LOGIN FUNCTION
     loginForm.addEventListener("submit", (e) => {
@@ -133,27 +202,55 @@
             messageDiv.innerHTML = `<p class="error-msg">Please verify your email before logging in / Bitte bestätigen Sie Ihre E-Mail-Adresse.</p>`;
           } else {
             messageDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
-            setTimeout(() => window.location.href = "dashboard.html", 1500);
+            setTimeout(() => window.location.href = "index.html", 1500);
           }
         })
         .catch((error) => {
           let errorMessage = "";
-          if (error.code === "auth/user-not-found") errorMessage = "User not found / Benutzer nicht gefunden";
-          else if (error.code === "auth/wrong-password") errorMessage = "Incorrect password / Falsches Passwort";
-          else errorMessage = error.message;
+          if (error.code === "auth/user-not-found") 
+            errorMessage = "User not found / Benutzer nicht gefunden";
+          else if (error.code === "auth/wrong-password") 
+            errorMessage = "Incorrect password / Falsches Passwort";
+          else 
+            errorMessage = error.message;
           messageDiv.innerHTML = `<p class="error-msg">${errorMessage}</p>`;
         });
     });
 
-    // FORGOT PASSWORD FUNCTION
-    forgotLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      const email = prompt("Enter your email to reset password / Geben Sie Ihre E-Mail-Adresse ein:");
-      if (email) {
-        sendPasswordResetEmail(auth, email)
-          .then(() => alert("Password reset email sent! Check your inbox / Passwort zurücksetzen E-Mail wurde gesendet!"))
-          .catch((error) => alert("Error: " + error.message));
+    // OPEN MODAL
+    forgotLink.addEventListener("click", () => {
+      modal.style.display = "block";
+    });
+
+    // CLOSE MODAL
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      resetEmailInput.value = "";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target == modal) {
+        modal.style.display = "none";
+        resetEmailInput.value = "";
       }
+    });
+
+    // RESET PASSWORD
+    resetBtn.addEventListener("click", () => {
+      const email = resetEmailInput.value.trim();
+      if (!email) {
+        alert("Please enter your email / Bitte geben Sie Ihre E-Mail-Adresse ein");
+        return;
+      }
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert("Password reset email sent! Check your inbox / Passwort zurücksetzen E-Mail wurde gesendet!");
+          modal.style.display = "none";
+          resetEmailInput.value = "";
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
     });
   </script>
 
