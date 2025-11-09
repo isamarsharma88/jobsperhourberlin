@@ -14,140 +14,48 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    form#signupForm {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    form#signupForm label {
-      font-weight: 500;
-      margin-top: 15px;
-      color: #232d39;
-    }
-
-    form#signupForm input[type="text"],
-    form#signupForm input[type="email"],
-    form#signupForm input[type="password"],
-    form#signupForm input[type="url"] {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-top: 5px;
-      font-size: 14px;
-    }
-
-    form#signupForm input[type="radio"] {
-      margin-right: 6px;
-    }
-
-    .datenschutz {
-      font-size: 13px;
-      background: #f8f8f8;
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 20px;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    form#signupForm button {
-      display: inline-block;
-      margin-top: 25px;
-      background-color: #ed563b;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 12px 24px;
-      font-size: 14px;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    form#signupForm button:hover {
-      background-color: #f9735b;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .section-bg {
-      background-image: url('banner-image-1-1920x500.jpg');
-      background-position: center;
-      background-size: cover;
-      color: #fff;
-      padding: 100px 0;
-      position: relative;
-      text-align: center;
-    }
-
-    .section-bg::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(35,45,57,0.8);
-    }
-
-    .section-bg h2 {
-      position: relative;
-      z-index: 2;
-      font-size: 36px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    footer {
-      margin-top: 80px;
-    }
+    form#signupForm { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0px 0px 20px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif; }
+    form#signupForm label { font-weight: 500; margin-top: 15px; color: #232d39; }
+    form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px; }
+    form#signupForm input[type="radio"] { margin-right: 6px; }
+    .datenschutz { font-size: 13px; background: #f8f8f8; padding: 12px; border-radius: 6px; margin-top: 20px; color: #333; line-height: 1.5; }
+    form#signupForm button { display: inline-block; margin-top: 25px; background-color: #ed563b; color: #fff; border: none; border-radius: 5px; padding: 12px 24px; font-size: 14px; text-transform: uppercase; font-weight: 600; transition: all 0.3s ease; width: 100%; }
+    form#signupForm button:hover { background-color: #f9735b; }
+    .hidden { display: none; }
+    .section-bg { background-image: url('banner-image-1-1920x500.jpg'); background-position: center; background-size: cover; color: #fff; padding: 100px 0; position: relative; text-align: center; }
+    .section-bg::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(35,45,57,0.8); }
+    .section-bg h2 { position: relative; z-index: 2; font-size: 36px; font-weight: 800; text-transform: uppercase; }
+    footer { margin-top: 80px; }
+    .logo img { height: 50px; width: auto; }
+    @media (max-width: 767px) { .logo img { height: 40px; } }
   </style>
 </head>
 
 <body>
-
   <!-- ***** Header Area ***** -->
   <header class="header-area header-sticky">
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-12">
           <nav class="main-nav">
-            <!-- Logo -->
-            <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
-
-            <<!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a href="index.html" class="active">Home / Startseite</a></li>
-                            <li><a href="jobs.html">Jobs</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
-                              
-                                <div class="dropdown-menu">
-                                    
-                                    <a class="dropdown-item" href="contact.html">Contact / Kontakt</a>
-                                    <a class="dropdown-item" href="login.html">Login / Sign Up (Registrieren)</a>
-                                    <a class="dropdown-item" href="blog.html">Blog</a>
-                                    <a class="dropdown-item" href="create-profile.html">Create Profile</a>
-                                </div>
-                            </li>
-                            <li><a href="about.html">About Us</a></li> 
-                        </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
-            </div>
+            <a href="index.html" class="logo">
+              <img src="logo.png" alt="JobsPerHourBerlin Logo"> 
+            </a>
+            <ul class="nav">
+              <li><a href="index.html">Home / Startseite</a></li>
+              <li><a href="find-job.html">Find a Job / Job Finden</a></li>
+              <li><a href="about.html">About Us / Über Uns</a></li>
+              <li><a href="contact.html">Contact / Kontakt</a></li>
+              <li><a href="login.html" class="active">Login / Anmelden</a></li>
+              <li><a href="signup.html">Sign Up / Registrieren</a></li>
+            </ul>
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+      </div>
+    </div>
+  </header>
+
   <!-- ***** Hero Section ***** -->
   <section class="section-bg" id="call-to-action">
     <div class="container">
@@ -161,64 +69,43 @@
       <form id="signupForm">
         <label>Full Name / Vollständiger Name</label>
         <input type="text" name="fullname" required>
-
         <label>Email / E-Mail-Adresse</label>
         <input type="email" name="email" required>
-
         <label>Password / Passwort</label>
         <input type="password" name="password" required>
 
-        <h3 style="margin-top: 25px; color: #232d39;">
-          Wie möchtest du diese Website nutzen? / How would you like to use this website?
-        </h3>
+        <h3 style="margin-top: 25px; color: #232d39;">Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
+        <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
+        <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
 
-        <label>
-          <input type="radio" name="usertype" value="Private" required> Private / Privat
-        </label>
-        <label>
-          <input type="radio" name="usertype" value="Business" required> Business / Gewerblich
-        </label>
-
-        <!-- Private User -->
         <div id="profileNameField" class="hidden">
           <label>Profile Name / Profilname (nur für Privatnutzer)</label>
           <input type="text" name="profilename">
         </div>
 
-        <!-- Business User -->
         <div id="businessFields" class="hidden">
           <h3 style="margin-top: 25px; color: #232d39;">Business Information / Geschäftsdetails</h3>
-
           <label>Company Name / Firmenname</label>
-          <input type="text" name="companyname" required>
-
+          <input type="text" name="companyname">
           <label>Business Email / Geschäfts-E-Mail</label>
-          <input type="email" name="businessemail" required>
-
+          <input type="email" name="businessemail">
           <label>Business Address / Geschäftsadresse</label>
-          <input type="text" name="businessaddress" required>
-
+          <input type="text" name="businessaddress">
           <label>VAT / Tax ID (optional)</label>
           <input type="text" name="taxid">
-
           <label>Company Website (optional)</label>
           <input type="url" name="companywebsite" placeholder="https://">
         </div>
 
         <div class="datenschutz">
           <input type="checkbox" required>
-          <label>
-            I agree that my information may be shared with third parties for job-related purposes.<br>
-            Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.
-          </label>
+          <label>I agree that my information may be shared with third parties for job-related purposes.<br>Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.</label>
         </div>
 
         <div class="datenschutz">
           <strong>Datenschutz / Data Privacy:</strong><br>
-          We value your privacy. Your personal information will be stored securely and used solely 
-          for communication and job placement purposes in accordance with the GDPR.<br>
-          Wir legen großen Wert auf Datenschutz. Ihre persönlichen Daten werden sicher gespeichert 
-          und ausschließlich für die Kommunikation und Jobvermittlung gemäß DSGVO verwendet.
+          We value your privacy. Your personal information will be stored securely and used solely for communication and job placement purposes in accordance with the GDPR.<br>
+          Wir legen großen Wert auf Datenschutz. Ihre persönlichen Daten werden sicher gespeichert und ausschließlich für die Kommunikation und Jobvermittlung gemäß DSGVO verwendet.
         </div>
 
         <button type="submit">Create Account / Konto Erstellen</button>
@@ -236,12 +123,26 @@
     </div>
   </footer>
 
-  <!-- JS Scripts -->
-  <script src="jquery-2.1.0.min.js"></script>
-  <script src="bootstrap.min.js"></script>
+  <!-- Firebase + JS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+    import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-  <script>
-    // Toggle user-type-specific fields
+    const firebaseConfig = {
+      apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+      authDomain: "job-board-da315.firebaseapp.com",
+      projectId: "job-board-da315",
+      storageBucket: "job-board-da315.appspot.com",
+      messagingSenderId: "908048807079",
+      appId: "1:908048807079:web:58f70af2e706f27684d782",
+      measurementId: "G-FHYPY906DE"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getFirestore();
+
     const radioButtons = document.querySelectorAll('input[name="usertype"]');
     const profileNameField = document.getElementById('profileNameField');
     const businessFields = document.getElementById('businessFields');
@@ -251,7 +152,7 @@
         if (radio.value === 'Private') {
           profileNameField.classList.remove('hidden');
           businessFields.classList.add('hidden');
-          businessFields.querySelectorAll('input[required]').forEach(el => el.required = false);
+          businessFields.querySelectorAll('input').forEach(el => el.required = false);
         } else if (radio.value === 'Business') {
           profileNameField.classList.add('hidden');
           businessFields.classList.remove('hidden');
@@ -262,12 +163,23 @@
       });
     });
 
-    // Form submission (demo)
-    document.getElementById('signupForm').addEventListener('submit', e => {
+    document.getElementById('signupForm').addEventListener('submit', async e => {
       e.preventDefault();
-      alert('Thank you for signing up! / Danke für Ihre Registrierung!');
-    });
-  </script>
+      const form = e.target;
+      const email = form.email.value;
+      const password = form.password.value;
+      const fullname = form.fullname.value;
+      const usertype = form.usertype.value;
+      const profilename = form.profilename?.value || '';
+      const companyname = form.companyname?.value || '';
+      const businessemail = form.businessemail?.value || '';
+      const businessaddress = form.businessaddress?.value || '';
+      const taxid = form.taxid?.value || '';
+      const companywebsite = form.companywebsite?.value || '';
 
-</body>
-</html>
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = userCredential.user.uid;
+
+        await setDoc(doc(db, "users", uid), {
+          fullname, email, usertype, profilena
