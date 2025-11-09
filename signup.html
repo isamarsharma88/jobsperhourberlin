@@ -14,14 +14,16 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    body { font-family: 'Poppins', sans-serif; background: #f5f5f5; }
     form#signupForm {
       max-width: 700px; margin: 0 auto; background: #fff; padding: 40px;
       border-radius: 8px; box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
-      font-family: 'Poppins', sans-serif;
     }
-    form#signupForm label { font-weight: 500; margin-top: 15px; color: #232d39; }
+    form#signupForm label { font-weight: 500; margin-top: 15px; color: #232d39; display: block; }
     form#signupForm input[type="text"],
-    input[type="email"], input[type="password"], input[type="url"] {
+    form#signupForm input[type="email"], 
+    form#signupForm input[type="password"], 
+    form#signupForm input[type="url"] {
       width: 100%; padding: 10px 12px; border: 1px solid #ddd;
       border-radius: 5px; margin-top: 5px; font-size: 14px;
     }
@@ -51,7 +53,7 @@
       position: relative; z-index: 2; font-size: 36px; font-weight: 800;
       text-transform: uppercase;
     }
-    footer { margin-top: 80px; text-align:center; }
+    footer { margin-top: 80px; text-align:center; padding: 30px 0; background: #232d39; color: #fff; }
     .logo img { height: 50px; width: auto; }
     @media (max-width: 767px) { .logo img { height: 40px; } }
     #thankYouMessage {
@@ -172,8 +174,8 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const db = getFirestore();
+    const auth = getAuth(app); // FIXED: pass app instance
+    const db = getFirestore(app);
 
     const radioButtons = document.querySelectorAll('input[name="usertype"]');
     const profileNameField = document.getElementById('profileNameField');
@@ -228,9 +230,10 @@
           createdAt: new Date().toISOString()
         });
 
-        // Show thank you message
+        // Show thank you message and hide form
+        form.style.display = "none";
         thankYouMessage.style.display = "block";
-        form.reset();
+
         setTimeout(() => {
           window.location.href = "login.html";
         }, 3000);
