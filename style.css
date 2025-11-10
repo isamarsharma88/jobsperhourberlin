@@ -1269,6 +1269,94 @@ a:focus,
 a:hover {
   color: #f9735b;
 }
+.btn-primary:active:focus,
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: #f9735b;
+  border-color: #f9735b;
+  outline: none;
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #ed563b;
+  font-size: 30px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #ed563b;
+}
+
+a:focus,
+a:hover {
+  color: #f9735b;
+}
+
+/* 
+---------------------------------------------
+FIX: Job categories vertical text issue
+--------------------------------------------- 
+*/
+.job-category h5,
+.job-category .card-body {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    white-space: normal !important;
+    transform: none !important;
+}
+
+#job-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#job-categories .col-md-6, 
+#job-categories .col-lg-4 {
+    display: flex;
+}
+
+/* 
+---------------------------------------------
+responsive
+--------------------------------------------- 
+*/
+
+@media (max-width: 992px) {
+  .main-banner .caption h2 {
+    font-size: 64px;
+  }
+  #features {
+    margin-bottom: 110px;
+  }
+  #features .feature-item {
+    margin-bottom: 30px;
+  }
+  #our-classes .tabs-content {
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+  .trainer-item {
+    margin-bottom: 30px;
+  }
+  #contact-us #map {
+    margin-bottom: -7px;
+  }
+  #contact-us .contact-form {
+    padding: 30px;
+  }
+  #contact-us .contact-form #contact {
+    padding: 30px;
+  }
+}
+
 
 
 
