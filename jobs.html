@@ -129,14 +129,8 @@
         .filter-option {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             margin-bottom: 0.5rem;
             padding: 0.5rem 0;
-        }
-        
-        .filter-count {
-            color: var(--gray);
-            font-size: 0.85rem;
         }
         
         .form-check-input:checked {
@@ -264,15 +258,8 @@
         
         .job-category h5 {
             color: var(--secondary);
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        
-        .job-count {
-            color: var(--gray);
-            font-size: 0.9rem;
-            text-align: center;
             margin-bottom: 1rem;
+            text-align: center;
         }
         
         .view-more {
@@ -391,30 +378,26 @@
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="fulltime" data-filter="type" value="Full Time">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="fulltime">
-                                    <span>Full Time</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="fulltime">
+                                    Full Time
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="parttime" data-filter="type" value="Part Time">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="parttime">
-                                    <span>Part Time</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="parttime">
+                                    Part Time
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="freelance" data-filter="type" value="Freelance">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="freelance">
-                                    <span>Freelance</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="freelance">
+                                    Freelance
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="seasonal" data-filter="type" value="Seasonal">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="seasonal">
-                                    <span>Seasonal</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="seasonal">
+                                    Seasonal
                                 </label>
                             </div>
                         </div>
@@ -426,30 +409,26 @@
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="noexp" data-filter="experience" value="No Experience">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="noexp">
-                                    <span>No Experience</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="noexp">
+                                    No Experience
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="fresher" data-filter="experience" value="Fresher">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="fresher">
-                                    <span>Fresher</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="fresher">
+                                    Fresher
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="intermediate" data-filter="experience" value="Intermediate">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="intermediate">
-                                    <span>Intermediate</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="intermediate">
+                                    Intermediate
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="expert" data-filter="experience" value="Expert">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="expert">
-                                    <span>Expert</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="expert">
+                                    Expert
                                 </label>
                             </div>
                         </div>
@@ -461,30 +440,26 @@
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="all" data-filter="date" value="all" checked>
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="all">
-                                    <span>All</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="all">
+                                    All
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last24" data-filter="date" value="last24">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="last24">
-                                    <span>Last 24 Hours</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="last24">
+                                    Last 24 Hours
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last7" data-filter="date" value="last7">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="last7">
-                                    <span>Last 7 Days</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="last7">
+                                    Last 7 Days
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last30" data-filter="date" value="last30">
-                                <label class="form-check-label w-100 d-flex justify-content-between" for="last30">
-                                    <span>Last 30 Days</span>
-                                    <small class="filter-count">10</small>
+                                <label class="form-check-label w-100" for="last30">
+                                    Last 30 Days
                                 </label>
                             </div>
                         </div>
@@ -558,34 +533,34 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Job categories data
+        // Job categories data without counts
         const jobCategories = [
-            { id: 1, title: "Household & Cleaning", icon: "🧹", count: 12, tags: ["cleaning", "home", "maintenance"] },
-            { id: 2, title: "Gardening & Outdoor", icon: "🌿", count: 8, tags: ["gardening", "outdoor", "landscaping"] },
-            { id: 3, title: "Moving & Transport", icon: "🚚", count: 15, tags: ["moving", "transport", "logistics"] },
-            { id: 4, title: "Restaurant & Café", icon: "🍽️", count: 22, tags: ["restaurant", "cafe", "food", "hospitality"] },
-            { id: 5, title: "Babysitting & Childcare", icon: "👶", count: 18, tags: ["babysitting", "childcare", "family"] },
-            { id: 6, title: "Pet Care", icon: "🐕", count: 10, tags: ["pet", "care", "animals"] },
-            { id: 7, title: "Delivery & Courier", icon: "📦", count: 25, tags: ["delivery", "courier", "logistics"] },
-            { id: 8, title: "Office & Admin Support", icon: "💼", count: 30, tags: ["office", "admin", "support"] },
-            { id: 9, title: "Tutoring & Teaching", icon: "📚", count: 14, tags: ["tutoring", "teaching", "education"] },
-            { id: 10, title: "Creative & Design", icon: "🎨", count: 20, tags: ["creative", "design", "art"] },
-            { id: 11, title: "IT & Tech Support", icon: "💻", count: 28, tags: ["it", "tech", "support", "engineering"] },
-            { id: 12, title: "Event & Promotion", icon: "🎪", count: 16, tags: ["event", "promotion", "marketing"] },
-            { id: 13, title: "Trades & Construction", icon: "🏗️", count: 19, tags: ["trades", "construction", "building"] },
-            { id: 14, title: "Electrician & Plumbing", icon: "🔧", count: 11, tags: ["electrician", "plumbing", "maintenance"] },
-            { id: 15, title: "Beauty, Health & Wellness", icon: "💄", count: 13, tags: ["beauty", "health", "wellness"] },
-            { id: 16, title: "Hair & Makeup Artists", icon: "💇", count: 9, tags: ["hair", "makeup", "beauty"] },
-            { id: 17, title: "Fitness Trainers / Yoga", icon: "🧘", count: 7, tags: ["fitness", "yoga", "health"] },
-            { id: 18, title: "Home Repairs & Handyman", icon: "🛠️", count: 17, tags: ["home", "repairs", "handyman", "maintenance"] },
-            { id: 19, title: "Interior Design", icon: "🏠", count: 6, tags: ["interior", "design", "home", "improvement"] },
-            { id: 20, title: "Photography & Videography", icon: "📸", count: 8, tags: ["photography", "videography", "creative"] },
-            { id: 21, title: "Writing & Editing", icon: "✍️", count: 12, tags: ["writing", "editing", "content"] },
-            { id: 22, title: "Nursing & Elder Care", icon: "👵", count: 15, tags: ["nursing", "elder", "care", "health"] },
-            { id: 23, title: "Web Development & Design", icon: "🌐", count: 24, tags: ["web", "development", "design", "engineering"] },
-            { id: 24, title: "Digital Marketing & SEO", icon: "📈", count: 18, tags: ["digital", "marketing", "seo"] },
-            { id: 25, title: "Party & Event Planning", icon: "🎉", count: 10, tags: ["party", "event", "planning"] },
-            { id: 26, title: "Car Services & Mechanics", icon: "🚗", count: 13, tags: ["car", "services", "mechanics", "automotive"] }
+            { id: 1, title: "Household & Cleaning", icon: "🧹", tags: ["cleaning", "home", "maintenance"] },
+            { id: 2, title: "Gardening & Outdoor", icon: "🌿", tags: ["gardening", "outdoor", "landscaping"] },
+            { id: 3, title: "Moving & Transport", icon: "🚚", tags: ["moving", "transport", "logistics"] },
+            { id: 4, title: "Restaurant & Café", icon: "🍽️", tags: ["restaurant", "cafe", "food", "hospitality"] },
+            { id: 5, title: "Babysitting & Childcare", icon: "👶", tags: ["babysitting", "childcare", "family"] },
+            { id: 6, title: "Pet Care", icon: "🐕", tags: ["pet", "care", "animals"] },
+            { id: 7, title: "Delivery & Courier", icon: "📦", tags: ["delivery", "courier", "logistics"] },
+            { id: 8, title: "Office & Admin Support", icon: "💼", tags: ["office", "admin", "support"] },
+            { id: 9, title: "Tutoring & Teaching", icon: "📚", tags: ["tutoring", "teaching", "education"] },
+            { id: 10, title: "Creative & Design", icon: "🎨", tags: ["creative", "design", "art"] },
+            { id: 11, title: "IT & Tech Support", icon: "💻", tags: ["it", "tech", "support", "engineering"] },
+            { id: 12, title: "Event & Promotion", icon: "🎪", tags: ["event", "promotion", "marketing"] },
+            { id: 13, title: "Trades & Construction", icon: "🏗️", tags: ["trades", "construction", "building"] },
+            { id: 14, title: "Electrician & Plumbing", icon: "🔧", tags: ["electrician", "plumbing", "maintenance"] },
+            { id: 15, title: "Beauty, Health & Wellness", icon: "💄", tags: ["beauty", "health", "wellness"] },
+            { id: 16, title: "Hair & Makeup Artists", icon: "💇", tags: ["hair", "makeup", "beauty"] },
+            { id: 17, title: "Fitness Trainers / Yoga", icon: "🧘", tags: ["fitness", "yoga", "health"] },
+            { id: 18, title: "Home Repairs & Handyman", icon: "🛠️", tags: ["home", "repairs", "handyman", "maintenance"] },
+            { id: 19, title: "Interior Design", icon: "🏠", tags: ["interior", "design", "home", "improvement"] },
+            { id: 20, title: "Photography & Videography", icon: "📸", tags: ["photography", "videography", "creative"] },
+            { id: 21, title: "Writing & Editing", icon: "✍️", tags: ["writing", "editing", "content"] },
+            { id: 22, title: "Nursing & Elder Care", icon: "👵", tags: ["nursing", "elder", "care", "health"] },
+            { id: 23, title: "Web Development & Design", icon: "🌐", tags: ["web", "development", "design", "engineering"] },
+            { id: 24, title: "Digital Marketing & SEO", icon: "📈", tags: ["digital", "marketing", "seo"] },
+            { id: 25, title: "Party & Event Planning", icon: "🎉", tags: ["party", "event", "planning"] },
+            { id: 26, title: "Car Services & Mechanics", icon: "🚗", tags: ["car", "services", "mechanics", "automotive"] }
         ];
 
         // Initialize the application
@@ -637,7 +612,6 @@
                                     <span>${category.icon}</span>
                                 </div>
                                 <h5>${category.title}</h5>
-                                <div class="job-count">${category.count} jobs available</div>
                                 <a href="#" class="view-more">
                                     View Jobs <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
@@ -661,14 +635,6 @@
                 applyFilters();
             });
 
-            // Tag filters
-            document.querySelectorAll('.tag').forEach(tag => {
-                tag.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    applyFilters();
-                });
-            });
-
             // Checkbox filters
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', applyFilters);
@@ -690,8 +656,6 @@
         function applyFilters() {
             const searchTerm = document.getElementById('job-search').value.toLowerCase();
             const selectedCategory = document.getElementById('category-select').value;
-            const activeTags = Array.from(document.querySelectorAll('.tag.active'))
-                .map(tag => tag.getAttribute('value'));
 
             const filtered = jobCategories.filter(category => {
                 // Search filter
@@ -702,11 +666,6 @@
 
                 // Category filter
                 if (selectedCategory && category.title !== selectedCategory) {
-                    return false;
-                }
-
-                // Tag filter
-                if (activeTags.length > 0 && !activeTags.some(tag => category.tags.includes(tag))) {
                     return false;
                 }
 
