@@ -88,6 +88,34 @@
             color: var(--primary);
             background-color: rgba(237, 86, 59, 0.1);
         }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+        }
         
         .menu-trigger {
             display: none;
@@ -186,6 +214,11 @@
             border-color: var(--primary);
         }
         
+        /* Enhanced Salary Range Styles */
+        .salary-range-container {
+            margin-bottom: 1rem;
+        }
+
         .salary-inputs {
             display: flex;
             gap: 0.5rem;
@@ -198,6 +231,41 @@
             border: 1px solid #e9ecef;
             border-radius: 6px;
             font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .salary-inputs .input-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .salary-inputs .input-group-text {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .salary-inputs .input-group input {
+            border-radius: 0 0 6px 6px;
+            border-top: none;
+        }
+
+        .range-display {
+            text-align: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .range-display span {
+            font-weight: 600;
+            color: #ed563b;
         }
         
         .apply-btn {
@@ -432,6 +500,13 @@
                 font-size: 0.95rem;
                 min-height: 2.8em;
             }
+
+            .language-switcher {
+                margin-left: 0;
+                margin-top: 10px;
+                justify-content: center;
+                width: 100%;
+            }
         }
         
         /* Mobile (576px to 767px) */
@@ -593,15 +668,22 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html">Home / Startseite</a></li>
-                            <li><a href="jobs.html" class="active">Jobs</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="login.html">login</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
-                            <li><a href="contact.html">Contact</a></li> 
-                        </ul>        
+                            <li><a href="index.html" data-en="Home / Startseite" data-de="Startseite">Home / Startseite</a></li>
+                            <li><a href="jobs.html" class="active" data-en="Jobs" data-de="Stellenangebote">Jobs</a></li>
+                            <li><a href="about.html" data-en="About Us" data-de="Über uns">About Us</a></li>
+                            <li><a href="login.html" data-en="Login" data-de="Anmelden">Login</a></li>
+                            <li><a href="signup.html" data-en="Sign Up" data-de="Registrieren">Sign Up</a></li>
+                            <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li> 
+                        </ul>
+
+                        <!-- Language Switcher -->
+                        <div class="language-switcher">
+                            <button class="lang-btn active" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="de">DE</button>
+                        </div>
+                        
                         <a class='menu-trigger'>
-                            <span>Menu</span>
+                            <span data-en="Menu" data-de="Menü">Menu</span>
                         </a>
                         <!-- ***** Menu End ***** -->
                     </nav>
@@ -616,16 +698,20 @@
         <div class="search-container">
             <div class="row g-3 mb-3">
                 <div class="col-md-8">
-                    <input type="text" class="form-control search-input" id="job-search" placeholder="Search by job title, company, or keywords">
+                    <input type="text" class="form-control search-input" id="job-search" 
+                           placeholder="Search by job title, company, or keywords"
+                           data-en="Search by job title, company, or keywords"
+                           data-de="Nach Jobtitel, Unternehmen oder Stichwörtern suchen">
                 </div>
                 <div class="col-md-4">
                     <button class="btn search-btn w-100" id="search-button">
-                        <i class="fas fa-search me-2"></i>Search Jobs
+                        <i class="fas fa-search me-2"></i>
+                        <span data-en="Search Jobs" data-de="Jobs suchen">Search Jobs</span>
                     </button>
                 </div>
             </div>
             <select class="form-select category-select" id="category-select">
-                <option value="">All Categories</option>
+                <option value="" data-en="All Categories" data-de="Alle Kategorien">All Categories</option>
                 <!-- Categories will be populated by JavaScript -->
             </select>
         </div>
@@ -634,33 +720,33 @@
             <!-- Sidebar Filters -->
             <div class="col-lg-3">
                 <div class="sidebar">
-                    <h4>Search Filters</h4>
+                    <h4 data-en="Search Filters" data-de="Suchfilter">Search Filters</h4>
                     
                     <!-- Job Type -->
                     <div class="filter-section">
-                        <h6>Job Type</h6>
+                        <h6 data-en="Job Type" data-de="Jobtyp">Job Type</h6>
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="fulltime" data-filter="type" value="Full Time">
-                                <label class="form-check-label w-100" for="fulltime">
+                                <label class="form-check-label w-100" for="fulltime" data-en="Full Time" data-de="Vollzeit">
                                     Full Time
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="parttime" data-filter="type" value="Part Time">
-                                <label class="form-check-label w-100" for="parttime">
+                                <label class="form-check-label w-100" for="parttime" data-en="Part Time" data-de="Teilzeit">
                                     Part Time
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="freelance" data-filter="type" value="Freelance">
-                                <label class="form-check-label w-100" for="freelance">
+                                <label class="form-check-label w-100" for="freelance" data-en="Freelance" data-de="Freiberuflich">
                                     Freelance
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="seasonal" data-filter="type" value="Seasonal">
-                                <label class="form-check-label w-100" for="seasonal">
+                                <label class="form-check-label w-100" for="seasonal" data-en="Seasonal" data-de="Saisonbedingt">
                                     Seasonal
                                 </label>
                             </div>
@@ -669,29 +755,29 @@
                     
                     <!-- Experience Level -->
                     <div class="filter-section">
-                        <h6>Experience Level</h6>
+                        <h6 data-en="Experience Level" data-de="Erfahrungslevel">Experience Level</h6>
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="noexp" data-filter="experience" value="No Experience">
-                                <label class="form-check-label w-100" for="noexp">
+                                <label class="form-check-label w-100" for="noexp" data-en="No Experience" data-de="Keine Erfahrung">
                                     No Experience
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="fresher" data-filter="experience" value="Fresher">
-                                <label class="form-check-label w-100" for="fresher">
+                                <label class="form-check-label w-100" for="fresher" data-en="Fresher" data-de="Anfänger">
                                     Fresher
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="intermediate" data-filter="experience" value="Intermediate">
-                                <label class="form-check-label w-100" for="intermediate">
+                                <label class="form-check-label w-100" for="intermediate" data-en="Intermediate" data-de="Mittlere Erfahrung">
                                     Intermediate
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="expert" data-filter="experience" value="Expert">
-                                <label class="form-check-label w-100" for="expert">
+                                <label class="form-check-label w-100" for="expert" data-en="Expert" data-de="Experte">
                                     Expert
                                 </label>
                             </div>
@@ -700,57 +786,77 @@
                     
                     <!-- Date Posted -->
                     <div class="filter-section">
-                        <h6>Date Posted</h6>
+                        <h6 data-en="Date Posted" data-de="Veröffentlichungsdatum">Date Posted</h6>
                         <div class="filter-options">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="all" data-filter="date" value="all" checked>
-                                <label class="form-check-label w-100" for="all">
+                                <label class="form-check-label w-100" for="all" data-en="All" data-de="Alle">
                                     All
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last24" data-filter="date" value="last24">
-                                <label class="form-check-label w-100" for="last24">
+                                <label class="form-check-label w-100" for="last24" data-en="Last 24 Hours" data-de="Letzte 24 Stunden">
                                     Last 24 Hours
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last7" data-filter="date" value="last7">
-                                <label class="form-check-label w-100" for="last7">
+                                <label class="form-check-label w-100" for="last7" data-en="Last 7 Days" data-de="Letzte 7 Tage">
                                     Last 7 Days
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="last30" data-filter="date" value="last30">
-                                <label class="form-check-label w-100" for="last30">
+                                <label class="form-check-label w-100" for="last30" data-en="Last 30 Days" data-de="Letzte 30 Tage">
                                     Last 30 Days
                                 </label>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Salary Range -->
+                    <!-- Enhanced Salary Range -->
                     <div class="filter-section">
-                        <h6>Salary Range</h6>
-                        <div class="salary-inputs">
-                            <input type="number" id="min-salary" placeholder="€0" min="0">
-                            <input type="number" id="max-salary" placeholder="€9999" min="0">
+                        <h6 data-en="Salary Range" data-de="Gehaltsbereich">Salary Range</h6>
+                        <div class="salary-range-container">
+                            <!-- Range Display -->
+                            <div class="range-display">
+                                <span data-en="Selected range:" data-de="Ausgewählter Bereich:">Selected range:</span> 
+                                <span id="range-display">€0 - €9999</span>
+                            </div>
+
+                            <!-- Input Fields -->
+                            <div class="salary-inputs">
+                                <div class="input-group">
+                                    <span class="input-group-text" data-en="Min Salary" data-de="Mindestgehalt">Min Salary</span>
+                                    <input type="number" id="min-salary" placeholder="0" min="0" max="9999" value="0">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" data-en="Max Salary" data-de="Höchstgehalt">Max Salary</span>
+                                    <input type="number" id="max-salary" placeholder="9999" min="0" max="9999" value="9999">
+                                </div>
+                            </div>
+                            
+                            <button class="apply-btn" id="salary-apply" data-en="Apply Salary Filter" data-de="Gehaltsfilter anwenden">
+                                Apply Salary Filter
+                            </button>
                         </div>
-                        <button class="apply-btn" id="salary-apply">Apply Salary Filter</button>
                     </div>
                     
                     <!-- Banner -->
                     <div class="banner">
-                        <h5>WE ARE HIRING</h5>
-                        <p>Apply Today!</p>
-                        <button class="banner-btn">View Openings</button>
+                        <h5 data-en="WE ARE HIRING" data-de="WIR STELLEN EIN">WE ARE HIRING</h5>
+                        <p data-en="Apply Today!" data-de="Jetzt bewerben!">Apply Today!</p>
+                        <button class="banner-btn" data-en="View Openings" data-de="Offene Stellen ansehen">
+                            View Openings
+                        </button>
                     </div>
                 </div>
             </div>
             
             <!-- Job Categories -->
             <div class="col-lg-9">
-                <h3 class="mb-4">Job Categories</h3>
+                <h3 class="mb-4" data-en="Job Categories" data-de="Jobkategorien">Job Categories</h3>
                 <div class="row" id="job-categories">
                     <!-- Categories will be populated by JavaScript -->
                 </div>
@@ -764,32 +870,39 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <h4 class="mb-3">Jobs Per Hour Berlin</h4>
-                    <p>Find the perfect job that fits your schedule and skills. Browse thousands of hourly, part-time, and full-time jobs in Berlin.</p>
+                    <p data-en="Find the perfect job that fits your schedule and skills. Browse thousands of hourly, part-time, and full-time jobs in Berlin." 
+                       data-de="Finden Sie den perfekten Job, der zu Ihrem Zeitplan und Ihren Fähigkeiten passt. Durchsuchen Sie Tausende von Stunden-, Teilzeit- und Vollzeitjobs in Berlin.">
+                        Find the perfect job that fits your schedule and skills. Browse thousands of hourly, part-time, and full-time jobs in Berlin.
+                    </p>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <h5 class="mb-3">Quick Links</h5>
+                    <h5 class="mb-3" data-en="Quick Links" data-de="Schnelllinks">Quick Links</h5>
                     <div class="footer-links d-flex flex-column">
-                        <a href="index.html" class="mb-2">Home / Startseite</a>
-                        <a href="jobs.html" class="mb-2">Jobs</a>
-                        <a href="about.html" class="mb-2">About Us</a>
-                        <a href="contact.html" class="mb-2">Contact</a>
+                        <a href="index.html" class="mb-2" data-en="Home / Startseite" data-de="Startseite">Home / Startseite</a>
+                        <a href="jobs.html" class="mb-2" data-en="Jobs" data-de="Stellenangebote">Jobs</a>
+                        <a href="about.html" class="mb-2" data-en="About Us" data-de="Über uns">About Us</a>
+                        <a href="contact.html" class="mb-2" data-en="Contact" data-de="Kontakt">Contact</a>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <h5 class="mb-3">Contact</h5>
+                    <h5 class="mb-3" data-en="Contact" data-de="Kontakt">Contact</h5>
                     <div class="footer-links d-flex flex-column">
                         <a href="mailto:contact@jobsperhourberlin.de" class="mb-2">
-                            <i class="fas fa-envelope me-2"></i>Email Us
+                            <i class="fas fa-envelope me-2"></i>
+                            <span data-en="Email Us" data-de="E-Mail senden">Email Us</span>
                         </a>
                         <a href="#" class="mb-2">
-                            <i class="fas fa-map-marker-alt me-2"></i>Berlin, Germany
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="row pt-3 border-top border-secondary">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2025 Jobs Per Hour Berlin. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2025 Jobs Per Hour Berlin. 
+                        <span data-en="All rights reserved." data-de="Alle Rechte vorbehalten.">All rights reserved.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -797,34 +910,37 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Job categories data without counts
+        // Language management
+        let currentLang = 'en';
+
+        // Job categories data with German translations
         const jobCategories = [
-            { id: 1, title: "Household & Cleaning", icon: "🧹", tags: ["cleaning", "home", "maintenance"] },
-            { id: 2, title: "Gardening & Outdoor", icon: "🌿", tags: ["gardening", "outdoor", "landscaping"] },
-            { id: 3, title: "Moving & Transport", icon: "🚚", tags: ["moving", "transport", "logistics"] },
-            { id: 4, title: "Restaurant & Café", icon: "🍽️", tags: ["restaurant", "cafe", "food", "hospitality"] },
-            { id: 5, title: "Babysitting & Childcare", icon: "👶", tags: ["babysitting", "childcare", "family"] },
-            { id: 6, title: "Pet Care", icon: "🐕", tags: ["pet", "care", "animals"] },
-            { id: 7, title: "Delivery & Courier", icon: "📦", tags: ["delivery", "courier", "logistics"] },
-            { id: 8, title: "Office & Admin Support", icon: "💼", tags: ["office", "admin", "support"] },
-            { id: 9, title: "Tutoring & Teaching", icon: "📚", tags: ["tutoring", "teaching", "education"] },
-            { id: 10, title: "Creative & Design", icon: "🎨", tags: ["creative", "design", "art"] },
-            { id: 11, title: "IT & Tech Support", icon: "💻", tags: ["it", "tech", "support", "engineering"] },
-            { id: 12, title: "Event & Promotion", icon: "🎪", tags: ["event", "promotion", "marketing"] },
-            { id: 13, title: "Trades & Construction", icon: "🏗️", tags: ["trades", "construction", "building"] },
-            { id: 14, title: "Electrician & Plumbing", icon: "🔧", tags: ["electrician", "plumbing", "maintenance"] },
-            { id: 15, title: "Beauty, Health & Wellness", icon: "💄", tags: ["beauty", "health", "wellness"] },
-            { id: 16, title: "Hair & Makeup Artists", icon: "💇", tags: ["hair", "makeup", "beauty"] },
-            { id: 17, title: "Fitness Trainers / Yoga", icon: "🧘", tags: ["fitness", "yoga", "health"] },
-            { id: 18, title: "Home Repairs & Handyman", icon: "🛠️", tags: ["home", "repairs", "handyman", "maintenance"] },
-            { id: 19, title: "Interior Design", icon: "🏠", tags: ["interior", "design", "home", "improvement"] },
-            { id: 20, title: "Photography & Videography", icon: "📸", tags: ["photography", "videography", "creative"] },
-            { id: 21, title: "Writing & Editing", icon: "✍️", tags: ["writing", "editing", "content"] },
-            { id: 22, title: "Nursing & Elder Care", icon: "👵", tags: ["nursing", "elder", "care", "health"] },
-            { id: 23, title: "Web Development & Design", icon: "🌐", tags: ["web", "development", "design", "engineering"] },
-            { id: 24, title: "Digital Marketing & SEO", icon: "📈", tags: ["digital", "marketing", "seo"] },
-            { id: 25, title: "Party & Event Planning", icon: "🎉", tags: ["party", "event", "planning"] },
-            { id: 26, title: "Car Services & Mechanics", icon: "🚗", tags: ["car", "services", "mechanics", "automotive"] }
+            { id: 1, title: { en: "Household & Cleaning", de: "Haushalt & Reinigung" }, icon: "🧹", tags: ["cleaning", "home", "maintenance", "reinigung", "haushalt"] },
+            { id: 2, title: { en: "Gardening & Outdoor", de: "Gartenarbeit & Außenbereich" }, icon: "🌿", tags: ["gardening", "outdoor", "landscaping", "gartenarbeit", "außenbereich"] },
+            { id: 3, title: { en: "Moving & Transport", de: "Umzug & Transport" }, icon: "🚚", tags: ["moving", "transport", "logistics", "umzug", "transport"] },
+            { id: 4, title: { en: "Restaurant & Café", de: "Restaurant & Café" }, icon: "🍽️", tags: ["restaurant", "cafe", "food", "hospitality", "gastronomie"] },
+            { id: 5, title: { en: "Babysitting & Childcare", de: "Babysitting & Kinderbetreuung" }, icon: "👶", tags: ["babysitting", "childcare", "family", "kinderbetreuung", "familie"] },
+            { id: 6, title: { en: "Pet Care", de: "Tierbetreuung" }, icon: "🐕", tags: ["pet", "care", "animals", "tier", "betreuung"] },
+            { id: 7, title: { en: "Delivery & Courier", de: "Lieferung & Kurier" }, icon: "📦", tags: ["delivery", "courier", "logistics", "lieferung", "kurier"] },
+            { id: 8, title: { en: "Office & Admin Support", de: "Büro & Verwaltung" }, icon: "💼", tags: ["office", "admin", "support", "büro", "verwaltung"] },
+            { id: 9, title: { en: "Tutoring & Teaching", de: "Nachhilfe & Unterricht" }, icon: "📚", tags: ["tutoring", "teaching", "education", "nachhilfe", "unterricht"] },
+            { id: 10, title: { en: "Creative & Design", de: "Kreativ & Design" }, icon: "🎨", tags: ["creative", "design", "art", "kreativ", "gestaltung"] },
+            { id: 11, title: { en: "IT & Tech Support", de: "IT & Technischer Support" }, icon: "💻", tags: ["it", "tech", "support", "engineering", "technischer support"] },
+            { id: 12, title: { en: "Event & Promotion", de: "Event & Promotion" }, icon: "🎪", tags: ["event", "promotion", "marketing", "veranstaltung", "werbung"] },
+            { id: 13, title: { en: "Trades & Construction", de: "Handwerk & Bauwesen" }, icon: "🏗️", tags: ["trades", "construction", "building", "handwerk", "bauwesen"] },
+            { id: 14, title: { en: "Electrician & Plumbing", de: "Elektriker & Klempner" }, icon: "🔧", tags: ["electrician", "plumbing", "maintenance", "elektriker", "klempner"] },
+            { id: 15, title: { en: "Beauty, Health & Wellness", de: "Schönheit, Gesundheit & Wellness" }, icon: "💄", tags: ["beauty", "health", "wellness", "schönheit", "gesundheit"] },
+            { id: 16, title: { en: "Hair & Makeup Artists", de: "Friseure & Visagisten" }, icon: "💇", tags: ["hair", "makeup", "beauty", "friseur", "visagist"] },
+            { id: 17, title: { en: "Fitness Trainers / Yoga", de: "Fitness Trainer / Yoga" }, icon: "🧘", tags: ["fitness", "yoga", "health", "fitness", "gesundheit"] },
+            { id: 18, title: { en: "Home Repairs & Handyman", de: "Hausreparaturen & Handwerker" }, icon: "🛠️", tags: ["home", "repairs", "handyman", "maintenance", "haus", "reparaturen"] },
+            { id: 19, title: { en: "Interior Design", de: "Innenarchitektur" }, icon: "🏠", tags: ["interior", "design", "home", "improvement", "innenarchitektur"] },
+            { id: 20, title: { en: "Photography & Videography", de: "Fotografie & Videografie" }, icon: "📸", tags: ["photography", "videography", "creative", "fotografie", "videografie"] },
+            { id: 21, title: { en: "Writing & Editing", de: "Schreiben & Bearbeiten" }, icon: "✍️", tags: ["writing", "editing", "content", "schreiben", "bearbeiten"] },
+            { id: 22, title: { en: "Nursing & Elder Care", de: "Pflege & Altenbetreuung" }, icon: "👵", tags: ["nursing", "elder", "care", "health", "pflege", "altenbetreuung"] },
+            { id: 23, title: { en: "Web Development & Design", de: "Webentwicklung & Design" }, icon: "🌐", tags: ["web", "development", "design", "engineering", "webentwicklung"] },
+            { id: 24, title: { en: "Digital Marketing & SEO", de: "Digitales Marketing & SEO" }, icon: "📈", tags: ["digital", "marketing", "seo", "digitales", "marketing"] },
+            { id: 25, title: { en: "Party & Event Planning", de: "Party & Eventplanung" }, icon: "🎉", tags: ["party", "event", "planning", "party", "eventplanung"] },
+            { id: 26, title: { en: "Car Services & Mechanics", de: "Autoservice & Mechaniker" }, icon: "🚗", tags: ["car", "services", "mechanics", "automotive", "autoservice", "mechaniker"] }
         ];
 
         // Initialize the application
@@ -836,6 +952,8 @@
             populateCategorySelect();
             renderJobCategories(jobCategories);
             setupEventListeners();
+            setupSalaryFilter();
+            setupLanguageSwitcher();
             
             // Mobile menu toggle
             const menuTrigger = document.querySelector('.menu-trigger');
@@ -846,23 +964,61 @@
                     nav.classList.toggle('active');
                 });
             }
+        }
+
+        function setupLanguageSwitcher() {
+            const langButtons = document.querySelectorAll('.lang-btn');
             
-            // Close menu when clicking outside on mobile
-            document.addEventListener('click', function(event) {
-                if (window.innerWidth <= 991) {
-                    if (!event.target.closest('.main-nav') && nav.classList.contains('active')) {
-                        nav.classList.remove('active');
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    
+                    // Update active state
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (element.hasAttribute('data-' + lang)) {
+                    const translation = element.getAttribute('data-' + lang);
+                    
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = translation;
+                    } else {
+                        element.textContent = translation;
                     }
                 }
             });
+            
+            // Update job categories
+            renderJobCategories(jobCategories);
+            
+            // Update category select options
+            populateCategorySelect();
         }
 
         function populateCategorySelect() {
             const select = document.getElementById('category-select');
+            // Clear existing options except the first one
+            while (select.children.length > 1) {
+                select.removeChild(select.lastChild);
+            }
+            
             jobCategories.forEach(category => {
                 const option = document.createElement('option');
-                option.value = category.title;
-                option.textContent = category.title;
+                option.value = category.id;
+                option.textContent = category.title[currentLang];
+                option.setAttribute('data-en', category.title.en);
+                option.setAttribute('data-de', category.title.de);
                 select.appendChild(option);
             });
         }
@@ -876,11 +1032,19 @@
                     <div class="col-12">
                         <div class="no-results">
                             <i class="fas fa-search mb-3" style="font-size: 3rem;"></i>
-                            <h4>No job categories found</h4>
-                            <p>Try adjusting your search criteria or filters</p>
+                            <h4 data-en="No job categories found" data-de="Keine Jobkategorien gefunden">No job categories found</h4>
+                            <p data-en="Try adjusting your search criteria or filters" data-de="Versuchen Sie, Ihre Suchkriterien oder Filter anzupassen">Try adjusting your search criteria or filters</p>
                         </div>
                     </div>
                 `;
+                
+                // Update the no results text for current language
+                if (currentLang === 'de') {
+                    const noResults = container.querySelector('.no-results');
+                    noResults.querySelector('h4').textContent = 'Keine Jobkategorien gefunden';
+                    noResults.querySelector('p').textContent = 'Versuchen Sie, Ihre Suchkriterien oder Filter anzupassen';
+                }
+                
                 return;
             }
 
@@ -894,9 +1058,10 @@
                                 <div class="category-icon">
                                     <span>${category.icon}</span>
                                 </div>
-                                <h5>${category.title}</h5>
+                                <h5>${category.title[currentLang]}</h5>
                                 <a href="#" class="view-more">
-                                    View Jobs <i class="fas fa-arrow-right ms-1"></i>
+                                    <span data-en="View Jobs" data-de="Jobs anzeigen">View Jobs</span> 
+                                    <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -904,6 +1069,71 @@
                 `;
                 container.appendChild(col);
             });
+            
+            // Update view more links for current language
+            if (currentLang === 'de') {
+                container.querySelectorAll('.view-more span').forEach(span => {
+                    span.textContent = 'Jobs anzeigen';
+                });
+            }
+        }
+
+        function setupSalaryFilter() {
+            const minSalaryInput = document.getElementById('min-salary');
+            const maxSalaryInput = document.getElementById('max-salary');
+            const rangeDisplay = document.getElementById('range-display');
+            const applyBtn = document.getElementById('salary-apply');
+
+            // Update range display
+            function updateDisplay() {
+                const min = parseInt(minSalaryInput.value) || 0;
+                const max = parseInt(maxSalaryInput.value) || 9999;
+                
+                // Validate range
+                if (min > max) {
+                    minSalaryInput.value = max;
+                    maxSalaryInput.value = min;
+                    updateDisplay();
+                    return;
+                }
+                
+                rangeDisplay.textContent = `€${min} - €${max}`;
+            }
+
+            // Event listeners for input fields
+            minSalaryInput.addEventListener('input', function() {
+                let value = parseInt(this.value) || 0;
+                value = Math.max(0, Math.min(9999, value));
+                this.value = value;
+                updateDisplay();
+            });
+
+            maxSalaryInput.addEventListener('input', function() {
+                let value = parseInt(this.value) || 9999;
+                value = Math.max(0, Math.min(9999, value));
+                this.value = value;
+                updateDisplay();
+            });
+
+            // Apply button functionality
+            applyBtn.addEventListener('click', function() {
+                const min = parseInt(minSalaryInput.value) || 0;
+                const max = parseInt(maxSalaryInput.value) || 9999;
+                
+                if (min > max) {
+                    const alertMsg = currentLang === 'de' 
+                        ? 'Mindestgehalt darf nicht höher als Höchstgehalt sein' 
+                        : 'Minimum salary cannot be greater than maximum salary';
+                    alert(alertMsg);
+                    return;
+                }
+                
+                // Apply salary filter logic here
+                applyFilters();
+            });
+
+            // Initialize display
+            updateDisplay();
         }
 
         function setupEventListeners() {
@@ -922,13 +1152,13 @@
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', applyFilters);
             });
-
-            // Salary filter
-            document.getElementById('salary-apply').addEventListener('click', applyFilters);
             
             // Banner button
             document.querySelector('.banner-btn').addEventListener('click', function() {
-                alert('Redirecting to current job openings...');
+                const alertMsg = currentLang === 'de' 
+                    ? 'Weiterleitung zu aktuellen Stellenangeboten...' 
+                    : 'Redirecting to current job openings...';
+                alert(alertMsg);
             });
         }
 
@@ -939,18 +1169,26 @@
         function applyFilters() {
             const searchTerm = document.getElementById('job-search').value.toLowerCase();
             const selectedCategory = document.getElementById('category-select').value;
+            const minSalary = parseInt(document.getElementById('min-salary').value) || 0;
+            const maxSalary = parseInt(document.getElementById('max-salary').value) || 9999;
 
             const filtered = jobCategories.filter(category => {
                 // Search filter
-                if (searchTerm && !category.title.toLowerCase().includes(searchTerm) &&
-                    !category.tags.some(tag => tag.includes(searchTerm))) {
-                    return false;
+                if (searchTerm) {
+                    const titleMatch = category.title[currentLang].toLowerCase().includes(searchTerm);
+                    const tagsMatch = category.tags.some(tag => tag.includes(searchTerm));
+                    if (!titleMatch && !tagsMatch) {
+                        return false;
+                    }
                 }
 
                 // Category filter
-                if (selectedCategory && category.title !== selectedCategory) {
+                if (selectedCategory && category.id.toString() !== selectedCategory) {
                     return false;
                 }
+
+                // Salary filter would be applied here in a real implementation
+                // For now, we're just filtering by search and category
 
                 return true;
             });
