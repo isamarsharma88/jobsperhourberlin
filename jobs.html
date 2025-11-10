@@ -68,64 +68,363 @@ footer a{color:#fff;margin:0 10px;text-decoration:none;}
 <section class="hero">
   <h1>Find Jobs Near You</h1>
   <p>Discover hourly Basis, part-time, Project Basis and full-time opportunities across Berlin.</p>
-  <div class="search-bar">
-    <input id="jobSearch" type="text" placeholder="Search job title or category...">
-    <input id="locationInput" type="text" placeholder="Enter postal code or use current location">
-    <button id="useLocationBtn"><i class="fa fa-location-crosshairs"></i> Use My Location</button>
-    <button id="searchBtn">Search</button>
-  </div>
-</section>
+ <!-- Search Section -->
+        <div class="search-container">
+            <div class="row g-3 mb-3">
+                <div class="col-md-8">
+                    <input type="text" class="form-control search-input" id="job-search" placeholder="Search by job title, company, or keywords">
+                </div>
+                <div class="col-md-4">
+                    <button class="btn search-btn w-100" id="search-button">
+                        <i class="fas fa-search me-2"></i>Search Jobs
+                    </button>
+                </div>
+            </div>
+            <select class="form-select category-select" id="category-select">
+                <option value="">All Categories</option>
+                <!-- Categories will be populated by JavaScript -->
+            </select>
+        </div>
 
-<div class="main">
-  <aside>
-    <h3 style="margin-bottom:10px;">Categories</h3>
-    <div id="accordion"></div>
-  </aside>
-
-  <main>
-    <div id="jobContainer">
-      <p style="text-align:center;color:#777;">No jobs posted yet.</p>
+        <div class="row">
+            <!-- Sidebar Filters -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <h4>Search Filters</h4>
+                    
+                    <!-- Job Type -->
+                    <div class="filter-section">
+                        <h6>Job Type</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="fulltime" data-filter="type" value="Full Time">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="fulltime">
+                                    <span>Full Time</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="parttime" data-filter="type" value="Part Time">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="parttime">
+                                    <span>Part Time</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="freelance" data-filter="type" value="Freelance">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="freelance">
+                                    <span>Freelance</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="seasonal" data-filter="type" value="Seasonal">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="seasonal">
+                                    <span>Seasonal</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Level -->
+                    <div class="filter-section">
+                        <h6>Experience Level</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="noexp" data-filter="experience" value="No Experience">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="noexp">
+                                    <span>No Experience</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="fresher" data-filter="experience" value="Fresher">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="fresher">
+                                    <span>Fresher</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="intermediate" data-filter="experience" value="Intermediate">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="intermediate">
+                                    <span>Intermediate</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="expert" data-filter="experience" value="Expert">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="expert">
+                                    <span>Expert</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Date Posted -->
+                    <div class="filter-section">
+                        <h6>Date Posted</h6>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="all" data-filter="date" value="all" checked>
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="all">
+                                    <span>All</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="last24" data-filter="date" value="last24">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="last24">
+                                    <span>Last 24 Hours</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="last7" data-filter="date" value="last7">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="last7">
+                                    <span>Last 7 Days</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="last30" data-filter="date" value="last30">
+                                <label class="form-check-label w-100 d-flex justify-content-between" for="last30">
+                                    <span>Last 30 Days</span>
+                                    <small class="filter-count">10</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Salary Range -->
+                    <div class="filter-section">
+                        <h6>Salary Range</h6>
+                        <div class="salary-inputs">
+                            <input type="number" id="min-salary" placeholder="€0" min="0">
+                            <input type="number" id="max-salary" placeholder="€9999" min="0">
+                        </div>
+                        <button class="apply-btn" id="salary-apply">Apply Salary Filter</button>
+                    </div>
+                    
+                    <!-- Banner -->
+                    <div class="banner">
+                        <h5>WE ARE HIRING</h5>
+                        <p>Apply Today!</p>
+                        <button class="banner-btn">View Openings</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Job Categories -->
+            <div class="col-lg-9">
+                <h3 class="mb-4">Job Categories</h3>
+                <div class="row" id="job-categories">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="post-job">
-      <h3>Post a Job</h3>
-      <p>Employers can post a new job and it will appear instantly below its category.</p>
-      <button id="openPostForm" class="donate-btn">Post a Job</button>
-    </div>
-  </main>
-</div>
 
-<!-- Post Job Modal -->
-<div id="jobModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:999;">
-  <div style="background:#fff;padding:25px;border-radius:8px;max-width:600px;width:90%;max-height:90vh;overflow:auto;">
-    <h2>Post a New Job</h2>
-    <form id="postForm">
-      <label>Company Name</label>
-      <input type="text" id="companyName" required style="width:100%;padding:8px;margin-bottom:10px;">
-      <label>Job Title</label>
-      <input type="text" id="jobTitle" required style="width:100%;padding:8px;margin-bottom:10px;">
-      <label>Category</label>
-      <select id="jobCategory" required style="width:100%;padding:8px;margin-bottom:10px;"></select>
-      <label>Location</label>
-      <input type="text" id="jobLocation" required style="width:100%;padding:8px;margin-bottom:10px;">
-      <label>Job Type</label>
-      <select id="jobType" required style="width:100%;padding:8px;margin-bottom:10px;">
-        <option value="">Select</option>
-        <option>Hourly</option>
-        <option>Part-time</option>
-        <option>Full-time</option>
-        <option>Project Basis</option>
-      </select>
-      <label>Salary</label>
-      <input type="text" id="jobSalary" required placeholder="e.g. €15/hour" style="width:100%;padding:8px;margin-bottom:10px;">
-      <label>Description</label>
-      <textarea id="jobDesc" required style="width:100%;padding:8px;height:100px;margin-bottom:10px;"></textarea>
-      <label>Full Details</label>
-      <textarea id="jobDetails" required style="width:100%;padding:8px;height:150px;margin-bottom:10px;"></textarea>
-      <button type="submit" class="donate-btn">Post Job</button>
-      <button type="button" id="closeModal" style="margin-left:10px;padding:10px 20px;">Cancel</button>
-    </form>
-  </div>
-</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h4 class="mb-3">JobsPerHour</h4>
+                    <p>Find the perfect job that fits your schedule and skills. Browse thousands of hourly, part-time, and full-time jobs in Berlin.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#" class="mb-2">Home</a>
+                        <a href="#" class="mb-2">Jobs</a>
+                        <a href="#" class="mb-2">Companies</a>
+                        <a href="#" class="mb-2">About Us</a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">Contact</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="mailto:contact@jobsperhourberlin.de" class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>Email Us
+                        </a>
+                        <a href="#" class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>Berlin, Germany
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3 border-top border-secondary">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 JobsPerHourBerlin. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Job categories data
+        const jobCategories = [
+            { id: 1, title: "Household & Cleaning", icon: "🧹", count: 12, tags: ["cleaning", "home", "maintenance"] },
+            { id: 2, title: "Gardening & Outdoor", icon: "🌿", count: 8, tags: ["gardening", "outdoor", "landscaping"] },
+            { id: 3, title: "Moving & Transport", icon: "🚚", count: 15, tags: ["moving", "transport", "logistics"] },
+            { id: 4, title: "Restaurant & Café", icon: "🍽️", count: 22, tags: ["restaurant", "cafe", "food", "hospitality"] },
+            { id: 5, title: "Babysitting & Childcare", icon: "👶", count: 18, tags: ["babysitting", "childcare", "family"] },
+            { id: 6, title: "Pet Care", icon: "🐕", count: 10, tags: ["pet", "care", "animals"] },
+            { id: 7, title: "Delivery & Courier", icon: "📦", count: 25, tags: ["delivery", "courier", "logistics"] },
+            { id: 8, title: "Office & Admin Support", icon: "💼", count: 30, tags: ["office", "admin", "support"] },
+            { id: 9, title: "Tutoring & Teaching", icon: "📚", count: 14, tags: ["tutoring", "teaching", "education"] },
+            { id: 10, title: "Creative & Design", icon: "🎨", count: 20, tags: ["creative", "design", "art"] },
+            { id: 11, title: "IT & Tech Support", icon: "💻", count: 28, tags: ["it", "tech", "support", "engineering"] },
+            { id: 12, title: "Event & Promotion", icon: "🎪", count: 16, tags: ["event", "promotion", "marketing"] },
+            { id: 13, title: "Trades & Construction", icon: "🏗️", count: 19, tags: ["trades", "construction", "building"] },
+            { id: 14, title: "Electrician & Plumbing", icon: "🔧", count: 11, tags: ["electrician", "plumbing", "maintenance"] },
+            { id: 15, title: "Beauty, Health & Wellness", icon: "💄", count: 13, tags: ["beauty", "health", "wellness"] },
+            { id: 16, title: "Hair & Makeup Artists", icon: "💇", count: 9, tags: ["hair", "makeup", "beauty"] },
+            { id: 17, title: "Fitness Trainers / Yoga", icon: "🧘", count: 7, tags: ["fitness", "yoga", "health"] },
+            { id: 18, title: "Home Repairs & Handyman", icon: "🛠️", count: 17, tags: ["home", "repairs", "handyman", "maintenance"] },
+            { id: 19, title: "Interior Design", icon: "🏠", count: 6, tags: ["interior", "design", "home", "improvement"] },
+            { id: 20, title: "Photography & Videography", icon: "📸", count: 8, tags: ["photography", "videography", "creative"] },
+            { id: 21, title: "Writing & Editing", icon: "✍️", count: 12, tags: ["writing", "editing", "content"] },
+            { id: 22, title: "Nursing & Elder Care", icon: "👵", count: 15, tags: ["nursing", "elder", "care", "health"] },
+            { id: 23, title: "Web Development & Design", icon: "🌐", count: 24, tags: ["web", "development", "design", "engineering"] },
+            { id: 24, title: "Digital Marketing & SEO", icon: "📈", count: 18, tags: ["digital", "marketing", "seo"] },
+            { id: 25, title: "Party & Event Planning", icon: "🎉", count: 10, tags: ["party", "event", "planning"] },
+            { id: 26, title: "Car Services & Mechanics", icon: "🚗", count: 13, tags: ["car", "services", "mechanics", "automotive"] }
+        ];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            populateCategorySelect();
+            renderJobCategories(jobCategories);
+            setupEventListeners();
+        }
+
+        function populateCategorySelect() {
+            const select = document.getElementById('category-select');
+            jobCategories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.title;
+                option.textContent = category.title;
+                select.appendChild(option);
+            });
+        }
+
+        function renderJobCategories(categories) {
+            const container = document.getElementById('job-categories');
+            container.innerHTML = '';
+
+            if (categories.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="no-results">
+                            <i class="fas fa-search mb-3" style="font-size: 3rem;"></i>
+                            <h4>No job categories found</h4>
+                            <p>Try adjusting your search criteria or filters</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            categories.forEach(category => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-4';
+                col.innerHTML = `
+                    <div class="job-category">
+                        <div class="card h-100">
+                            <div class="card-body p-4 text-center">
+                                <div class="category-icon">
+                                    <span>${category.icon}</span>
+                                </div>
+                                <h5>${category.title}</h5>
+                                <div class="job-count">${category.count} jobs available</div>
+                                <a href="#" class="view-more">
+                                    View Jobs <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('search-button').addEventListener('click', handleSearch);
+            document.getElementById('job-search').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') handleSearch();
+            });
+
+            // Category filter
+            document.getElementById('category-select').addEventListener('change', function() {
+                applyFilters();
+            });
+
+            // Tag filters
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    applyFilters();
+                });
+            });
+
+            // Checkbox filters
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+
+            // Salary filter
+            document.getElementById('salary-apply').addEventListener('click', applyFilters);
+            
+            // Banner button
+            document.querySelector('.banner-btn').addEventListener('click', function() {
+                alert('Redirecting to current job openings...');
+            });
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('job-search').value.toLowerCase();
+            const selectedCategory = document.getElementById('category-select').value;
+            const activeTags = Array.from(document.querySelectorAll('.tag.active'))
+                .map(tag => tag.getAttribute('value'));
+
+            const filtered = jobCategories.filter(category => {
+                // Search filter
+                if (searchTerm && !category.title.toLowerCase().includes(searchTerm) &&
+                    !category.tags.some(tag => tag.includes(searchTerm))) {
+                    return false;
+                }
+
+                // Category filter
+                if (selectedCategory && category.title !== selectedCategory) {
+                    return false;
+                }
+
+                // Tag filter
+                if (activeTags.length > 0 && !activeTags.some(tag => category.tags.includes(tag))) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            renderJobCategories(filtered);
+        }
+    </script>
+</body>
+</html>
 
 <!-- Donate Section + Footer -->
 <section class="donate-section">
@@ -981,3 +1280,4 @@ document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
+
