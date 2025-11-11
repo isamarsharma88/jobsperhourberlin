@@ -338,16 +338,17 @@
         }
         
         .category-icon {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
-            font-size: 1.5rem;
+            font-size: 2rem;
             background: rgba(237, 86, 59, 0.1);
             color: var(--primary);
+            overflow: hidden;
         }
         
         .job-category h5 {
@@ -363,7 +364,14 @@
             align-items: center;
             justify-content: center;
         }
-        
+        .category-icon img, 
+        .category-icon span {
+            width: auto;
+            height: auto;
+            max-width: 60%;
+            max-height: 60%;
+            object-fit: contain;
+        }
         .view-more {
             color: var(--primary);
             font-weight: 600;
@@ -1198,4 +1206,5 @@
     </script>
 </body>
 </html>
+
 
