@@ -315,77 +315,110 @@
             background: #d94c34;
         }
         
-        /* Job Categories */
-        .job-category {
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s;
-        }
-        
-        .job-category:hover {
-            transform: translateY(-5px);
-        }
-        
-        .job-category .card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            height: 100%;
-        }
-        
-        .job-category:hover .card {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            background: rgba(237, 86, 59, 0.1);
-            color: var(--primary);
-            overflow: hidden;
-        }
-        
-        .job-category h5 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            text-align: center;
-            white-space: normal;
-            word-wrap: break-word;
-            font-size: 1rem;
-            line-height: 1.3;
-            min-height: 2.6em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .category-icon img, 
-        .category-icon span {
-            width: auto;
-            height: auto;
-            max-width: 60%;
-            max-height: 60%;
-            object-fit: contain;
-        }
-        .view-more {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-            transition: color 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .view-more:hover {
-            color: #d94c34;
-        }
-        
+       /* ===========================
+   Job Categories Section
+=========================== */
+.job-category {
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.job-category:hover {
+    transform: translateY(-5px);
+}
+
+/* Card container styling */
+.job-category .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+.job-category:hover .card {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Circular icon container */
+.category-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2.5rem; /* larger and balanced for emoji/icons */
+    background: rgba(237, 86, 59, 0.1);
+    color: var(--primary);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Icons (emoji or image) inside circle */
+.category-icon img,
+.category-icon span {
+    width: auto;
+    height: auto;
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+}
+
+/* Job title text */
+.job-category h5 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    text-align: center;
+    word-wrap: break-word;
+    font-size: 1rem;
+    line-height: 1.3;
+    min-height: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* “View More” link styling */
+.view-more {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.view-more:hover {
+    color: #d94c34;
+}
+
+/* Responsive icon sizing */
+@media (max-width: 767px) {
+    .category-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .category-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+}
+
         /* No Results */
         .no-results {
             text-align: center;
@@ -1206,5 +1239,6 @@
     </script>
 </body>
 </html>
+
 
 
