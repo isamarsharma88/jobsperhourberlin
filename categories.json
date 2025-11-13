@@ -1,0 +1,188 @@
+{
+  "categories": [
+    {
+      "name": "Agriculture & Farming",
+      "subcategories": ["Farm Labor / Field Workers", "Crop Cultivation & Harvest Help", "Livestock Care / Dairy Workers", "Tractor & Equipment Operators", "Organic Farming / Hydroponics Support"]
+    },
+    {
+      "name": "Appliance & Electronics Repair",
+      "subcategories": ["Mobile & Laptop Repair", "TV / Audio System Repair", "Refrigerator / Washing Machine Service", "AC / Cooler Maintenance", "Small Gadget Repairs"]
+    },
+    {
+      "name": "Arts, Crafts & Culture",
+      "subcategories": ["Handicraft Makers", "Pottery / Sculpture Artists", "Tailoring / Embroidery", "Traditional Art Teachers", "Local Music / Theatre Artists"]
+    },
+    {
+      "name": "Babysitting & Childcare",
+      "subcategories": ["Babysitters", "Nannies", "After-School Care", "Special Needs Childcare", "Overnight Care"]
+    },
+    {
+      "name": "Beauty, Health & Wellness",
+      "subcategories": ["Massage Therapy", "Spa & Relaxation", "Nutrition Counseling", "Alternative Medicine", "Wellness Coaching"]
+    },
+    {
+      "name": "Business & Consulting",
+      "subcategories": ["Management Consulting", "Financial & Tax Advisors", "Business Planning", "Legal Assistance"]
+    },
+    {
+      "name": "Car Services & Mechanics",
+      "subcategories": ["Car Repair & Maintenance", "Car Wash & Detailing", "Oil Change & Tire Services", "Auto Electrician", "Vehicle Inspection", "Bike & Scooter Repair"]
+    },
+    {
+      "name": "Customer Support & Local Sales",
+      "subcategories": ["Call Center Agents", "Sales Promoters", "Door-to-Door Sales", "Customer Retention Specialists"]
+    },
+    {
+      "name": "Creative & Design",
+      "subcategories": ["Graphic Design", "Logo & Branding", "Animation & Motion Graphics", "3D Modeling", "Illustration", "Product Packaging Design"]
+    },
+    {
+      "name": "Dance & Performing Arts",
+      "subcategories": ["Dance Classes (Classical, Contemporary, Hip-Hop, etc.)", "Choreographers", "Stage Performance Coaches", "Kids’ Dance Instructors", "Cultural Dance Trainers"]
+    },
+    {
+      "name": "Delivery & Courier",
+      "subcategories": ["Food Delivery", "Package Delivery", "Local Errands", "Document Pickup", "E-commerce Fulfillment"]
+    },
+    {
+      "name": "Digital Marketing & SEO",
+      "subcategories": ["Social Media Management", "SEO & SEM Specialists", "Content Marketing", "PPC Advertising", "Email Marketing", "Influencer Marketing", "Analytics & Reporting"]
+    },
+    {
+      "name": "Emergency & Community Services",
+      "subcategories": ["Ambulance Drivers / Paramedics", "First Aid Responders", "Disaster Relief Volunteers", "Community Health Workers", "Blood Donation / NGO Support"]
+    },
+    {
+      "name": "Electrician & Plumbing",
+      "subcategories": ["Electrical Repairs", "Lighting Installation", "Plumbing Maintenance", "Pipe & Drain Services", "Water Heater Installation"]
+    },
+    {
+      "name": "Event & Promotion",
+      "subcategories": ["Brand Promoters", "Product Demonstrators", "Event Hosts / MCs", "Booth Setup & Support", "Street Marketing Teams"]
+    },
+    {
+      "name": "Fitness Trainers / Yoga Instructors",
+      "subcategories": ["Personal Trainers", "Yoga & Pilates Instructors", "Zumba / Dance Fitness", "Nutrition & Diet Coaching", "Group Fitness Classes"]
+    },
+    {
+      "name": "Finance & Microservices",
+      "subcategories": ["Microloan Agents", "Insurance Advisors", "Tax & Accounting Help", "Local Bank Assistants", "Bill Payment & Document Services"]
+    },
+    {
+      "name": "Gardening & Outdoor",
+      "subcategories": ["Lawn Mowing", "Landscaping & Design", "Tree Trimming", "Irrigation Setup", "Outdoor Maintenance"]
+    },
+    {
+      "name": "Government & Public Services",
+      "subcategories": ["Municipal Workers", "Public Health Assistants", "Rural Development Aides", "Survey & Census Staff", "Voter Registration Help"]
+    },
+    {
+      "name": "Hair & Makeup Artists",
+      "subcategories": ["Bridal Makeup", "Hair Styling & Coloring", "Men’s Grooming", "Skincare & Facials", "Nail & Spa Services"]
+    },
+    {
+      "name": "Home Repairs & Handyman",
+      "subcategories": ["General Repairs", "Appliance Installation", "Door & Window Fixing", "Furniture Assembly", "Small Carpentry Jobs"]
+    },
+    {
+      "name": "Household & Cleaning",
+      "subcategories": ["Home Cleaning", "Deep Cleaning", "Carpet & Upholstery Cleaning", "Window Cleaning", "Post-Construction Cleaning", "Commercial Cleaning (Offices, Shops)", "Sanitization / Disinfection Services", "Pest Control"]
+    },
+    {
+      "name": "IT & Tech Support",
+      "subcategories": ["Hardware & Software Support", "Network Setup & Maintenance", "Cybersecurity Services", "Data Recovery", "Cloud Services", "Remote Tech Help", "IT Training / Bootcamps"]
+    },
+    {
+      "name": "Interior Design & Home Improvement",
+      "subcategories": ["Interior Designers", "Furniture Design & Assembly", "Home Renovation", "Painting & Wallpaper", "Flooring & Tiling", "Kitchen & Bath Remodeling", "Home Automation / Smart Home Setup"]
+    },
+    {
+      "name": "Cooking & Home Food Services",
+      "subcategories": ["Home Chefs", "Meal Prep Services", "Tiffin / Lunch Providers", "Baking & Catering from Home", "Street Food Vendors"]
+    },
+    {
+      "name": "Local Produce & Market Vendors",
+      "subcategories": ["Farmers Market Sellers", "Street Food Sellers", "Handicraft & Artisan Vendors", "Local Shop Helpers / Cashiers", "Delivery for Local Markets"]
+    },
+    {
+      "name": "Life Coaching & Counseling",
+      "subcategories": ["Career Coaches", "Life Skills Trainers", "Mental Health Counselors", "Relationship / Family Counselors"]
+    },
+    {
+      "name": "Music & Audio Services",
+      "subcategories": ["Music Teachers (Vocal, Guitar, Piano, etc.)", "Instrument Repair & Tuning", "Audio Mixing & Recording", "Sound Engineering", "Choir / Band Instructors"]
+    },
+    {
+      "name": "Moving & Transport",
+      "subcategories": ["Local Moving Services", "Furniture Delivery", "Packing & Unpacking", "Truck / Van Rentals", "Storage Assistance"]
+    },
+    {
+      "name": "Nursing & Elder Care",
+      "subcategories": ["In-Home Nursing", "Elder Companionship", "Disability Care", "Medical Assistance", "Hospice Support", "Rehabilitation Aides"]
+    },
+    {
+      "name": "Office & Admin Support",
+      "subcategories": ["Data Entry", "Virtual Assistants", "Receptionists", "Customer Service", "Bookkeeping", "HR & Recruitment Support"]
+    },
+    {
+      "name": "Party & Event Planning",
+      "subcategories": ["Event Coordinators", "Wedding Planners", "Birthday & Private Events", "Catering Services", "Sound & Lighting", "DJ & Live Bands", "Event Rentals (Tents, Tables, Decor)"]
+    },
+    {
+      "name": "Pet Care",
+      "subcategories": ["Dog Walking", "Pet Grooming", "Pet Sitting", "Veterinary Assistance", "Training & Obedience", "Mobile Grooming Services", "Pet Boarding / Daycare", "Veterinary Teleconsultation"]
+    },
+    {
+      "name": "Printing & 3D Printing",
+      "subcategories": ["Digital Printing", "Offset Printing", "3D Design & Printing", "Business Cards / Flyers / Posters", "Prototyping Services"]
+    },
+    {
+      "name": "Photography & Videography",
+      "subcategories": ["Event Photography", "Portrait Photography", "Product Photography", "Video Production", "Drone Photography", "Photo/Video Editing"]
+    },
+    {
+      "name": "Restaurant & Café",
+      "subcategories": ["Waitstaff & Bartenders", "Chefs & Cooks", "Baristas", "Kitchen Assistants", "Catering Staff"]
+    },
+    {
+      "name": "Recycling & Waste Management",
+      "subcategories": ["Waste Collectors", "Recycling Sorters", "E-Waste Handlers", "Composting Services", "Clean-Up Drive Volunteers"]
+    },
+    {
+      "name": "Self-Defence & Martial Arts",
+      "subcategories": ["Martial Arts Instructors", "Self-Defence Workshops", "Karate / Taekwondo / MMA Coaches", "Women’s Safety Training", "Kids’ Self-Defence Classes"]
+    },
+    {
+      "name": "Security & Safety",
+      "subcategories": ["Security Guards", "Bouncers / Event Security", "CCTV Monitoring", "Fire Safety Inspectors", "Night Watch Personnel"]
+    },
+    {
+      "name": "Skilled Labour & Trades",
+      "subcategories": ["Bricklaying & Concreting", "Scaffolding", "Tiling & Flooring", "Plastering & Drywall", "Carpentry & Joinery", "Welding & Fabrication", "Cabinet Making", "Blacksmithing", "Machine Operation", "Heavy Equipment Operators", "Forklift & Crane Operators", "Factory & Production Workers", "Interior & Exterior Painting", "Industrial Coating", "Finishing & Polishing", "HVAC Technicians", "Appliance Installers", "Security System Installers"]
+    },
+    {
+      "name": "Social & Community Support",
+      "subcategories": ["NGO Volunteers", "Social Workers", "Community Educators", "Mental Health Support Workers", "Women’s Self-Help Group Trainers"]
+    },
+    {
+      "name": "Transportation & Logistics",
+      "subcategories": ["Auto / Taxi Drivers", "Delivery Riders", "Truck / Van Drivers", "Transport Scheduling", "Fleet Maintenance"]
+    },
+    {
+      "name": "Tutoring & Teaching",
+      "subcategories": ["Academic Tutoring (Math, Science, etc.)", "Language Lessons", "Music & Instrument Coaching", "Test Preparation (SAT, IELTS, etc.)", "Online Course Creation", "Skill-Based Workshops (Coding, Robotics, etc.)"]
+    },
+    {
+      "name": "Vocational & Skill Training",
+      "subcategories": ["Driving Instructors", "Computer Literacy Trainers", "Sewing / Tailoring Instructors", "Electrical / Plumbing Training", "Job Readiness & Interview Coaching"]
+    },
+    {
+      "name": "Web Development & Design",
+      "subcategories": ["Front-End Development", "Back-End Development", "UI/UX Design", "E-commerce Development", "WordPress / CMS Websites", "App Design & Development", "Game Development", "AR / VR Content Creation"]
+    },
+    {
+      "name": "Writing & Editing",
+      "subcategories": ["Content Writing", "Copywriting", "Proofreading & Editing", "Technical Writing", "Resume & Cover Letter Writing", "Script / Story Writing"]
+    }
+  ]
+}
