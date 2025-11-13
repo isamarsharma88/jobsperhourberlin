@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Sign Up / Registrieren - JobsPerHourBerlin.de</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
+
   <style>
     body { font-family: 'Poppins', sans-serif; background:#f4f4f4; margin:0; padding:0; }
+    header { background:#232d39; padding:15px 0; color:#fff; text-align:center; }
+    header a { color:#fff; text-decoration:none; margin:0 15px; font-weight:600; }
+    header a.active { text-decoration:underline; }
     form#signupForm { max-width:700px; margin:50px auto; background:#fff; padding:40px; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.1); }
     form#signupForm label { font-weight:500; margin-top:15px; display:block; color:#232d39; }
     form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
@@ -26,6 +30,17 @@
 </head>
 <body>
 
+  <!-- ***** Header Area ***** -->
+  <header>
+    <a href="index.html">Home / Startseite</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html" class="active">Sign Up</a>
+    <a href="contact.html">Contact</a>
+  </header>
+
+  <!-- ***** Signup Form Section ***** -->
   <form id="signupForm">
     <h2>Sign Up / Registrieren</h2>
 
@@ -95,7 +110,6 @@
     const thankYouMessage = document.getElementById('thankYouMessage');
     const errorMessage = document.getElementById('errorMessage');
 
-    // Show/hide fields based on user type
     radioButtons.forEach(radio => {
       radio.addEventListener('change', () => {
         if (radio.value === 'Private') {
@@ -112,7 +126,6 @@
       });
     });
 
-    // Signup form submission
     document.getElementById('signupForm').addEventListener('submit', async e => {
       e.preventDefault();
       errorMessage.style.display = "none";
@@ -134,16 +147,13 @@
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save user info in Firestore
         await setDoc(doc(db, "users", user.uid), {
           fullname, email, usertype, profilename, companyname, businessemail,
           businessaddress, taxid, companywebsite, createdAt: new Date().toISOString()
         });
 
-        // Send verification email
         await sendEmailVerification(user);
 
-        // Show confirmation message
         form.style.display = "none";
         thankYouMessage.innerHTML = `
           ✅ Thank you for creating an account!<br>
