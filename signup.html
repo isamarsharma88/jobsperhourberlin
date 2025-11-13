@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Sign Up / Registrieren - JobsPerHourBerlin.de</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="font-awesome.css">
+  <link rel="stylesheet" href="style.css">
 
   <style>
     body { font-family: 'Poppins', sans-serif; background:#f4f4f4; margin:0; padding:0; }
@@ -30,150 +33,149 @@
 </head>
 <body>
 
-  <!-- ***** Header Area ***** -->
-  <header>
-    <a href="index.html">Home / Startseite</a>
-    <a href="jobs.html">Jobs</a>
-    <a href="about.html">About Us</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html" class="active">Sign Up</a>
-    <a href="contact.html">Contact</a>
-  </header>
+<header>
+  <a href="index.html">Home / Startseite</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="about.html">About Us</a>
+  <a href="login.html">Login</a>
+  <a href="signup.html" class="active">Sign Up</a>
+  <a href="contact.html">Contact</a>
+</header>
 
-  <!-- ***** Signup Form Section ***** -->
-  <form id="signupForm">
-    <h2>Sign Up / Registrieren</h2>
+<form id="signupForm">
+  <h2>Sign Up / Registrieren</h2>
 
-    <label>Full Name / Vollständiger Name</label>
-    <input type="text" name="fullname" required>
+  <label>Full Name / Vollständiger Name</label>
+  <input type="text" name="fullname" required>
 
-    <label>Email / E-Mail-Adresse</label>
-    <input type="email" name="email" required>
+  <label>Email / E-Mail-Adresse</label>
+  <input type="email" name="email" required>
 
-    <label>Password / Passwort</label>
-    <input type="password" name="password" required>
+  <label>Password / Passwort</label>
+  <input type="password" name="password" required>
 
-    <h3>Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
-    <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
-    <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
+  <h3>Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
+  <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
+  <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
 
-    <div id="profileNameField" class="hidden">
-      <label>Profile Name / Profilname (nur für Privatnutzer)</label>
-      <input type="text" name="profilename">
-    </div>
+  <div id="profileNameField" class="hidden">
+    <label>Profile Name / Profilname (nur für Privatnutzer)</label>
+    <input type="text" name="profilename">
+  </div>
 
-    <div id="businessFields" class="hidden">
-      <label>Company Name / Firmenname</label>
-      <input type="text" name="companyname">
-      <label>Business Email / Geschäfts-E-Mail</label>
-      <input type="email" name="businessemail">
-      <label>Business Address / Geschäftsadresse</label>
-      <input type="text" name="businessaddress">
-      <label>VAT / Tax ID (optional)</label>
-      <input type="text" name="taxid">
-      <label>Company Website (optional)</label>
-      <input type="url" name="companywebsite" placeholder="https://">
-    </div>
+  <div id="businessFields" class="hidden">
+    <label>Company Name / Firmenname</label>
+    <input type="text" name="companyname">
+    <label>Business Email / Geschäfts-E-Mail</label>
+    <input type="email" name="businessemail">
+    <label>Business Address / Geschäftsadresse</label>
+    <input type="text" name="businessaddress">
+    <label>VAT / Tax ID (optional)</label>
+    <input type="text" name="taxid">
+    <label>Company Website (optional)</label>
+    <input type="url" name="companywebsite" placeholder="https://">
+  </div>
 
-    <div class="datenschutz">
-      <input type="checkbox" required>
-      <label>I agree that my information may be shared with third parties for job-related purposes.<br>Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.</label>
-    </div>
+  <div class="datenschutz">
+    <input type="checkbox" required>
+    <label>I agree that my information may be shared with third parties for job-related purposes.<br>Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.</label>
+  </div>
 
-    <button type="submit">Create Account / Konto Erstellen</button>
-    <div id="thankYouMessage"></div>
-    <div id="errorMessage"></div>
-  </form>
+  <button type="submit">Create Account / Konto Erstellen</button>
+  <div id="thankYouMessage"></div>
+  <div id="errorMessage"></div>
+</form>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-    import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
-      authDomain: "job-board-da315.firebaseapp.com",
-      projectId: "job-board-da315",
-      storageBucket: "job-board-da315.appspot.com",
-      messagingSenderId: "908048807079",
-      appId: "1:908048807079:web:58f70af2e706f27684d782",
-      measurementId: "G-FHYPY906DE"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+    authDomain: "job-board-da315.firebaseapp.com",
+    projectId: "job-board-da315",
+    storageBucket: "job-board-da315.appspot.com",
+    messagingSenderId: "908048807079",
+    appId: "1:908048807079:web:58f70af2e706f27684d782",
+    measurementId: "G-FHYPY906DE"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const db = getFirestore();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const db = getFirestore();
 
-    const radioButtons = document.querySelectorAll('input[name="usertype"]');
-    const profileNameField = document.getElementById('profileNameField');
-    const businessFields = document.getElementById('businessFields');
-    const thankYouMessage = document.getElementById('thankYouMessage');
-    const errorMessage = document.getElementById('errorMessage');
+  const radioButtons = document.querySelectorAll('input[name="usertype"]');
+  const profileNameField = document.getElementById('profileNameField');
+  const businessFields = document.getElementById('businessFields');
+  const thankYouMessage = document.getElementById('thankYouMessage');
+  const errorMessage = document.getElementById('errorMessage');
 
-    radioButtons.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (radio.value === 'Private') {
-          profileNameField.classList.remove('hidden');
-          businessFields.classList.add('hidden');
-          businessFields.querySelectorAll('input').forEach(el => el.required = false);
-        } else {
-          profileNameField.classList.add('hidden');
-          businessFields.classList.remove('hidden');
-          businessFields.querySelectorAll('input').forEach(el => {
-            if (el.name !== 'taxid' && el.name !== 'companywebsite') el.required = true;
-          });
-        }
-      });
-    });
-
-    document.getElementById('signupForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      errorMessage.style.display = "none";
-      thankYouMessage.style.display = "none";
-
-      const form = e.target;
-      const email = form.email.value.trim();
-      const password = form.password.value;
-      const fullname = form.fullname.value.trim();
-      const usertype = form.usertype.value;
-      const profilename = form.profilename?.value.trim() || '';
-      const companyname = form.companyname?.value.trim() || '';
-      const businessemail = form.businessemail?.value.trim() || '';
-      const businessaddress = form.businessaddress?.value.trim() || '';
-      const taxid = form.taxid?.value.trim() || '';
-      const companywebsite = form.companywebsite?.value.trim() || '';
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        await setDoc(doc(db, "users", user.uid), {
-          fullname, email, usertype, profilename, companyname, businessemail,
-          businessaddress, taxid, companywebsite, createdAt: new Date().toISOString()
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'Private') {
+        profileNameField.classList.remove('hidden');
+        businessFields.classList.add('hidden');
+        businessFields.querySelectorAll('input').forEach(el => el.required = false);
+      } else {
+        profileNameField.classList.add('hidden');
+        businessFields.classList.remove('hidden');
+        businessFields.querySelectorAll('input').forEach(el => {
+          if (el.name !== 'taxid' && el.name !== 'companywebsite') el.required = true;
         });
-
-        await sendEmailVerification(user);
-
-        form.style.display = "none";
-        thankYouMessage.innerHTML = `
-          ✅ Thank you for creating an account!<br>
-          Please check your email and verify your account before logging in.
-        `;
-        thankYouMessage.style.display = "block";
-
-      } catch (error) {
-        if (error.code === 'auth/email-already-in-use') {
-          errorMessage.textContent = "This email is already registered. Please log in instead.";
-        } else if (error.code === 'auth/invalid-email') {
-          errorMessage.textContent = "Please enter a valid email address.";
-        } else if (error.code === 'auth/weak-password') {
-          errorMessage.textContent = "Password should be at least 6 characters.";
-        } else {
-          errorMessage.textContent = error.message;
-        }
-        errorMessage.style.display = "block";
       }
     });
-  </script>
+  });
+
+  document.getElementById('signupForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    errorMessage.style.display = "none";
+    thankYouMessage.style.display = "none";
+
+    const form = e.target;
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const fullname = form.fullname.value.trim();
+    const usertype = form.usertype.value;
+    const profilename = form.profilename?.value.trim() || '';
+    const companyname = form.companyname?.value.trim() || '';
+    const businessemail = form.businessemail?.value.trim() || '';
+    const businessaddress = form.businessaddress?.value.trim() || '';
+    const taxid = form.taxid?.value.trim() || '';
+    const companywebsite = form.companywebsite?.value.trim() || '';
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        fullname, email, usertype, profilename, companyname, businessemail,
+        businessaddress, taxid, companywebsite, createdAt: new Date().toISOString()
+      });
+
+      await sendEmailVerification(user);
+
+      form.style.display = "none";
+      thankYouMessage.innerHTML = `
+        ✅ Thank you for creating an account!<br>
+        Please check your email and verify your account before logging in.
+      `;
+      thankYouMessage.style.display = "block";
+
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        errorMessage.textContent = "This email is already registered. Please log in instead.";
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage.textContent = "Please enter a valid email address.";
+      } else if (error.code === 'auth/weak-password') {
+        errorMessage.textContent = "Password should be at least 6 characters.";
+      } else {
+        errorMessage.textContent = error.message;
+      }
+      errorMessage.style.display = "block";
+    }
+  });
+</script>
+
 </body>
 </html>
