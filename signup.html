@@ -4,28 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Sign Up / Registrieren - JobsPerHourBerlin.de</title>
-  
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
-
-  <!-- Bootstrap + CSS -->
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="font-awesome.css" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
     body { font-family: 'Poppins', sans-serif; background:#f4f4f4; margin:0; padding:0; }
-    form#signupForm { max-width:700px; margin:50px auto; background:#fff; padding:40px; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.1); }
+    .signup-section { padding: 100px 0; }
+    form#signupForm { max-width:700px; margin:0 auto; background:#fff; padding:40px; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.1); }
     form#signupForm label { font-weight:500; margin-top:15px; display:block; color:#232d39; }
-    form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
-      width:100%; padding:10px; margin-top:5px; border:1px solid #ddd; border-radius:5px; font-size:14px;
-    }
+    form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] { width:100%; padding:10px; margin-top:5px; border:1px solid #ddd; border-radius:5px; font-size:14px; }
     form#signupForm input[type="radio"] { margin-right:6px; }
-    form#signupForm button {
-      margin-top:25px; background:#ed563b; color:#fff; border:none; border-radius:5px;
-      padding:12px; font-size:14px; font-weight:600; text-transform:uppercase; width:100%;
-      cursor:pointer; transition:0.3s;
-    }
+    form#signupForm button { margin-top:25px; background:#ed563b; color:#fff; border:none; border-radius:5px; padding:12px; font-size:14px; font-weight:600; text-transform:uppercase; width:100%; cursor:pointer; transition:0.3s; }
     form#signupForm button:hover { background:#f9735b; }
     .hidden { display:none; }
     #thankYouMessage { display:none; text-align:center; background:#e8fff3; color:#1c6b43; padding:15px; border-radius:6px; margin-top:20px; font-weight:500; border:1px solid #b3e6ca; }
@@ -35,7 +26,7 @@
 <body>
 
 <!-- ***** Preloader Start ***** -->
-<div id="js-preloader" class="js-preloader">
+<div id="js-preloader" class="js-preloader" style="display:none;">
   <div class="preloader-inner">
     <span class="dot"></span>
     <div class="dots">
@@ -71,50 +62,55 @@
 <!-- ***** Header Area End ***** -->
 
 <!-- ***** Signup Form Section ***** -->
-<form id="signupForm">
-  <h2>Sign Up / Registrieren</h2>
+<section class="signup-section">
+  <div class="container">
+    <form id="signupForm">
+      <h2>Sign Up / Registrieren</h2>
 
-  <label>Full Name / Vollständiger Name</label>
-  <input type="text" name="fullname" required>
+      <label>Full Name / Vollständiger Name</label>
+      <input type="text" name="fullname" required>
 
-  <label>Email / E-Mail-Adresse</label>
-  <input type="email" name="email" required>
+      <label>Email / E-Mail-Adresse</label>
+      <input type="email" name="email" required>
 
-  <label>Password / Passwort</label>
-  <input type="password" name="password" required>
+      <label>Password / Passwort</label>
+      <input type="password" name="password" required>
 
-  <h3>Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
-  <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
-  <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
+      <h3>Wie möchtest du diese Website nutzen? / How would you like to use this website?</h3>
+      <label><input type="radio" name="usertype" value="Private" required> Private / Privat</label>
+      <label><input type="radio" name="usertype" value="Business" required> Business / Gewerblich</label>
 
-  <div id="profileNameField" class="hidden">
-    <label>Profile Name / Profilname (nur für Privatnutzer)</label>
-    <input type="text" name="profilename">
+      <div id="profileNameField" class="hidden">
+        <label>Profile Name / Profilname (nur für Privatnutzer)</label>
+        <input type="text" name="profilename">
+      </div>
+
+      <div id="businessFields" class="hidden">
+        <label>Company Name / Firmenname</label>
+        <input type="text" name="companyname">
+        <label>Business Email / Geschäfts-E-Mail</label>
+        <input type="email" name="businessemail">
+        <label>Business Address / Geschäftsadresse</label>
+        <input type="text" name="businessaddress">
+        <label>VAT / Tax ID (optional)</label>
+        <input type="text" name="taxid">
+        <label>Company Website (optional)</label>
+        <input type="url" name="companywebsite" placeholder="https://">
+      </div>
+
+      <div class="datenschutz">
+        <input type="checkbox" required>
+        <label>I agree that my information may be shared with third parties for job-related purposes.<br>Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.</label>
+      </div>
+
+      <button type="submit">Create Account / Konto Erstellen</button>
+      <div id="thankYouMessage"></div>
+      <div id="errorMessage"></div>
+    </form>
   </div>
+</section>
 
-  <div id="businessFields" class="hidden">
-    <label>Company Name / Firmenname</label>
-    <input type="text" name="companyname">
-    <label>Business Email / Geschäfts-E-Mail</label>
-    <input type="email" name="businessemail">
-    <label>Business Address / Geschäftsadresse</label>
-    <input type="text" name="businessaddress">
-    <label>VAT / Tax ID (optional)</label>
-    <input type="text" name="taxid">
-    <label>Company Website (optional)</label>
-    <input type="url" name="companywebsite" placeholder="https://">
-  </div>
-
-  <div class="datenschutz">
-    <input type="checkbox" required>
-    <label>I agree that my information may be shared with third parties for job-related purposes.<br>Ich stimme zu, dass meine Daten zu Jobzwecken an Dritte weitergegeben werden dürfen.</label>
-  </div>
-
-  <button type="submit">Create Account / Konto Erstellen</button>
-  <div id="thankYouMessage"></div>
-  <div id="errorMessage"></div>
-</form>
-
+<!-- Firebase + JS -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
