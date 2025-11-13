@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Sign Up / Registrieren - JobsPerHourBerlin.de</title>
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="bootstrap.min.css">
-  <link rel="stylesheet" href="font-awesome.css">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap + CSS -->
+  <link rel="stylesheet" href="bootstrap.min.css" />
+  <link rel="stylesheet" href="font-awesome.css" />
+  <link rel="stylesheet" href="style.css" />
 
   <style>
     body { font-family: 'Poppins', sans-serif; background:#f4f4f4; margin:0; padding:0; }
-    header { background:#232d39; padding:15px 0; color:#fff; text-align:center; }
-    header a { color:#fff; text-decoration:none; margin:0 15px; font-weight:600; }
-    header a.active { text-decoration:underline; }
     form#signupForm { max-width:700px; margin:50px auto; background:#fff; padding:40px; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.1); }
     form#signupForm label { font-weight:500; margin-top:15px; display:block; color:#232d39; }
     form#signupForm input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
@@ -33,15 +34,43 @@
 </head>
 <body>
 
-<header>
-  <a href="index.html">Home / Startseite</a>
-  <a href="jobs.html">Jobs</a>
-  <a href="about.html">About Us</a>
-  <a href="login.html">Login</a>
-  <a href="signup.html" class="active">Sign Up</a>
-  <a href="contact.html">Contact</a>
-</header>
+<!-- ***** Preloader Start ***** -->
+<div id="js-preloader" class="js-preloader">
+  <div class="preloader-inner">
+    <span class="dot"></span>
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<!-- ***** Preloader End ***** -->
 
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
+          <ul class="nav">
+            <li><a href="index.html">Home / Startseite</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="active">Sign Up</a></li>
+            <li><a href="contact.html">Contact</a></li> 
+          </ul>        
+          <a class='menu-trigger'><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Signup Form Section ***** -->
 <form id="signupForm">
   <h2>Sign Up / Registrieren</h2>
 
@@ -87,94 +116,94 @@
 </form>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
-    authDomain: "job-board-da315.firebaseapp.com",
-    projectId: "job-board-da315",
-    storageBucket: "job-board-da315.appspot.com",
-    messagingSenderId: "908048807079",
-    appId: "1:908048807079:web:58f70af2e706f27684d782",
-    measurementId: "G-FHYPY906DE"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+  authDomain: "job-board-da315.firebaseapp.com",
+  projectId: "job-board-da315",
+  storageBucket: "job-board-da315.appspot.com",
+  messagingSenderId: "908048807079",
+  appId: "1:908048807079:web:58f70af2e706f27684d782",
+  measurementId: "G-FHYPY906DE"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-  const db = getFirestore();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
 
-  const radioButtons = document.querySelectorAll('input[name="usertype"]');
-  const profileNameField = document.getElementById('profileNameField');
-  const businessFields = document.getElementById('businessFields');
-  const thankYouMessage = document.getElementById('thankYouMessage');
-  const errorMessage = document.getElementById('errorMessage');
+const radioButtons = document.querySelectorAll('input[name="usertype"]');
+const profileNameField = document.getElementById('profileNameField');
+const businessFields = document.getElementById('businessFields');
+const thankYouMessage = document.getElementById('thankYouMessage');
+const errorMessage = document.getElementById('errorMessage');
 
-  radioButtons.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (radio.value === 'Private') {
-        profileNameField.classList.remove('hidden');
-        businessFields.classList.add('hidden');
-        businessFields.querySelectorAll('input').forEach(el => el.required = false);
-      } else {
-        profileNameField.classList.add('hidden');
-        businessFields.classList.remove('hidden');
-        businessFields.querySelectorAll('input').forEach(el => {
-          if (el.name !== 'taxid' && el.name !== 'companywebsite') el.required = true;
-        });
-      }
-    });
-  });
-
-  document.getElementById('signupForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    errorMessage.style.display = "none";
-    thankYouMessage.style.display = "none";
-
-    const form = e.target;
-    const email = form.email.value.trim();
-    const password = form.password.value;
-    const fullname = form.fullname.value.trim();
-    const usertype = form.usertype.value;
-    const profilename = form.profilename?.value.trim() || '';
-    const companyname = form.companyname?.value.trim() || '';
-    const businessemail = form.businessemail?.value.trim() || '';
-    const businessaddress = form.businessaddress?.value.trim() || '';
-    const taxid = form.taxid?.value.trim() || '';
-    const companywebsite = form.companywebsite?.value.trim() || '';
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "users", user.uid), {
-        fullname, email, usertype, profilename, companyname, businessemail,
-        businessaddress, taxid, companywebsite, createdAt: new Date().toISOString()
+radioButtons.forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (radio.value === 'Private') {
+      profileNameField.classList.remove('hidden');
+      businessFields.classList.add('hidden');
+      businessFields.querySelectorAll('input').forEach(el => el.required = false);
+    } else {
+      profileNameField.classList.add('hidden');
+      businessFields.classList.remove('hidden');
+      businessFields.querySelectorAll('input').forEach(el => {
+        if (el.name !== 'taxid' && el.name !== 'companywebsite') el.required = true;
       });
-
-      await sendEmailVerification(user);
-
-      form.style.display = "none";
-      thankYouMessage.innerHTML = `
-        ✅ Thank you for creating an account!<br>
-        Please check your email and verify your account before logging in.
-      `;
-      thankYouMessage.style.display = "block";
-
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        errorMessage.textContent = "This email is already registered. Please log in instead.";
-      } else if (error.code === 'auth/invalid-email') {
-        errorMessage.textContent = "Please enter a valid email address.";
-      } else if (error.code === 'auth/weak-password') {
-        errorMessage.textContent = "Password should be at least 6 characters.";
-      } else {
-        errorMessage.textContent = error.message;
-      }
-      errorMessage.style.display = "block";
     }
   });
+});
+
+document.getElementById('signupForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  errorMessage.style.display = "none";
+  thankYouMessage.style.display = "none";
+
+  const form = e.target;
+  const email = form.email.value.trim();
+  const password = form.password.value;
+  const fullname = form.fullname.value.trim();
+  const usertype = form.usertype.value;
+  const profilename = form.profilename?.value.trim() || '';
+  const companyname = form.companyname?.value.trim() || '';
+  const businessemail = form.businessemail?.value.trim() || '';
+  const businessaddress = form.businessaddress?.value.trim() || '';
+  const taxid = form.taxid?.value.trim() || '';
+  const companywebsite = form.companywebsite?.value.trim() || '';
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      fullname, email, usertype, profilename, companyname, businessemail,
+      businessaddress, taxid, companywebsite, createdAt: new Date().toISOString()
+    });
+
+    await sendEmailVerification(user);
+
+    form.style.display = "none";
+    thankYouMessage.innerHTML = `
+      ✅ Thank you for creating an account!<br>
+      Please check your email and verify your account before logging in.
+    `;
+    thankYouMessage.style.display = "block";
+
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') {
+      errorMessage.textContent = "This email is already registered. Please log in instead.";
+    } else if (error.code === 'auth/invalid-email') {
+      errorMessage.textContent = "Please enter a valid email address.";
+    } else if (error.code === 'auth/weak-password') {
+      errorMessage.textContent = "Password should be at least 6 characters.";
+    } else {
+      errorMessage.textContent = error.message;
+    }
+    errorMessage.style.display = "block";
+  }
+});
 </script>
 
 </body>
