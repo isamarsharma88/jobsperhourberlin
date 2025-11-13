@@ -611,11 +611,12 @@
         }
         
         /* Fix for job categories grid */
-        #job-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            width: 100%;
+        .job-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
         }
         
         .job-category {
@@ -853,7 +854,7 @@
             <!-- Job Categories -->
             <div class="col-lg-9">
                 <h3 class="mb-4" data-en="Job Categories" data-de="Jobkategorien">Job Categories</h3>
-                <div class="row" id="job-categories">
+                <div id="job-categories" class="job-categories-grid">
                     <!-- Categories will be populated by JavaScript -->
                 </div>
             </div>
@@ -1046,7 +1047,7 @@
 
             categories.forEach(category => {
                 const col = document.createElement('div');
-                col.className = 'col-md-6 col-lg-4 mb-4';
+                col.className = 'job-category';
                 col.innerHTML = `
                     <div class="job-category">
                         <div class="card h-100">
@@ -1194,6 +1195,7 @@
     </script>
 </body>
 </html>
+
 
 
 
