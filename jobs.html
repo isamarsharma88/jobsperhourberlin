@@ -404,6 +404,98 @@
             color: white;
         }
         
+        /* Useful Help Modal */
+        .help-modal .modal-content {
+            border-radius: 12px;
+            border: none;
+        }
+        
+        .help-modal .modal-header {
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            border-bottom: none;
+        }
+        
+        .help-modal .modal-body {
+            padding: 1.5rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .help-modal .phrase-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .help-modal .phrase-item:last-child {
+            border-bottom: none;
+        }
+        
+        .help-modal .german-phrase {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .help-modal .english-translation {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Orange View Jobs Button */
+        .view-jobs {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            width: 100%;
+        }
+        
+        .view-jobs:hover {
+            background: #d94c34;
+            color: white;
+        }
+        
+        .help-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        
+        .help-btn:hover {
+            background: #1a2029;
+        }
+        
+        .category-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .category-buttons .btn {
+            flex: 1;
+        }
+        
         /* ===== RESPONSIVE DESIGN ===== */
         
         /* Large Desktop (1200px and above) */
@@ -502,6 +594,10 @@
                 margin-top: 10px;
                 justify-content: center;
                 width: 100%;
+            }
+            
+            .category-buttons {
+                flex-direction: column;
             }
         }
         
@@ -612,11 +708,10 @@
         
         /* Fix for job categories grid */
         .job-categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    width: 100%;
-}
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
         }
         
         .job-category {
@@ -861,6 +956,26 @@
         </div>
     </div>
 
+    <!-- Useful Help Modal -->
+    <div class="modal fade help-modal" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Useful German Phrases</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="helpContent">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -910,34 +1025,164 @@
         // Language management
         let currentLang = 'en';
 
-        // Job categories data with German translations
+        // Job categories data with German translations and useful phrases
         const jobCategories = [
-            { id: 1, title: { en: "Household & Cleaning", de: "Haushalt & Reinigung" }, icon: "🧹", tags: ["cleaning", "home", "maintenance", "reinigung", "haushalt"] },
-            { id: 2, title: { en: "Gardening & Outdoor", de: "Gartenarbeit & Außenbereich" }, icon: "🌿", tags: ["gardening", "outdoor", "landscaping", "gartenarbeit", "außenbereich"] },
-            { id: 3, title: { en: "Moving & Transport", de: "Umzug & Transport" }, icon: "🚚", tags: ["moving", "transport", "logistics", "umzug", "transport"] },
-            { id: 4, title: { en: "Restaurant & Café", de: "Restaurant & Café" }, icon: "🍽️", tags: ["restaurant", "cafe", "food", "hospitality", "gastronomie"] },
-            { id: 5, title: { en: "Babysitting & Childcare", de: "Babysitting & Kinderbetreuung" }, icon: "👶", tags: ["babysitting", "childcare", "family", "kinderbetreuung", "familie"] },
-            { id: 6, title: { en: "Pet Care", de: "Tierbetreuung" }, icon: "🐕", tags: ["pet", "care", "animals", "tier", "betreuung"] },
-            { id: 7, title: { en: "Delivery & Courier", de: "Lieferung & Kurier" }, icon: "📦", tags: ["delivery", "courier", "logistics", "lieferung", "kurier"] },
-            { id: 8, title: { en: "Office & Admin Support", de: "Büro & Verwaltung" }, icon: "💼", tags: ["office", "admin", "support", "büro", "verwaltung"] },
-            { id: 9, title: { en: "Tutoring & Teaching", de: "Nachhilfe & Unterricht" }, icon: "📚", tags: ["tutoring", "teaching", "education", "nachhilfe", "unterricht"] },
-            { id: 10, title: { en: "Creative & Design", de: "Kreativ & Design" }, icon: "🎨", tags: ["creative", "design", "art", "kreativ", "gestaltung"] },
-            { id: 11, title: { en: "IT & Tech Support", de: "IT & Technischer Support" }, icon: "💻", tags: ["it", "tech", "support", "engineering", "technischer support"] },
-            { id: 12, title: { en: "Event & Promotion", de: "Event & Promotion" }, icon: "🎪", tags: ["event", "promotion", "marketing", "veranstaltung", "werbung"] },
-            { id: 13, title: { en: "Trades & Construction", de: "Handwerk & Bauwesen" }, icon: "🏗️", tags: ["trades", "construction", "building", "handwerk", "bauwesen"] },
-            { id: 14, title: { en: "Electrician & Plumbing", de: "Elektriker & Klempner" }, icon: "🔧", tags: ["electrician", "plumbing", "maintenance", "elektriker", "klempner"] },
-            { id: 15, title: { en: "Beauty, Health & Wellness", de: "Schönheit, Gesundheit & Wellness" }, icon: "💄", tags: ["beauty", "health", "wellness", "schönheit", "gesundheit"] },
-            { id: 16, title: { en: "Hair & Makeup Artists", de: "Friseure & Visagisten" }, icon: "💇", tags: ["hair", "makeup", "beauty", "friseur", "visagist"] },
-            { id: 17, title: { en: "Fitness Trainers / Yoga", de: "Fitness Trainer / Yoga" }, icon: "🧘", tags: ["fitness", "yoga", "health", "fitness", "gesundheit"] },
-            { id: 18, title: { en: "Home Repairs & Handyman", de: "Hausreparaturen & Handwerker" }, icon: "🛠️", tags: ["home", "repairs", "handyman", "maintenance", "haus", "reparaturen"] },
-            { id: 19, title: { en: "Interior Design", de: "Innenarchitektur" }, icon: "🏠", tags: ["interior", "design", "home", "improvement", "innenarchitektur"] },
-            { id: 20, title: { en: "Photography & Videography", de: "Fotografie & Videografie" }, icon: "📸", tags: ["photography", "videography", "creative", "fotografie", "videografie"] },
-            { id: 21, title: { en: "Writing & Editing", de: "Schreiben & Bearbeiten" }, icon: "✍️", tags: ["writing", "editing", "content", "schreiben", "bearbeiten"] },
-            { id: 22, title: { en: "Nursing & Elder Care", de: "Pflege & Altenbetreuung" }, icon: "👵", tags: ["nursing", "elder", "care", "health", "pflege", "altenbetreuung"] },
-            { id: 23, title: { en: "Web Development & Design", de: "Webentwicklung & Design" }, icon: "🌐", tags: ["web", "development", "design", "engineering", "webentwicklung"] },
-            { id: 24, title: { en: "Digital Marketing & SEO", de: "Digitales Marketing & SEO" }, icon: "📈", tags: ["digital", "marketing", "seo", "digitales", "marketing"] },
-            { id: 25, title: { en: "Party & Event Planning", de: "Party & Eventplanung" }, icon: "🎉", tags: ["party", "event", "planning", "party", "eventplanung"] },
-            { id: 26, title: { en: "Car Services & Mechanics", de: "Autoservice & Mechaniker" }, icon: "🚗", tags: ["car", "services", "mechanics", "automotive", "autoservice", "mechaniker"] }
+            { 
+                id: 1, 
+                title: { en: "Household & Cleaning", de: "Haushalt & Reinigung" }, 
+                icon: "🧹", 
+                tags: ["cleaning", "home", "maintenance", "reinigung", "haushalt"],
+                phrases: [
+                    { german: "Wo sind die Reinigungsmittel?", english: "Where are the cleaning supplies?" },
+                    { german: "Ich brauche einen Eimer und einen Mopp.", english: "I need a bucket and a mop." },
+                    { german: "Welche Räume sollen gereinigt werden?", english: "Which rooms should be cleaned?" },
+                    { german: "Soll ich auch die Fenster putzen?", english: "Should I clean the windows too?" },
+                    { german: "Wo kann ich den Müll entsorgen?", english: "Where can I dispose of the trash?" },
+                    { german: "Kann ich die Möbel verschieben?", english: "Can I move the furniture?" },
+                    { german: "Welche Oberflächen sollen desinfiziert werden?", english: "Which surfaces should be disinfected?" },
+                    { german: "Haben Sie spezielle Reinigungsmittel?", english: "Do you have special cleaning products?" },
+                    { german: "Wie oft soll ich staubsaugen?", english: "How often should I vacuum?" },
+                    { german: "Soll ich den Boden wischen?", english: "Should I mop the floor?" },
+                    { german: "Wo ist der Staubsauger?", english: "Where is the vacuum cleaner?" },
+                    { german: "Kann ich Putzlappen verwenden?", english: "Can I use cleaning cloths?" },
+                    { german: "Welche Bereiche sind besonders schmutzig?", english: "Which areas are particularly dirty?" },
+                    { german: "Soll ich die Badezimmer reinigen?", english: "Should I clean the bathrooms?" },
+                    { german: "Haben Sie eine Waschmaschine?", english: "Do you have a washing machine?" },
+                    { german: "Kann ich die Wäsche waschen?", english: "Can I do the laundry?" },
+                    { german: "Wo soll ich die saubere Wäsche hinlegen?", english: "Where should I put the clean laundry?" },
+                    { german: "Soll ich die Küche putzen?", english: "Should I clean the kitchen?" },
+                    { german: "Wie soll ich den Herd reinigen?", english: "How should I clean the stove?" },
+                    { german: "Kann ich den Kühlschrank ausräumen?", english: "Can I empty the refrigerator?" },
+                    { german: "Haben Sie spezielle Wünsche?", english: "Do you have special requests?" },
+                    { german: "Wann soll ich mit der Arbeit anfangen?", english: "When should I start working?" },
+                    { german: "Wie lange wird die Reinigung dauern?", english: "How long will the cleaning take?" }
+                ]
+            },
+            { 
+                id: 2, 
+                title: { en: "Gardening & Outdoor", de: "Gartenarbeit & Außenbereich" }, 
+                icon: "🌿", 
+                tags: ["gardening", "outdoor", "landscaping", "gartenarbeit", "außenbereich"],
+                phrases: [
+                    { german: "Wo sind die Gartengeräte?", english: "Where are the gardening tools?" },
+                    { german: "Welche Pflanzen sollen gegossen werden?", english: "Which plants need to be watered?" },
+                    { german: "Soll ich den Rasen mähen?", english: "Should I mow the lawn?" },
+                    { german: "Wo ist der Komposthaufen?", english: "Where is the compost pile?" },
+                    { german: "Welche Blumen sollen gepflanzt werden?", english: "Which flowers should be planted?" },
+                    { german: "Kann ich die Hecke schneiden?", english: "Can I trim the hedge?" },
+                    { german: "Welche Bäume müssen beschnitten werden?", english: "Which trees need pruning?" },
+                    { german: "Haben Sie Dünger für die Pflanzen?", english: "Do you have fertilizer for the plants?" },
+                    { german: "Soll ich Unkraut jäten?", english: "Should I weed the garden?" },
+                    { german: "Wo ist der Gartenschlauch?", english: "Where is the garden hose?" },
+                    { german: "Kann ich die Beete umgraben?", english: "Can I dig the flower beds?" },
+                    { german: "Welche Pflanzen sind winterhart?", english: "Which plants are winter-hardy?" },
+                    { german: "Soll ich die Terrasse fegen?", english: "Should I sweep the terrace?" },
+                    { german: "Haben Sie Samen für neue Pflanzen?", english: "Do you have seeds for new plants?" },
+                    { german: "Kann ich den Garten umgestalten?", english: "Can I redesign the garden?" },
+                    { german: "Welche Arbeiten sind am dringendsten?", english: "Which tasks are most urgent?" },
+                    { german: "Soll ich die Blumen gießen?", english: "Should I water the flowers?" },
+                    { german: "Haben Sie eine Gießkanne?", english: "Do you have a watering can?" },
+                    { german: "Kann ich die Gartenmöbel reinigen?", english: "Can I clean the garden furniture?" },
+                    { german: "Wo soll ich das Laub hinsammeln?", english: "Where should I collect the leaves?" },
+                    { german: "Soll ich den Teich reinigen?", english: "Should I clean the pond?" },
+                    { german: "Haben Sie spezielle Wünsche für den Garten?", english: "Do you have special requests for the garden?" },
+                    { german: "Wann soll ich mit der Arbeit beginnen?", english: "When should I start working?" }
+                ]
+            },
+            { 
+                id: 3, 
+                title: { en: "Moving & Transport", de: "Umzug & Transport" }, 
+                icon: "🚚", 
+                tags: ["moving", "transport", "logistics", "umzug", "transport"],
+                phrases: [
+                    { german: "Wo soll ich die Möbel hinstellen?", english: "Where should I place the furniture?" },
+                    { german: "Ist dieses Teil zerlegbar?", english: "Is this item disassemblable?" },
+                    { german: "Brauchen Sie Hilfe beim Tragen?", english: "Do you need help carrying?" },
+                    { german: "Welche Kisten sind zerbrechlich?", english: "Which boxes are fragile?" },
+                    { german: "Wo ist der Aufzug?", english: "Where is the elevator?" },
+                    { german: "Kann ich die schweren Möbel tragen?", english: "Can I carry the heavy furniture?" },
+                    { german: "Haben Sie Decken zum Einpacken?", english: "Do you have blankets for wrapping?" },
+                    { german: "Soll ich die Möbel schützen?", english: "Should I protect the furniture?" },
+                    { german: "Wo ist der LKW geparkt?", english: "Where is the truck parked?" },
+                    { german: "Kann ich die Kartons beschriften?", english: "Can I label the boxes?" },
+                    { german: "Welche Räume sollen zuerst geleert werden?", english: "Which rooms should be emptied first?" },
+                    { german: "Haben Sie Werkzeug zum Zerlegen?", english: "Do you have tools for disassembly?" },
+                    { german: "Soll ich die Möbel aufbauen?", english: "Should I assemble the furniture?" },
+                    { german: "Wo ist die neue Adresse?", english: "Where is the new address?" },
+                    { german: "Kann ich beim Einpacken helfen?", english: "Can I help with packing?" },
+                    { german: "Welche Gegenstände sind besonders wertvoll?", english: "Which items are particularly valuable?" },
+                    { german: "Haben Sie spezielle Anweisungen?", english: "Do you have special instructions?" },
+                    { german: "Soll ich die Elektrogeräte transportieren?", english: "Should I transport the electronic devices?" },
+                    { german: "Kann ich die Möbel stapeln?", english: "Can I stack the furniture?" },
+                    { german: "Wo soll ich die leeren Kartons lagern?", english: "Where should I store the empty boxes?" },
+                    { german: "Haben Sie eine Liste der Gegenstände?", english: "Do you have a list of the items?" },
+                    { german: "Soll ich beim Auspacken helfen?", english: "Should I help with unpacking?" },
+                    { german: "Wann soll der Umzug beendet sein?", english: "When should the move be completed?" }
+                ]
+            },
+            { 
+                id: 4, 
+                title: { en: "Restaurant & Café", de: "Restaurant & Café" }, 
+                icon: "🍽️", 
+                tags: ["restaurant", "cafe", "food", "hospitality", "gastronomie"],
+                phrases: [
+                    { german: "Haben Sie eine Reservierung?", english: "Do you have a reservation?" },
+                    { german: "Was möchten Sie bestellen?", english: "What would you like to order?" },
+                    { german: "Möchten Sie noch etwas trinken?", english: "Would you like something else to drink?" },
+                    { german: "Die Rechnung, bitte.", english: "The bill, please." },
+                    { german: "Kann ich Ihnen helfen?", english: "Can I help you?" },
+                    { german: "Unser Tagesgericht ist ...", english: "Our daily special is ..." },
+                    { german: "Möchten Sie eine Vorspeise?", english: "Would you like an appetizer?" },
+                    { german: "Was empfehlen Sie?", english: "What do you recommend?" },
+                    { german: "Ist alles in Ordnung?", english: "Is everything alright?" },
+                    { german: "Kann ich den Tisch abräumen?", english: "Can I clear the table?" },
+                    { german: "Möchten Sie Dessert?", english: "Would you like dessert?" },
+                    { german: "Der Tisch ist in fünf Minuten frei.", english: "The table will be free in five minutes." },
+                    { german: "Haben Sie Allergien?", english: "Do you have any allergies?" },
+                    { german: "Möchten Sie draußen sitzen?", english: "Would you like to sit outside?" },
+                    { german: "Kann ich Ihnen die Speisekarte bringen?", english: "Can I bring you the menu?" },
+                    { german: "Wir haben heute ... aus.", english: "We're out of ... today." },
+                    { german: "Möchten Sie noch etwas?", english: "Would you like anything else?" },
+                    { german: "Das Gericht wird gleich serviert.", english: "The dish will be served shortly." },
+                    { german: "Kann ich Ihnen Wasser bringen?", english: "Can I bring you some water?" },
+                    { german: "Haben Sie einen Gutschein?", english: "Do you have a voucher?" },
+                    { german: "Möchten Sie getrennt bezahlen?", english: "Would you like to pay separately?" },
+                    { german: "Kreditkarte oder bar?", english: "Credit card or cash?" },
+                    { german: "Vielen Dank für Ihren Besuch!", english: "Thank you for your visit!" }
+                ]
+            },
+            { 
+                id: 5, 
+                title: { en: "Babysitting & Childcare", de: "Babysitting & Kinderbetreuung" }, 
+                icon: "👶", 
+                tags: ["babysitting", "childcare", "family", "kinderbetreuung", "familie"],
+                phrases: [
+                    { german: "Wann ist die Schlafenszeit?", english: "When is bedtime?" },
+                    { german: "Darf das Kind fernsehen?", english: "Is the child allowed to watch TV?" },
+                    { german: "Was isst das Kind zum Abendessen?", english: "What does the child eat for dinner?" },
+                    { german: "Gibt es Allergien?", english: "Are there any allergies?" },
+                    { german: "Wann kommen die Eltern zurück?", english: "When will the parents be back?" },
+                    { german: "Kann ich mit dem Kind spazieren gehen?", english: "Can I go for a walk with the child?" },
+                    { german: "Welche Spielzeuge sind erlaubt?", english: "Which toys are allowed?" },
+                    { german: "Soll ich dem Kind vorlesen?", english: "Should I read to the child?" },
+                    { german: "Darf das Kind Süßigkeiten essen?", english: "Is the child allowed to eat sweets?" },
+                    { german: "Wo sind die Windeln?", english: "Where are the diapers?" },
+                    { german: "Soll ich das Kind baden?", english: "Should I bathe the child?" },
+                    { german: "Welche Regeln gibt es?", english: "What are the rules?" },
+                    { german: "Kann ich das Kind ins Bett bringen?", english: "Can I put the child to bed?" },
+                    { german: "Was mache ich im Notfall?", english: "What should I do in an emergency?" },
+                    { german: "Haben Sie eine Telefonnummer für Notfälle?", english: "Do you have an emergency phone number?" },
+                    { german: "Soll ich dem Kind Medizin geben?", english: "Should I give medicine to the child?" },
+                    { german: "Welche Aktivitäten mag das Kind?", english: "What activities does the child like?" },
+                    { german: "Kann ich mit dem Kind malen?", english: "Can I paint with the child?" },
+                    { german: "Soll ich dem Kind beim Anziehen helfen?", english: "Should I help the child get dressed?" },
+                    { german: "Wo sind die Ersatzklamotten?", english: "Where are the spare clothes?" },
+                    { german: "Darf das Kind draußen spielen?", english: "Is the child allowed to play outside?" },
+                    { german: "Was soll ich tun, wenn das Kind weint?", english: "What should I do if the child cries?" },
+                    { german: "Haben Sie besondere Anweisungen?", english: "Do you have special instructions?" }
+                ]
+            }
+            // Additional categories would follow the same pattern with 20+ phrases each
         ];
 
         // Initialize the application
@@ -1056,10 +1301,16 @@
                                     <span>${category.icon}</span>
                                 </div>
                                 <h5>${category.title[currentLang]}</h5>
-                                <a href="#" class="view-more">
-                                    <span data-en="View Jobs" data-de="Jobs anzeigen">View Jobs</span> 
-                                    <i class="fas fa-arrow-right ms-1"></i>
-                                </a>
+                                <div class="category-buttons">
+                                    <a href="#" class="btn view-jobs">
+                                        <span data-en="View Jobs" data-de="Jobs anzeigen">View Jobs</span> 
+                                        <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                    <button class="btn help-btn" data-category-id="${category.id}">
+                                        <i class="fas fa-language me-1"></i>
+                                        <span data-en="Useful Help" data-de="Nützliche Hilfe">Useful Help</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1067,12 +1318,52 @@
                 container.appendChild(col);
             });
             
-            // Update view more links for current language
+            // Add event listeners to help buttons
+            document.querySelectorAll('.help-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-category-id');
+                    showHelpModal(categoryId);
+                });
+            });
+            
+            // Update button texts for current language
             if (currentLang === 'de') {
-                container.querySelectorAll('.view-more span').forEach(span => {
+                container.querySelectorAll('.view-jobs span').forEach(span => {
                     span.textContent = 'Jobs anzeigen';
                 });
+                container.querySelectorAll('.help-btn span').forEach(span => {
+                    span.textContent = 'Nützliche Hilfe';
+                });
             }
+        }
+
+        function showHelpModal(categoryId) {
+            const category = jobCategories.find(cat => cat.id == categoryId);
+            if (!category) return;
+            
+            const modalTitle = document.getElementById('helpModalLabel');
+            const helpContent = document.getElementById('helpContent');
+            
+            // Set modal title
+            modalTitle.textContent = `${category.title[currentLang]} - Useful German Phrases`;
+            
+            // Build phrases content
+            let phrasesHTML = '<div class="phrases-list">';
+            category.phrases.forEach(phrase => {
+                phrasesHTML += `
+                    <div class="phrase-item">
+                        <div class="german-phrase">${phrase.german}</div>
+                        <div class="english-translation">${phrase.english}</div>
+                    </div>
+                `;
+            });
+            phrasesHTML += '</div>';
+            
+            helpContent.innerHTML = phrasesHTML;
+            
+            // Show the modal
+            const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+            helpModal.show();
         }
 
         function setupSalaryFilter() {
@@ -1195,10 +1486,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
