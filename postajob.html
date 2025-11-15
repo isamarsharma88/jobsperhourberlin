@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - JobsPerHourBerlin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ed563b;
+            --secondary: #232d39;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        .header-area {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .logo em {
+            color: var(--secondary);
+            font-style: normal;
+        }
+        
+        .nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        
+        .nav li {
+            margin: 0 8px;
+        }
+        
+        .nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .nav a:hover, .nav a.active {
+            color: var(--primary);
+            background-color: rgba(237, 86, 59, 0.1);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        .menu-trigger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--dark);
+            padding: 8px;
+        }
+        
+        /* Job Posting Form Styles */
+        .job-form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .job-form-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h2 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .form-header p {
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(237, 86, 59, 0.25);
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 0.5rem;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-group input {
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .checkbox-group a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            width: 100%;
+            font-size: 1rem;
+            color: white;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background: #d94c34;
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .thank-you-message {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: none;
+        }
+        
+        .thank-you-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .thank-you-message h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .thank-you-message p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn {
+            background: var(--secondary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-btn:hover {
+            background: #1a2029;
+            color: white;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-control.error, .form-select.error {
+            border-color: #dc3545;
+        }
+        
+        /* Job Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+        }
+        
+        .category-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .category-option:hover {
+            background-color: rgba(237, 86, 59, 0.1);
+        }
+        
+        .category-option input {
+            margin-right: 10px;
+        }
+        
+        /* Form Section Styling */
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .form-section-title {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            text-align: center;
+        }
+        
+        .progress-step.active .step-number {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .progress-step.active .step-label {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .progress-indicator::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+        
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .btn-prev, .btn-next {
+            background: var(--secondary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .btn-prev:hover, .btn-next:hover {
+            background: #1a2029;
+        }
+        
+        .btn-next {
+            background: var(--primary);
+        }
+        
+        .btn-next:hover {
+            background: #d94c34;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 2rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .main-nav {
+                flex-wrap: wrap;
+            }
+            
+            .nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                padding: 15px 0;
+                z-index: 1000;
+            }
+            
+            .nav.active {
+                display: flex;
+            }
+            
+            .nav li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav a {
+                display: block;
+                padding: 12px 15px;
+                font-size: 15px;
+            }
+            
+            .menu-trigger {
+                display: block;
+            }
+            
+            .language-switcher {
+                margin-left: 0;
+                margin-top: 10px;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .job-form-card {
+                padding: 1.5rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-indicator {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .progress-indicator::before {
+                display: none;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-prev, .btn-next {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">Jobs Per Hour<em> Berlin</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html" data-en="Home / Startseite" data-de="Startseite">Home / Startseite</a></li>
+                            <li><a href="jobs.html" data-en="Jobs" data-de="Stellenangebote">Jobs</a></li>
+                            <li><a href="about.html" data-en="About Us" data-de="Über uns">About Us</a></li>
+                            <li><a href="login.html" data-en="Login" data-de="Anmelden">Login</a></li>
+                            <li><a href="signup.html" data-en="Sign Up" data-de="Registrieren">Sign Up</a></li>
+                            <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li> 
+                        </ul>
+
+                        <!-- Language Switcher -->
+                        <div class="language-switcher">
+                            <button class="lang-btn active" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="de">DE</button>
+                        </div>
+                        
+                        <a class='menu-trigger'>
+                            <span data-en="Menu" data-de="Menü">Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- Job Posting Form -->
+    <div class="job-form-container">
+        <!-- Progress Indicator -->
+        <div class="progress-indicator">
+            <div class="progress-step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label" data-en="Job Details" data-de="Job-Details">Job Details</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label" data-en="Requirements" data-de="Anforderungen">Requirements</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label" data-en="Contact Info" data-de="Kontaktinformationen">Contact Info</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label" data-en="Review" data-de="Überprüfung">Review</div>
+            </div>
+        </div>
+        
+        <div class="job-form-card" id="jobForm">
+            <div class="form-header">
+                <h2 data-en="Post a Job" data-de="Job veröffentlichen">Post a Job</h2>
+                <p data-en="Fill out the form below to post your job listing" data-de="Füllen Sie das Formular unten aus, um Ihre Stellenanzeige zu veröffentlichen">Fill out the form below to post your job listing</p>
+            </div>
+            
+            <form id="postJobForm">
+                <!-- Step 1: Job Details -->
+                <div class="form-step" id="step1">
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Job Information" data-de="Job-Informationen">Job Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="jobTitle" class="form-label" data-en="Job Title" data-de="Jobtitel">Job Title *</label>
+                            <input type="text" class="form-control" id="jobTitle" required>
+                            <div class="error-message" id="jobTitleError" data-en="Job title is required" data-de="Jobtitel ist erforderlich">Job title is required</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="companyName" class="form-label" data-en="Company Name" data-de="Firmenname">Company Name *</label>
+                            <input type="text" class="form-control" id="companyName" required>
+                            <div class="error-message" id="companyNameError" data-en="Company name is required" data-de="Firmenname ist erforderlich">Company name is required</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jobDescription" class="form-label" data-en="Job Description" data-de="Job Beschreibung">Job Description *</label>
+                            <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
+                            <div class="error-message" id="jobDescriptionError" data-en="Job description is required" data-de="Job Beschreibung ist erforderlich">Job description is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Job Details" data-de="Job-Details">Job Details</h3>
+                        
+                        <div class="form-group">
+                            <label for="location" class="form-label" data-en="Location" data-de="Standort">Location *</label>
+                            <input type="text" class="form-control" id="location" required>
+                            <div class="error-message" id="locationError" data-en="Location is required" data-de="Standort ist erforderlich">Location is required</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="salary" class="form-label" data-en="Salary (optional)" data-de="Gehalt (optional)">Salary (optional)</label>
+                            <input type="text" class="form-control" id="salary" placeholder="e.g. €15-20 per hour">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" data-en="Employment Type" data-de="Beschäftigungsart">Employment Type *</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="microJobs" name="employmentType" value="Micro Jobs" required>
+                                    <label for="microJobs" data-en="Micro Jobs" data-de="Mikro-Jobs">Micro Jobs</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="partTime" name="employmentType" value="Part-time">
+                                    <label for="partTime" data-en="Part-time" data-de="Teilzeit">Part-time</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="projectBased" name="employmentType" value="Project based Job">
+                                    <label for="projectBased" data-en="Project based Job" data-de="Projektbasierter Job">Project based Job</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="tipBased" name="employmentType" value="Tip Based Jobs">
+                                    <label for="tipBased" data-en="Tip Based Jobs" data-de="Trinkgeldbasierte Jobs">Tip Based Jobs</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="communityJobs" name="employmentType" value="Community Jobs">
+                                    <label for="communityJobs" data-en="Community Jobs" data-de="Community-Jobs">Community Jobs</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="pensioners" name="employmentType" value="Jobs for Pensioners">
+                                    <label for="pensioners" data-en="Jobs for Pensioners" data-de="Jobs für Rentner">Jobs for Pensioners</label>
+                                </div>
+                            </div>
+                            <div class="error-message" id="employmentTypeError" data-en="Please select an employment type" data-de="Bitte wählen Sie eine Beschäftigungsart">Please select an employment type</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button type="button" class="btn-next" data-en="Next: Requirements" data-de="Weiter: Anforderungen">Next: Requirements</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Requirements -->
+                <div class="form-step" id="step2" style="display: none;">
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Job Requirements" data-de="Job-Anforderungen">Job Requirements</h3>
+                        
+                        <!-- Job Category Field -->
+                        <div class="form-group">
+                            <label for="category" class="form-label" data-en="Job Category" data-de="Job-Kategorie">Job Category *</label>
+                            <select class="form-select" id="category" required>
+                                <option value="" data-en="Select a category" data-de="Wählen Sie eine Kategorie">Select a category</option>
+                                <!-- Categories will be populated by JavaScript -->
+                            </select>
+                            <div class="error-message" id="categoryError" data-en="Please select a category" data-de="Bitte wählen Sie eine Kategorie">Please select a category</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" data-en="Work Location" data-de="Arbeitsort">Work Location</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="remote" name="workLocation" value="Remote">
+                                    <label for="remote" data-en="Remote" data-de="Remote">Remote</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="onsite" name="workLocation" value="On-site">
+                                    <label for="onsite" data-en="On-site" data-de="Vor Ort">On-site</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="hybrid" name="workLocation" value="Hybrid">
+                                    <label for="hybrid" data-en="Hybrid" data-de="Hybrid">Hybrid</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deadline" class="form-label" data-en="Application Deadline" data-de="Bewerbungsfrist">Application Deadline</label>
+                            <input type="date" class="form-control" id="deadline">
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev" data-en="Previous: Job Details" data-de="Zurück: Job-Details">Previous: Job Details</button>
+                        <button type="button" class="btn-next" data-en="Next: Contact Info" data-de="Weiter: Kontaktinformationen">Next: Contact Info</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Contact Info -->
+                <div class="form-step" id="step3" style="display: none;">
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Contact Information" data-de="Kontaktinformationen">Contact Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label" data-en="Contact Email" data-de="Kontakt E-Mail">Contact Email *</label>
+                            <input type="email" class="form-control" id="contactEmail" required>
+                            <div class="error-message" id="contactEmailError" data-en="Valid email is required" data-de="Gültige E-Mail ist erforderlich">Valid email is required</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="applyLink" class="form-label" data-en="Apply Link (for external applications)" data-de="Bewerbungslink (für externe Bewerbungen)">Apply Link (for external applications)</label>
+                            <input type="url" class="form-control" id="applyLink" placeholder="https://">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Terms & Conditions" data-de="Geschäftsbedingungen">Terms & Conditions</h3>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">
+                                    <span data-en="I agree to the " data-de="Ich stimme den ">I agree to the </span>
+                                    <a href="#" data-en="Terms of Service" data-de="Nutzungsbedingungen">Terms of Service</a>
+                                    <span data-en=" and " data-de=" und "> and </span>
+                                    <a href="#" data-en="Privacy Policy" data-de="Datenschutzrichtlinien">Privacy Policy</a>
+                                    <span data-en=" (GDPR compliant)" data-de=" (DSGVO-konform)"> (GDPR compliant)</span>
+                                    <span data-en=" *" data-de=" *"> *</span>
+                                </label>
+                            </div>
+                            <div class="error-message" id="termsError" data-en="You must agree to the terms" data-de="Sie müssen den Bedingungen zustimmen">You must agree to the terms</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev" data-en="Previous: Requirements" data-de="Zurück: Anforderungen">Previous: Requirements</button>
+                        <button type="button" class="btn-next" data-en="Review & Submit" data-de="Überprüfen & Absenden">Review & Submit</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Review -->
+                <div class="form-step" id="step4" style="display: none;">
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-en="Review Your Job Posting" data-de="Überprüfen Sie Ihre Job-Anzeige">Review Your Job Posting</h3>
+                        
+                        <div class="review-section">
+                            <h4 data-en="Job Information" data-de="Job-Informationen">Job Information</h4>
+                            <div class="review-item">
+                                <strong data-en="Job Title:" data-de="Jobtitel:">Job Title:</strong>
+                                <span id="reviewJobTitle"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Company:" data-de="Firma:">Company:</strong>
+                                <span id="reviewCompanyName"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Description:" data-de="Beschreibung:">Description:</strong>
+                                <span id="reviewJobDescription"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-section mt-4">
+                            <h4 data-en="Job Details" data-de="Job-Details">Job Details</h4>
+                            <div class="review-item">
+                                <strong data-en="Location:" data-de="Standort:">Location:</strong>
+                                <span id="reviewLocation"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Salary:" data-de="Gehalt:">Salary:</strong>
+                                <span id="reviewSalary"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Employment Type:" data-de="Beschäftigungsart:">Employment Type:</strong>
+                                <span id="reviewEmploymentType"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Category:" data-de="Kategorie:">Category:</strong>
+                                <span id="reviewCategory"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Work Location:" data-de="Arbeitsort:">Work Location:</strong>
+                                <span id="reviewWorkLocation"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Deadline:" data-de="Frist:">Deadline:</strong>
+                                <span id="reviewDeadline"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-section mt-4">
+                            <h4 data-en="Contact Information" data-de="Kontaktinformationen">Contact Information</h4>
+                            <div class="review-item">
+                                <strong data-en="Email:" data-de="E-Mail:">Email:</strong>
+                                <span id="reviewContactEmail"></span>
+                            </div>
+                            <div class="review-item">
+                                <strong data-en="Apply Link:" data-de="Bewerbungslink:">Apply Link:</strong>
+                                <span id="reviewApplyLink"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev" data-en="Previous: Contact Info" data-de="Zurück: Kontaktinformationen">Previous: Contact Info</button>
+                        <button type="submit" class="submit-btn" id="submitBtn" data-en="Post Job" data-de="Job veröffentlichen">Post Job</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Thank You Message -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 data-en="Thank You!" data-de="Vielen Dank!">Thank You!</h3>
+            <p data-en="Your job has been successfully posted. We'll review it and it will be visible on our platform soon." data-de="Ihr Job wurde erfolgreich veröffentlicht. Wir werden ihn überprüfen und er wird bald auf unserer Plattform sichtbar sein.">Your job has been successfully posted. We'll review it and it will be visible on our platform soon.</p>
+            <a href="jobs.html" class="back-btn" data-en="Back to Jobs" data-de="Zurück zu Jobs">Back to Jobs</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h4 class="mb-3">Jobs Per Hour Berlin</h4>
+                    <p data-en="Find the perfect job that fits your schedule and skills. Browse thousands of hourly, part-time, and full-time jobs in Berlin." 
+                       data-de="Finden Sie den perfekten Job, der zu Ihrem Zeitplan und Ihren Fähigkeiten passt. Durchsuchen Sie Tausende von Stunden-, Teilzeit- und Vollzeitjobs in Berlin.">
+                        Find the perfect job in Berlin that fits your schedule and skills. 
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3" data-en="Quick Links" data-de="Schnelllinks">Quick Links</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="index.html" class="mb-2" data-en="Home / Startseite" data-de="Startseite">Home / Startseite</a>
+                        <a href="jobs.html" class="mb-2" data-en="Jobs" data-de="Stellenangebote">Jobs</a>
+                        <a href="about.html" class="mb-2" data-en="About Us" data-de="Über uns">About Us</a>
+                        <a href="contact.html" class="mb-2" data-en="Contact" data-de="Kontakt">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3" data-en="Contact" data-de="Kontakt">Contact</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="mailto:contact@jobsperhourberlin.de" class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>
+                            <span data-en="Email Us" data-de="E-Mail senden">Email Us</span>
+                        </a>
+                        <a href="#" class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-3 border-top border-secondary">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Jobs Per Hour Berlin. 
+                        <span data-en="All rights reserved." data-de="Alle Rechte vorbehalten.">All rights reserved.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Job categories data
+        const jobCategories = [
+            // Agriculture & Farming
+            { id: "agri_farm_labor", name: { en: "Farm Labor / Field Workers", de: "Farmarbeit / Feldarbeiter" } },
+            { id: "agri_crop_cultivation", name: { en: "Crop Cultivation & Harvest Help", de: "Anbau & Erntehelfer" } },
+            { id: "agri_livestock", name: { en: "Livestock Care / Dairy Workers", de: "Tierpflege / Molkereiarbeiter" } },
+            { id: "agri_tractor", name: { en: "Tractor & Equipment Operators", de: "Traktor- & Gerätebediener" } },
+            { id: "agri_organic", name: { en: "Organic Farming / Hydroponics Support", de: "Biologischer Anbau / Hydrokultur-Unterstützung" } },
+            
+            // Appliance & Electronics Repair
+            { id: "appliance_mobile", name: { en: "Mobile & Laptop Repair", de: "Handy- & Laptop-Reparatur" } },
+            { id: "appliance_tv", name: { en: "TV / Audio System Repair", de: "TV / Audiosystem-Reparatur" } },
+            { id: "appliance_refrigerator", name: { en: "Refrigerator / Washing Machine Service", de: "Kühlschrank / Waschmaschinen-Service" } },
+            { id: "appliance_ac", name: { en: "AC / Cooler Maintenance", de: "Klimaanlage / Kühler Wartung" } },
+            { id: "appliance_gadgets", name: { en: "Small Gadget Repairs", de: "Kleine Gerätereparaturen" } },
+            
+            // Arts, Crafts & Culture
+            { id: "arts_handicraft", name: { en: "Handicraft Makers", de: "Handwerkshersteller" } },
+            { id: "arts_pottery", name: { en: "Pottery / Sculpture Artists", de: "Töpferei / Bildhauerkunst" } },
+            { id: "arts_tailoring", name: { en: "Tailoring / Embroidery", de: "Schneiderei / Stickerei" } },
+            { id: "arts_art_teachers", name: { en: "Traditional Art Teachers", de: "Traditionelle Kunstlehrer" } },
+            { id: "arts_music_theatre", name: { en: "Local Music / Theatre Artists", de: "Lokale Musik / Theaterkünstler" } },
+            
+            // Babysitting & Childcare
+            { id: "childcare_babysitters", name: { en: "Babysitters", de: "Babysitter" } },
+            { id: "childcare_nannies", name: { en: "Nannies", de: "Kinderbetreuer" } },
+            { id: "childcare_after_school", name: { en: "After-School Care", de: "Nachmittagsbetreuung" } },
+            { id: "childcare_special_needs", name: { en: "Special Needs Childcare", de: "Kinderbetreuung für besondere Bedürfnisse" } },
+            { id: "childcare_overnight", name: { en: "Overnight Care", de: "Übernachtungsbetreuung" } },
+            
+            // Beauty, Health & Wellness
+            { id: "beauty_massage", name: { en: "Massage Therapy", de: "Massagetherapie" } },
+            { id: "beauty_spa", name: { en: "Spa & Relaxation", de: "Spa & Entspannung" } },
+            { id: "beauty_nutrition", name: { en: "Nutrition Counselling", de: "Ernährungsberatung" } },
+            { id: "beauty_alternative", name: { en: "Alternative Medicine", de: "Alternative Medizin" } },
+            { id: "beauty_wellness", name: { en: "Wellness Coaching", de: "Wellness-Coaching" } },
+            
+            // Business & Consulting
+            { id: "business_consulting", name: { en: "Management Consulting", de: "Management-Beratung" } },
+            { id: "business_financial", name: { en: "Financial & Tax Advisors", de: "Finanz- & Steuerberater" } },
+            { id: "business_planning", name: { en: "Business Planning", de: "Geschäftsplanung" } },
+            { id: "business_legal", name: { en: "Legal Assistance", de: "Rechtliche Unterstützung" } },
+            
+            // Car Services & Mechanics
+            { id: "car_repair", name: { en: "Car Repair & Maintenance", de: "Autoreparatur & Wartung" } },
+            { id: "car_wash", name: { en: "Car Wash & Detailing", de: "Autowäsche & Detailing" } },
+            { id: "car_oil", name: { en: "Oil Change & Tire Services", de: "Ölwechsel & Reifenservice" } },
+            { id: "car_electrician", name: { en: "Auto Electrician", de: "Auto-Elektriker" } },
+            { id: "car_inspection", name: { en: "Vehicle Inspection", de: "Fahrzeuginspektion" } },
+            { id: "car_bike", name: { en: "Bike & Scooter Repair", de: "Fahrrad & Roller Reparatur" } },
+            
+            // Customer Support & Local Sales
+            { id: "customer_call_center", name: { en: "Call Center Agents", de: "Call-Center-Agenten" } },
+            { id: "customer_sales", name: { en: "Sales Promoters", de: "Verkaufsförderer" } },
+            { id: "customer_door_to_door", name: { en: "Door-to-Door Sales", de: "Haustürverkauf" } },
+            { id: "customer_retention", name: { en: "Customer Retention Specialists", de: "Kundenbindungsspezialisten" } },
+            
+            // Creative & Design
+            { id: "creative_graphic", name: { en: "Graphic Design", de: "Grafikdesign" } },
+            { id: "creative_logo", name: { en: "Logo & Branding", de: "Logo & Branding" } },
+            { id: "creative_animation", name: { en: "Animation & Motion Graphics", de: "Animation & Motion Graphics" } },
+            { id: "creative_3d", name: { en: "3D Modeling", de: "3D-Modellierung" } },
+            { id: "creative_illustration", name: { en: "Illustration", de: "Illustration" } },
+            { id: "creative_packaging", name: { en: "Product Packaging Design", de: "Produktverpackungsdesign" } },
+            
+            // Dance & Performing Arts
+            { id: "dance_classes", name: { en: "Dance Classes", de: "Tanzkurse" } },
+            { id: "dance_choreographers", name: { en: "Choreographers", de: "Choreografen" } },
+            { id: "dance_stage", name: { en: "Stage Performance Coaches", de: "Bühnenauftritts-Coaches" } },
+            { id: "dance_kids", name: { en: "Kids' Dance Instructors", de: "Kindertanzlehrer" } },
+            { id: "dance_cultural", name: { en: "Cultural Dance Trainers", de: "Kulturelle Tanzlehrer" } },
+            
+            // Delivery & Courier
+            { id: "delivery_food", name: { en: "Food Delivery", de: "Essenslieferung" } },
+            { id: "delivery_package", name: { en: "Package Delivery", de: "Paketzustellung" } },
+            { id: "delivery_errands", name: { en: "Local Errands", de: "Lokale Besorgungen" } },
+            { id: "delivery_document", name: { en: "Document Pickup", de: "Dokumentenabholung" } },
+            { id: "delivery_ecommerce", name: { en: "E-commerce Fulfillment", de: "E-Commerce-Abwicklung" } },
+            
+            // Digital Marketing & SEO
+            { id: "marketing_social", name: { en: "Social Media Management", de: "Social Media Management" } },
+            { id: "marketing_seo", name: { en: "SEO & SEM Specialists", de: "SEO & SEM Spezialisten" } },
+            { id: "marketing_content", name: { en: "Content Marketing", de: "Content Marketing" } },
+            { id: "marketing_ppc", name: { en: "PPC Advertising", de: "PPC-Werbung" } },
+            { id: "marketing_email", name: { en: "Email Marketing", de: "E-Mail-Marketing" } },
+            { id: "marketing_influencer", name: { en: "Influencer Marketing", de: "Influencer-Marketing" } },
+            { id: "marketing_analytics", name: { en: "Analytics & Reporting", de: "Analytics & Berichterstattung" } },
+            
+            // Emergency & Community Services
+            { id: "emergency_ambulance", name: { en: "Ambulance Drivers / Paramedics", de: "Rettungswagenfahrer / Sanitäter" } },
+            { id: "emergency_first_aid", name: { en: "First Aid Responders", de: "Ersthelfer" } },
+            { id: "emergency_disaster", name: { en: "Disaster Relief Volunteers", de: "Katastrophenhilfe-Freiwillige" } },
+            { id: "emergency_community", name: { en: "Community Health Workers", de: "Gemeindegesundheitsarbeiter" } },
+            { id: "emergency_blood", name: { en: "Blood Donation / NGO Support", de: "Blutspende / NGO-Unterstützung" } },
+            
+            // Electrician & Plumbing
+            { id: "electrician_repairs", name: { en: "Electrical Repairs", de: "Elektroreparaturen" } },
+            { id: "electrician_lighting", name: { en: "Lighting Installation", de: "Beleuchtungsinstallation" } },
+            { id: "plumbing_maintenance", name: { en: "Plumbing Maintenance", de: "Sanitärwartung" } },
+            { id: "plumbing_pipe", name: { en: "Pipe & Drain Services", de: "Rohr- & Abflussdienst" } },
+            { id: "plumbing_water", name: { en: "Water Heater Installation", de: "Wasserheizungsinstallation" } },
+            
+            // Event & Promotion
+            { id: "event_promoters", name: { en: "Brand Promoters", de: "Markenpromotoren" } },
+            { id: "event_demonstrators", name: { en: "Product Demonstrators", de: "Produktdemonstratoren" } },
+            { id: "event_hosts", name: { en: "Event Hosts / MCs", de: "Event-Moderatoren / MCs" } },
+            { id: "event_booth", name: { en: "Booth Setup & Support", de: "Standaufbau & Unterstützung" } },
+            { id: "event_street", name: { en: "Street Marketing Teams", de: "Street-Marketing-Teams" } },
+            
+            // Fitness Trainers / Yoga Instructors
+            { id: "fitness_personal", name: { en: "Personal Trainers", de: "Personal Trainer" } },
+            { id: "fitness_yoga", name: { en: "Yoga & Pilates Instructors", de: "Yoga & Pilates Lehrer" } },
+            { id: "fitness_zumba", name: { en: "Zumba / Dance Fitness", de: "Zumba / Tanz-Fitness" } },
+            { id: "fitness_nutrition", name: { en: "Nutrition & Diet Coaching", de: "Ernährungs- & Diät-Coaching" } },
+            { id: "fitness_group", name: { en: "Group Fitness Classes", de: "Gruppenfitnesskurse" } },
+            
+            // Finance & Micro services
+            { id: "finance_microloan", name: { en: "Microloan Agents", de: "Mikrokredit-Agenten" } },
+            { id: "finance_insurance", name: { en: "Insurance Advisors", de: "Versicherungsberater" } },
+            { id: "finance_tax", name: { en: "Tax & Accounting Help", de: "Steuer- & Buchhaltungshilfe" } },
+            { id: "finance_bank", name: { en: "Local Bank Assistants", de: "Lokale Bankassistenten" } },
+            { id: "finance_bill", name: { en: "Bill Payment & Document Services", de: "Rechnungszahlung & Dokumentenservice" } },
+            
+            // Gardening & Outdoor
+            { id: "gardening_lawn", name: { en: "Lawn Mowing", de: "Rasenmähen" } },
+            { id: "gardening_landscaping", name: { en: "Landscaping & Design", de: "Landschaftsgestaltung & Design" } },
+            { id: "gardening_tree", name: { en: "Tree Trimming", de: "Baumschnitt" } },
+            { id: "gardening_irrigation", name: { en: "Irrigation Setup", de: "Bewässerungssystemeinrichtung" } },
+            { id: "gardening_maintenance", name: { en: "Outdoor Maintenance", de: "Außenwartung" } },
+            
+            // Government & Public Services
+            { id: "government_municipal", name: { en: "Municipal Workers", de: "Gemeindearbeiter" } },
+            { id: "government_health", name: { en: "Public Health Assistants", de: "Öffentliche Gesundheitsassistenten" } },
+            { id: "government_rural", name: { en: "Rural Development Aides", de: "Hilfskräfte für ländliche Entwicklung" } },
+            { id: "government_survey", name: { en: "Survey & Census Staff", de: "Umfrage- & Zensuspersonal" } },
+            { id: "government_voter", name: { en: "Voter Registration Help", de: "Hilfe bei der Wählerregistrierung" } },
+            
+            // Hair & Makeup Artists
+            { id: "beauty_bridal", name: { en: "Bridal Makeup", de: "Braut-Make-up" } },
+            { id: "beauty_hair", name: { en: "Hair Styling & Coloring", de: "Haarstyling & Färben" } },
+            { id: "beauty_mens", name: { en: "Men's Grooming", de: "Männerpflege" } },
+            { id: "beauty_skincare", name: { en: "Skincare & Facials", de: "Hautpflege & Gesichtsbehandlungen" } },
+            { id: "beauty_nail", name: { en: "Nail & Spa Services", de: "Nagel- & Spa-Dienstleistungen" } },
+            
+            // Home Repairs & Handyman
+            { id: "handyman_general", name: { en: "General Repairs", de: "Allgemeine Reparaturen" } },
+            { id: "handyman_appliance", name: { en: "Appliance Installation", de: "Geräteinstallation" } },
+            { id: "handyman_door", name: { en: "Door & Window Fixing", de: "Tür- & Fensterreparatur" } },
+            { id: "handyman_furniture", name: { en: "Furniture Assembly", de: "Möbelmontage" } },
+            { id: "handyman_carpentry", name: { en: "Small Carpentry Jobs", de: "Kleine Tischlerarbeiten" } },
+            
+            // Household & Cleaning
+            { id: "cleaning_home", name: { en: "Home Cleaning", de: "Hausreinigung" } },
+            { id: "cleaning_deep", name: { en: "Deep Cleaning", de: "Grundreinigung" } },
+            { id: "cleaning_carpet", name: { en: "Carpet & Upholstery Cleaning", de: "Teppich- & Polsterreinigung" } },
+            { id: "cleaning_window", name: { en: "Window Cleaning", de: "Fensterreinigung" } },
+            { id: "cleaning_post_construction", name: { en: "Post-Construction Cleaning", de: "Reinigung nach Bauarbeiten" } },
+            { id: "cleaning_commercial", name: { en: "Commercial Cleaning", de: "Gewebereinigung" } },
+            { id: "cleaning_sanitization", name: { en: "Sanitization / Disinfection Services", de: "Desinfektionsdienstleistungen" } },
+            { id: "cleaning_pest", name: { en: "Pest Control", de: "Schädlingsbekämpfung" } },
+            
+            // IT & Tech Support
+            { id: "it_hardware", name: { en: "Hardware & Software Support", de: "Hardware- & Software-Support" } },
+            { id: "it_network", name: { en: "Network Setup & Maintenance", de: "Netzwerkeinrichtung & Wartung" } },
+            { id: "it_cybersecurity", name: { en: "Cybersecurity Services", de: "Cybersicherheitsdienste" } },
+            { id: "it_data", name: { en: "Data Recovery", de: "Datenwiederherstellung" } },
+            { id: "it_cloud", name: { en: "Cloud Services", de: "Cloud-Dienste" } },
+            { id: "it_remote", name: { en: "Remote Tech Help", de: "Remote-Technik-Hilfe" } },
+            { id: "it_training", name: { en: "IT Training / Bootcamps", de: "IT-Schulung / Bootcamps" } },
+            
+            // Interior Design & Home Improvement
+            { id: "interior_designers", name: { en: "Interior Designers", de: "Innenarchitekten" } },
+            { id: "interior_furniture", name: { en: "Furniture Design & Assembly", de: "Möbeldesign & Montage" } },
+            { id: "interior_renovation", name: { en: "Home Renovation", de: "Hausrenovierung" } },
+            { id: "interior_painting", name: { en: "Painting & Wallpaper", de: "Malen & Tapete" } },
+            { id: "interior_flooring", name: { en: "Flooring & Tiling", de: "Bodenbeläge & Fliesen" } },
+            { id: "interior_kitchen", name: { en: "Kitchen & Bath Remodeling", de: "Küchen- & Badumbau" } },
+            { id: "interior_smart_home", name: { en: "Home Automation / Smart Home Setup", de: "Hausautomation / Smart Home Einrichtung" } },
+            
+            // Cooking & Home Food Services
+            { id: "food_home_chefs", name: { en: "Home Chefs", de: "Hausköche" } },
+            { id: "food_meal_prep", name: { en: "Meal Prep Services", de: "Mahlzeitenvorbereitungsdienste" } },
+            { id: "food_tiffin", name: { en: "Tiffin / Lunch Providers", de: "Tiffin / Mittagessen-Anbieter" } },
+            { id: "food_baking", name: { en: "Baking & Catering from Home", de: "Backen & Catering von zu Hause" } },
+            { id: "food_street", name: { en: "Street Food Vendors", de: "Street-Food-Verkäufer" } },
+            
+            // Local Produce & Market Vendors
+            { id: "market_farmers", name: { en: "Farmers Market Sellers", de: "Verkäufer auf Bauernmärkten" } },
+            { id: "market_street_food", name: { en: "Street Food Sellers", de: "Street-Food-Verkäufer" } },
+            { id: "market_handicraft", name: { en: "Handicraft & Artisan Vendors", de: "Handwerks- & Kunsthandwerksverkäufer" } },
+            { id: "market_shop", name: { en: "Local Shop Helpers / Cashiers", de: "Lokale Ladenhelfer / Kassierer" } },
+            { id: "market_delivery", name: { en: "Delivery for Local Markets", de: "Lieferung für lokale Märkte" } },
+            
+            // Life Coaching & Counseling
+            { id: "coaching_career", name: { en: "Career Coaches", de: "Karriere-Coaches" } },
+            { id: "coaching_life", name: { en: "Life Skills Trainers", de: "Lebenskompetenz-Trainer" } },
+            { id: "coaching_mental", name: { en: "Mental Health Counselors", de: "Psychologische Berater" } },
+            { id: "coaching_relationship", name: { en: "Relationship / Family Counselors", de: "Beziehungs- / Familienberater" } },
+            
+            // Music & Audio Services
+            { id: "music_teachers", name: { en: "Music Teachers", de: "Musiklehrer" } },
+            { id: "music_instrument", name: { en: "Instrument Repair & Tuning", de: "Instrumentenreparatur & Stimmung" } },
+            { id: "music_audio", name: { en: "Audio Mixing & Recording", de: "Audiomischung & Aufnahme" } },
+            { id: "music_sound", name: { en: "Sound Engineering", de: "Tontechnik" } },
+            { id: "music_choir", name: { en: "Choir / Band Instructors", de: "Chor- / Bandleiter" } },
+            
+            // Moving & Transport
+            { id: "moving_local", name: { en: "Local Moving Services", de: "Lokale Umzugsdienste" } },
+            { id: "moving_furniture", name: { en: "Furniture Delivery", de: "Möbellieferung" } },
+            { id: "moving_packing", name: { en: "Packing & Unpacking", de: "Verpacken & Auspacken" } },
+            { id: "moving_truck", name: { en: "Truck / Van Rentals", de: "LKW / Transporter Vermietung" } },
+            { id: "moving_storage", name: { en: "Storage Assistance", de: "Lagerhilfe" } },
+            
+            // Nursing & Elder Care
+            { id: "nursing_home", name: { en: "In-Home Nursing", de: "Hauskrankenpflege" } },
+            { id: "nursing_companionship", name: { en: "Elder Companionship", de: "Altenbegleitung" } },
+            { id: "nursing_disability", name: { en: "Disability Care", de: "Behinderungenbetreuung" } },
+            { id: "nursing_medical", name: { en: "Medical Assistance", de: "Medizinische Hilfe" } },
+            { id: "nursing_hospice", name: { en: "Hospice Support", de: "Hospiz-Unterstützung" } },
+            { id: "nursing_rehabilitation", name: { en: "Rehabilitation Aides", de: "Rehabilitationshelfer" } },
+            
+            // Office & Admin Support
+            { id: "office_data", name: { en: "Data Entry", de: "Dateneingabe" } },
+            { id: "office_virtual", name: { en: "Virtual Assistants", de: "Virtuelle Assistenten" } },
+            { id: "office_reception", name: { en: "Receptionists", de: "Empfangsmitarbeiter" } },
+            { id: "office_customer", name: { en: "Customer Service", de: "Kundenservice" } },
+            { id: "office_bookkeeping", name: { en: "Bookkeeping", de: "Buchhaltung" } },
+            { id: "office_hr", name: { en: "HR & Recruitment Support", de: "HR- & Rekrutierungsunterstützung" } },
+            
+            // Party & Event Planning
+            { id: "event_coordinators", name: { en: "Event Coordinators", de: "Event-Koordinatoren" } },
+            { id: "event_wedding", name: { en: "Wedding Planners", de: "Hochzeitsplaner" } },
+            { id: "event_birthday", name: { en: "Birthday & Private Events", de: "Geburtstags- & Privatveranstaltungen" } },
+            { id: "event_catering", name: { en: "Catering Services", de: "Catering-Dienstleistungen" } },
+            { id: "event_sound", name: { en: "Sound & Lighting", de: "Ton & Beleuchtung" } },
+            { id: "event_dj", name: { en: "DJ & Live Bands", de: "DJ & Live-Bands" } },
+            { id: "event_rentals", name: { en: "Event Rentals", de: "Eventvermietung" } },
+            
+            // Pet Care
+            { id: "pet_walking", name: { en: "Dog Walking", de: "Hundegassi" } },
+            { id: "pet_grooming", name: { en: "Pet Grooming", de: "Tierpflege" } },
+            { id: "pet_sitting", name: { en: "Pet Sitting", de: "Tierbetreuung" } },
+            { id: "pet_veterinary", name: { en: "Veterinary Assistance", de: "Tierärztliche Hilfe" } },
+            { id: "pet_training", name: { en: "Training & Obedience", de: "Training & Gehorsam" } },
+            { id: "pet_mobile", name: { en: "Mobile Grooming Services", de: "Mobile Pflegedienste" } },
+            { id: "pet_boarding", name: { en: "Pet Boarding / Daycare", de: "Tierpension / Tagesbetreuung" } },
+            { id: "pet_teleconsultation", name: { en: "Veterinary Teleconsultation", de: "Tierärztliche Telekonsultation" } },
+            
+            // Printing & 3D Printing
+            { id: "printing_digital", name: { en: "Digital Printing", de: "Digitaldruck" } },
+            { id: "printing_offset", name: { en: "Offset Printing", de: "Offsetdruck" } },
+            { id: "printing_3d", name: { en: "3D Design & Printing", de: "3D-Design & Druck" } },
+            { id: "printing_business", name: { en: "Business Cards / Flyers / Posters", de: "Visitenkarten / Flyer / Poster" } },
+            { id: "printing_prototyping", name: { en: "Prototyping Services", de: "Prototyping-Dienste" } },
+            
+            // Photography & Videography
+            { id: "photo_event", name: { en: "Event Photography", de: "Eventfotografie" } },
+            { id: "photo_portrait", name: { en: "Portrait Photography", de: "Porträtfotografie" } },
+            { id: "photo_product", name: { en: "Product Photography", de: "Produktfotografie" } },
+            { id: "photo_video", name: { en: "Video Production", de: "Videoproduktion" } },
+            { id: "photo_drone", name: { en: "Drone Photography", de: "Drohnenfotografie" } },
+            { id: "photo_editing", name: { en: "Photo/Video Editing", de: "Foto-/Videobearbeitung" } },
+            
+            // Restaurant & Café
+            { id: "restaurant_waitstaff", name: { en: "Waitstaff & Bartenders", de: "Servicepersonal & Barkeeper" } },
+            { id: "restaurant_chefs", name: { en: "Chefs & Cooks", de: "Köche & Küchenpersonal" } },
+            { id: "restaurant_baristas", name: { en: "Baristas", de: "Baristas" } },
+            { id: "restaurant_kitchen", name: { en: "Kitchen Assistants", de: "Küchenhelfer" } },
+            { id: "restaurant_catering", name: { en: "Catering Staff", de: "Catering-Personal" } },
+            
+            // Recycling & Waste Management
+            { id: "recycling_waste", name: { en: "Waste Collectors", de: "Müllsammler" } },
+            { id: "recycling_sorters", name: { en: "Recycling Sorters", de: "Recycling-Sortierer" } },
+            { id: "recycling_ewaste", name: { en: "E-Waste Handlers", de: "E-Waste-Händler" } },
+            { id: "recycling_composting", name: { en: "Composting Services", de: "Kompostierungsdienste" } },
+            { id: "recycling_cleanup", name: { en: "Clean-Up Drive Volunteers", de: "Säuberungsaktion-Freiwillige" } },
+            
+            // Self-Defence & Martial Arts
+            { id: "defense_martial", name: { en: "Martial Arts Instructors", de: "Kampfkunstlehrer" } },
+            { id: "defense_workshops", name: { en: "Self-Defence Workshops", de: "Selbstverteidigungsworkshops" } },
+            { id: "defense_karate", name: { en: "Karate / Taekwondo / MMA Coaches", de: "Karate / Taekwondo / MMA Trainer" } },
+            { id: "defense_women", name: { en: "Women's Safety Training", de: "Sicherheitstraining für Frauen" } },
+            { id: "defense_kids", name: { en: "Kids' Self-Defence Classes", de: "Selbstverteidigungskurse für Kinder" } },
+            
+            // Security & Safety
+            { id: "security_guards", name: { en: "Security Guards", de: "Sicherheitspersonal" } },
+            { id: "security_bouncers", name: { en: "Bouncers / Event Security", de: "Türsteher / Event-Sicherheit" } },
+            { id: "security_cctv", name: { en: "CCTV Monitoring", de: "CCTV-Überwachung" } },
+            { id: "security_fire", name: { en: "Fire Safety Inspectors", de: "Brandschutzinspektoren" } },
+            { id: "security_night", name: { en: "Night Watch Personnel", de: "Nachtwachepersonal" } },
+            
+            // Skilled Labour & Trades
+            { id: "labor_construction", name: { en: "Construction & Masonry", de: "Bau & Mauerwerk" } },
+            { id: "labor_bricklaying", name: { en: "Bricklaying & Concreting", de: "Mauerwerk & Betonieren" } },
+            { id: "labor_scaffolding", name: { en: "Scaffolding", de: "Gerüstbau" } },
+            { id: "labor_tiling", name: { en: "Tiling & Flooring", de: "Fliesenlegen & Bodenbeläge" } },
+            { id: "labor_plastering", name: { en: "Plastering & Drywall", de: "Verputzen & Trockenbau" } },
+            { id: "labor_wood", name: { en: "Wood & Metal Work", de: "Holz- & Metallarbeiten" } },
+            { id: "labor_carpentry", name: { en: "Carpentry & Joinery", de: "Tischlerei & Zimmerei" } },
+            { id: "labor_welding", name: { en: "Welding & Fabrication", de: "Schweißen & Metallbau" } },
+            { id: "labor_cabinet", name: { en: "Cabinet Making", de: "Möbelbau" } },
+            { id: "labor_blacksmithing", name: { en: "Blacksmithing", de: "Schmiedekunst" } },
+            
+            // Machinery & Industrial
+            { id: "industrial_machine", name: { en: "Machine Operation", de: "Maschinenbedienung" } },
+            { id: "industrial_heavy", name: { en: "Heavy Equipment Operators", de: "Schwerlastgerätebediener" } },
+            { id: "industrial_forklift", name: { en: "Forklift & Crane Operators", de: "Gabelstapler- & Kranführer" } },
+            { id: "industrial_factory", name: { en: "Factory & Production Workers", de: "Fabrik- & Produktionsarbeiter" } },
+            
+            // Painting & Finishing
+            { id: "painting_interior", name: { en: "Interior & Exterior Painting", de: "Innen- & Außenanstrich" } },
+            { id: "painting_industrial", name: { en: "Industrial Coating", de: "Industriebeschichtung" } },
+            { id: "painting_finishing", name: { en: "Finishing & Polishing", de: "Veredelung & Polieren" } },
+            
+            // Maintenance & Installation
+            { id: "maintenance_hvac", name: { en: "HVAC Technicians", de: "HLK-Techniker" } },
+            { id: "maintenance_appliance", name: { en: "Appliance Installers", de: "Geräteinstallateure" } },
+            { id: "maintenance_security", name: { en: "Security System Installers", de: "Sicherheitssystem-Installateure" } },
+            
+            // Social & Community Support
+            { id: "social_volunteers", name: { en: "NGO Volunteers", de: "NGO-Freiwillige" } },
+            { id: "social_workers", name: { en: "Social Workers", de: "Sozialarbeiter" } },
+            { id: "social_educators", name: { en: "Community Educators", de: "Gemeindepädagogen" } },
+            { id: "social_mental", name: { en: "Mental Health Support Workers", de: "Psychosoziale Unterstützungsarbeiter" } },
+            { id: "social_women", name: { en: "Women's Self-Help Group Trainers", de: "Trainer für Frauenselbsthilfegruppen" } },
+            
+            // Transportation & Logistics
+            { id: "transport_drivers", name: { en: "Auto / Taxi Drivers", de: "Auto- / Taxifahrer" } },
+            { id: "transport_delivery", name: { en: "Delivery Riders", de: "Lieferfahrer" } },
+            { id: "transport_truck", name: { en: "Truck / Van Drivers", de: "LKW- / Transporterfahrer" } },
+            { id: "transport_scheduling", name: { en: "Transport Scheduling", de: "Transportplanung" } },
+            { id: "transport_fleet", name: { en: "Fleet Maintenance", de: "Flottenwartung" } },
+            
+            // Tutoring & Teaching
+            { id: "tutoring_academic", name: { en: "Academic Tutoring", de: "Nachhilfeunterricht" } },
+            { id: "tutoring_language", name: { en: "Language Lessons", de: "Sprachunterricht" } },
+            { id: "tutoring_music", name: { en: "Music & Instrument Coaching", de: "Musik- & Instrumentencoaching" } },
+            { id: "tutoring_test", name: { en: "Test Preparation", de: "Testvorbereitung" } },
+            { id: "tutoring_online", name: { en: "Online Course Creation", de: "Online-Kurserstellung" } },
+            { id: "tutoring_workshops", name: { en: "Skill-Based Workshops", de: "Fähigkeitsbasierte Workshops" } },
+            
+            // Vocational & Skill Training
+            { id: "vocational_driving", name: { en: "Driving Instructors", de: "Fahrlehrer" } },
+            { id: "vocational_computer", name: { en: "Computer Literacy Trainers", de: "Computerkenntnis-Trainer" } },
+            { id: "vocational_sewing", name: { en: "Sewing / Tailoring Instructors", de: "Näh- / Schneiderlehrer" } },
+            { id: "vocational_electrical", name: { en: "Electrical / Plumbing Training", de: "Elektro- / Sanitärausbildung" } },
+            { id: "vocational_job", name: { en: "Job Readiness & Interview Coaching", de: "Jobvorbereitung & Interview-Coaching" } },
+            
+            // Web Development & Design
+            { id: "web_frontend", name: { en: "Front-End Development", de: "Front-End-Entwicklung" } },
+            { id: "web_backend", name: { en: "Back-End Development", de: "Back-End-Entwicklung" } },
+            { id: "web_uiux", name: { en: "UI/UX Design", de: "UI/UX-Design" } },
+            { id: "web_ecommerce", name: { en: "E-commerce Development", de: "E-Commerce-Entwicklung" } },
+            { id: "web_wordpress", name: { en: "WordPress / CMS Websites", de: "WordPress / CMS-Websites" } },
+            { id: "web_app", name: { en: "App Design & Development", de: "App-Design & Entwicklung" } },
+            { id: "web_game", name: { en: "Game Development", de: "Spieleentwicklung" } },
+            { id: "web_ar", name: { en: "AR / VR Content Creation", de: "AR / VR-Inhaltserstellung" } },
+            
+            // Writing & Editing
+            { id: "writing_content", name: { en: "Content Writing", de: "Content Writing" } },
+            { id: "writing_copywriting", name: { en: "Copywriting", de: "Werbetexten" } },
+            { id: "writing_proofreading", name: { en: "Proofreading & Editing", de: "Korrekturlesen & Bearbeiten" } },
+            { id: "writing_technical", name: { en: "Technical Writing", de: "Technisches Schreiben" } },
+            { id: "writing_resume", name: { en: "Resume & Cover Letter Writing", de: "Lebenslauf & Anschreiben Verfassen" } },
+            { id: "writing_script", name: { en: "Script / Story Writing", de: "Drehbuch- / Geschichtenschreiben" } }
+        ];
+
+        // Language management
+        let currentLang = 'en';
+        let currentStep = 1;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            populateCategorySelect();
+            setupLanguageSwitcher();
+            setupFormValidation();
+            setupFormNavigation();
+            
+            // Mobile menu toggle
+            const menuTrigger = document.querySelector('.menu-trigger');
+            const nav = document.querySelector('.nav');
+            
+            if (menuTrigger) {
+                menuTrigger.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        }
+
+        function populateCategorySelect() {
+            const select = document.getElementById('category');
+            
+            jobCategories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name[currentLang];
+                option.setAttribute('data-en', category.name.en);
+                option.setAttribute('data-de', category.name.de);
+                select.appendChild(option);
+            });
+        }
+
+        function setupLanguageSwitcher() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    
+                    // Update active state
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (element.hasAttribute('data-' + lang)) {
+                    const translation = element.getAttribute('data-' + lang);
+                    
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+            
+            // Update category options
+            const categorySelect = document.getElementById('category');
+            const options = categorySelect.querySelectorAll('option');
+            options.forEach((option, index) => {
+                if (index > 0) { // Skip the first "Select a category" option
+                    option.textContent = jobCategories[index-1].name[currentLang];
+                }
+            });
+        }
+
+        function setupFormNavigation() {
+            const nextButtons = document.querySelectorAll('.btn-next');
+            const prevButtons = document.querySelectorAll('.btn-prev');
+            
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (validateStep(currentStep)) {
+                        goToStep(currentStep + 1);
+                    }
+                });
+            });
+            
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    goToStep(currentStep - 1);
+                });
+            });
+        }
+
+        function goToStep(step) {
+            // Hide current step
+            document.getElementById('step' + currentStep).style.display = 'none';
+            
+            // Update progress indicator
+            document.querySelectorAll('.progress-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            document.querySelector('.progress-step[data-step="' + step + '"]').classList.add('active');
+            
+            // Show new step
+            document.getElementById('step' + step).style.display = 'block';
+            
+            currentStep = step;
+            
+            // If we're on the review step, populate the review
+            if (step === 4) {
+                populateReview();
+            }
+        }
+
+        function validateStep(step) {
+            let isValid = true;
+            
+            if (step === 1) {
+                // Validate job title, company name, job description, location, employment type
+                const requiredFields = [
+                    document.getElementById('jobTitle'),
+                    document.getElementById('companyName'),
+                    document.getElementById('jobDescription'),
+                    document.getElementById('location')
+                ];
+                
+                requiredFields.forEach(field => {
+                    if (!validateField(field)) {
+                        isValid = false;
+                    }
+                });
+                
+                // Special validation for employment type
+                const employmentTypeSelected = document.querySelector('input[name="employmentType"]:checked');
+                if (!employmentTypeSelected) {
+                    showError('employmentTypeError');
+                    isValid = false;
+                } else {
+                    hideError('employmentTypeError');
+                }
+            } else if (step === 2) {
+                // Validate category
+                const categoryField = document.getElementById('category');
+                if (!validateField(categoryField)) {
+                    isValid = false;
+                }
+            } else if (step === 3) {
+                // Validate email and terms
+                const emailField = document.getElementById('contactEmail');
+                if (!validateField(emailField)) {
+                    isValid = false;
+                }
+                
+                const termsField = document.getElementById('terms');
+                if (!termsField.checked) {
+                    showError('termsError');
+                    isValid = false;
+                } else {
+                    hideError('termsError');
+                }
+            }
+            
+            return isValid;
+        }
+
+        function setupFormValidation() {
+            const form = document.getElementById('postJobForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = currentLang === 'en' ? 'Posting...' : 'Wird veröffentlicht...';
+                    
+                    // Save job to localStorage (in a real app, this would go to a server)
+                    saveJob();
+                }
+            });
+            
+            // Real-time validation for required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                field.addEventListener('blur', function() {
+                    validateField(this);
+                });
+            });
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const form = document.getElementById('postJobForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+            
+            // Special validation for employment type
+            const employmentTypeSelected = document.querySelector('input[name="employmentType"]:checked');
+            if (!employmentTypeSelected) {
+                showError('employmentTypeError');
+                isValid = false;
+            } else {
+                hideError('employmentTypeError');
+            }
+            
+            // Special validation for terms
+            const termsField = document.getElementById('terms');
+            if (!termsField.checked) {
+                showError('termsError');
+                isValid = false;
+            } else {
+                hideError('termsError');
+            }
+            
+            return isValid;
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldId = field.id;
+            const errorElementId = fieldId + 'Error';
+            
+            if (field.type === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showError(errorElementId);
+                    field.classList.add('error');
+                    return false;
+                }
+            }
+            
+            if (value === '') {
+                showError(errorElementId);
+                field.classList.add('error');
+                return false;
+            }
+            
+            hideError(errorElementId);
+            field.classList.remove('error');
+            return true;
+        }
+
+        function showError(errorElementId) {
+            const errorElement = document.getElementById(errorElementId);
+            if (errorElement) {
+                errorElement.style.display = 'block';
+            }
+        }
+
+        function hideError(errorElementId) {
+            const errorElement = document.getElementById(errorElementId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        function populateReview() {
+            document.getElementById('reviewJobTitle').textContent = document.getElementById('jobTitle').value;
+            document.getElementById('reviewCompanyName').textContent = document.getElementById('companyName').value;
+            document.getElementById('reviewJobDescription').textContent = document.getElementById('jobDescription').value;
+            document.getElementById('reviewLocation').textContent = document.getElementById('location').value;
+            document.getElementById('reviewSalary').textContent = document.getElementById('salary').value || 'Not specified';
+            
+            const employmentType = document.querySelector('input[name="employmentType"]:checked');
+            document.getElementById('reviewEmploymentType').textContent = employmentType ? employmentType.value : 'Not specified';
+            
+            const categorySelect = document.getElementById('category');
+            document.getElementById('reviewCategory').textContent = categorySelect.options[categorySelect.selectedIndex].text;
+            
+            const workLocation = document.querySelector('input[name="workLocation"]:checked');
+            document.getElementById('reviewWorkLocation').textContent = workLocation ? workLocation.value : 'Not specified';
+            
+            document.getElementById('reviewDeadline').textContent = document.getElementById('deadline').value || 'Not specified';
+            document.getElementById('reviewContactEmail').textContent = document.getElementById('contactEmail').value;
+            document.getElementById('reviewApplyLink').textContent = document.getElementById('applyLink').value || 'Not specified';
+        }
+
+        function saveJob() {
+            const formData = {
+                jobTitle: document.getElementById('jobTitle').value,
+                companyName: document.getElementById('companyName').value,
+                jobDescription: document.getElementById('jobDescription').value,
+                location: document.getElementById('location').value,
+                salary: document.getElementById('salary').value,
+                employmentType: document.querySelector('input[name="employmentType"]:checked').value,
+                contactEmail: document.getElementById('contactEmail').value,
+                category: document.getElementById('category').value,
+                categoryName: document.getElementById('category').options[document.getElementById('category').selectedIndex].text,
+                workLocation: document.querySelector('input[name="workLocation"]:checked') ? 
+                    document.querySelector('input[name="workLocation"]:checked').value : '',
+                deadline: document.getElementById('deadline').value,
+                applyLink: document.getElementById('applyLink').value,
+                postedAt: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            // Save to localStorage (in a real app, this would be sent to a server)
+            let jobs = JSON.parse(localStorage.getItem('postedJobs') || '[]');
+            jobs.push(formData);
+            localStorage.setItem('postedJobs', JSON.stringify(jobs));
+            
+            // Show thank you message
+            showThankYouMessage();
+        }
+
+        function showThankYouMessage() {
+            document.getElementById('jobForm').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
