@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+  /* Your existing CSS remains the same */
   body { font-family: 'Poppins', sans-serif; background: #f4f4f4; margin: 0; padding: 0; color: #232d39; }
   .login-container { max-width: 450px; margin: 60px auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);}
   .login-container h2 { text-align: center; margin-bottom: 30px; }
@@ -34,6 +35,7 @@
   .message { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: 500; }
   .error-msg { background-color: rgba(211,47,47,0.1); color: #d32f2f; border: 1px solid rgba(211,47,47,0.2); }
   .success-msg { background-color: rgba(56,142,60,0.1); color: #388e3c; border: 1px solid rgba(56,142,60,0.2); }
+  .warning-msg { background-color: rgba(255,152,0,0.1); color: #f57c00; border: 1px solid rgba(255,152,0,0.2); }
 </style>
 </head>
 <body>
@@ -85,83 +87,214 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { firebaseConfig } from './firebase-config.js';
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  GoogleAuthProvider, 
+  FacebookAuthProvider, 
+  signInWithPopup, 
+  sendPasswordResetEmail, 
+  setPersistence, 
+  browserLocalPersistence, 
+  browserSessionPersistence 
+} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Replace with your actual Firebase config or keep the import if file exists
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "your-app-id"
+};
 
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
+try {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-const loginForm = document.getElementById("loginForm");
-const messageDiv = document.getElementById("message");
-const loginBtn = document.getElementById("loginBtn");
-const loginText = document.getElementById("loginText");
-const loginLoader = document.getElementById("loginLoader");
-const togglePasswordBtn = document.querySelector(".toggle-password");
-const passwordInput = document.getElementById("password");
-const googleLoginBtn = document.getElementById("googleLogin");
-const facebookLoginBtn = document.getElementById("facebookLogin");
-const rememberCheckbox = document.getElementById("remember");
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
-// Forgot password modal
-const modal = document.getElementById("forgotModal");
-const closeBtn = modal.querySelector(".close");
-const resetEmailInput = document.getElementById("resetEmail");
-const resetBtn = document.getElementById("resetBtn");
+  // Add scopes if needed
+  googleProvider.addScope('email');
+  googleProvider.addScope('profile');
+  facebookProvider.addScope('email');
 
-function showMessage(msg,type='error'){ messageDiv.innerHTML = `<div class="message ${type}-msg">${msg}</div>`; if(type==='success') setTimeout(()=>{messageDiv.innerHTML='';},5000); }
-function setLoading(isLoading){ loginBtn.disabled=isLoading; loginText.style.display=isLoading?'none':'block'; loginLoader.style.display=isLoading?'block':'none'; }
+  const loginForm = document.getElementById("loginForm");
+  const messageDiv = document.getElementById("message");
+  const loginBtn = document.getElementById("loginBtn");
+  const loginText = document.getElementById("loginText");
+  const loginLoader = document.getElementById("loginLoader");
+  const togglePasswordBtn = document.querySelector(".toggle-password");
+  const passwordInput = document.getElementById("password");
+  const googleLoginBtn = document.getElementById("googleLogin");
+  const facebookLoginBtn = document.getElementById("facebookLogin");
+  const rememberCheckbox = document.getElementById("remember");
 
-// Toggle password visibility
-togglePasswordBtn.addEventListener("click",()=>{ const type=passwordInput.type==='password'?'text':'password'; passwordInput.type=type; togglePasswordBtn.innerHTML=type==='password'?'<i class="far fa-eye"></i>':'<i class="far fa-eye-slash"></i>'; });
+  // Forgot password modal
+  const modal = document.getElementById("forgotModal");
+  const closeBtn = modal.querySelector(".close");
+  const resetEmailInput = document.getElementById("resetEmail");
+  const resetBtn = document.getElementById("resetBtn");
 
-// Email/Password login
-loginForm.addEventListener("submit",async(e)=>{
-  e.preventDefault();
-  const email = loginForm.email.value.trim();
-  const password = loginForm.password.value;
-  const rememberMe = rememberCheckbox.checked;
-  if(!email||!password){ showMessage("Please fill all fields / Bitte alle Felder ausfüllen"); return; }
-  setLoading(true);
-  try{
-    await setPersistence(auth,rememberMe?browserLocalPersistence:browserSessionPersistence);
-    const userCredential = await signInWithEmailAndPassword(auth,email,password);
-    if(!userCredential.user.emailVerified){ showMessage("Please verify your email / Bitte E-Mail verifizieren","warning"); }
-    else{ showMessage("Login successful! Redirecting... / Anmeldung erfolgreich!","success"); setTimeout(()=>window.location.href="index.html",1500); }
-  }catch(err){ showMessage(err.message); }finally{ setLoading(false); }
-});
+  function showMessage(msg, type = 'error') { 
+    messageDiv.innerHTML = `<div class="message ${type}-msg">${msg}</div>`; 
+    if(type === 'success') setTimeout(() => { messageDiv.innerHTML = ''; }, 5000); 
+  }
 
-// Google login
-googleLoginBtn.addEventListener("click", async()=>{
-  try{
-    googleLoginBtn.disabled=true;
-    const result=await signInWithPopup(auth,googleProvider);
-    showMessage("Google login successful! Redirecting...","success");
-    setTimeout(()=>window.location.href="index.html",1500);
-  }catch(err){ showMessage(err.message); }finally{ googleLoginBtn.disabled=false; }
-});
+  function setLoading(isLoading) { 
+    loginBtn.disabled = isLoading; 
+    loginText.style.display = isLoading ? 'none' : 'block'; 
+    loginLoader.style.display = isLoading ? 'block' : 'none'; 
+  }
 
-// Facebook login
-facebookLoginBtn.addEventListener("click", async()=>{
-  try{
-    facebookLoginBtn.disabled=true;
-    const result=await signInWithPopup(auth,facebookProvider);
-    showMessage("Facebook login successful! Redirecting...","success");
-    setTimeout(()=>window.location.href="index.html",1500);
-  }catch(err){ showMessage(err.message); }finally{ facebookLoginBtn.disabled=false; }
-});
+  // Toggle password visibility
+  togglePasswordBtn.addEventListener("click", () => { 
+    const type = passwordInput.type === 'password' ? 'text' : 'password'; 
+    passwordInput.type = type; 
+    togglePasswordBtn.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>'; 
+  });
 
-// Forgot password modal
-document.querySelector(".forgot-password").addEventListener("click",()=>{ modal.style.display="flex"; resetEmailInput.focus(); });
-closeBtn.addEventListener("click",()=>{ modal.style.display="none"; resetEmailInput.value=''; });
-window.addEventListener("click",(e)=>{ if(e.target==modal){ modal.style.display="none"; resetEmailInput.value=''; } });
-resetBtn.addEventListener("click",async()=>{
-  const email=resetEmailInput.value.trim();
-  if(!email){ showMessage("Enter email / Bitte E-Mail eingeben"); return; }
-  try{ await sendPasswordResetEmail(auth,email); showMessage("Reset email sent / E-Mail gesendet","success"); modal.style.display="none"; }catch(err){ showMessage(err.message); }
-});
+  // Email/Password login
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = loginForm.email.value.trim();
+    const password = loginForm.password.value;
+    const rememberMe = rememberCheckbox.checked;
+    
+    if(!email || !password) { 
+      showMessage("Please fill all fields / Bitte alle Felder ausfüllen"); 
+      return; 
+    }
+    
+    setLoading(true);
+    try {
+      await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      
+      if(!userCredential.user.emailVerified) { 
+        showMessage("Please verify your email / Bitte E-Mail verifizieren", "warning"); 
+      } else { 
+        showMessage("Login successful! Redirecting... / Anmeldung erfolgreich!", "success"); 
+        setTimeout(() => window.location.href = "index.html", 1500); 
+      }
+    } catch(err) { 
+      // More specific error messages
+      let errorMessage = err.message;
+      if (err.code === 'auth/invalid-email') {
+        errorMessage = "Invalid email address / Ungültige E-Mail-Adresse";
+      } else if (err.code === 'auth/user-not-found') {
+        errorMessage = "User not found / Benutzer nicht gefunden";
+      } else if (err.code === 'auth/wrong-password') {
+        errorMessage = "Wrong password / Falsches Passwort";
+      } else if (err.code === 'auth/too-many-requests') {
+        errorMessage = "Too many attempts. Try again later / Zu viele Versuche. Bitte später erneut versuchen";
+      }
+      showMessage(errorMessage); 
+    } finally { 
+      setLoading(false); 
+    }
+  });
+
+  // Google login with better error handling
+  googleLoginBtn.addEventListener("click", async () => {
+    try {
+      googleLoginBtn.disabled = true;
+      googleLoginBtn.innerHTML = '<i class="fab fa-google"></i> Connecting...';
+      
+      const result = await signInWithPopup(auth, googleProvider);
+      showMessage("Google login successful! Redirecting...", "success");
+      setTimeout(() => window.location.href = "index.html", 1500);
+    } catch(err) { 
+      let errorMessage = err.message;
+      
+      // Handle specific OAuth errors
+      if (err.code === 'auth/popup-blocked') {
+        errorMessage = "Popup blocked. Please allow popups for this site / Popup blockiert. Bitte Popups erlauben";
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = "Login cancelled / Anmeldung abgebrochen";
+      } else if (err.code === 'auth/unauthorized-domain') {
+        errorMessage = "Domain not authorized. Check Firebase console settings / Domain nicht autorisiert. Firebase Einstellungen prüfen";
+      } else if (err.code === 'auth/operation-not-allowed') {
+        errorMessage = "Google login not enabled. Check Firebase Auth settings / Google Login nicht aktiviert. Firebase Einstellungen prüfen";
+      }
+      
+      showMessage(errorMessage); 
+    } finally { 
+      googleLoginBtn.disabled = false;
+      googleLoginBtn.innerHTML = '<i class="fab fa-google"></i> Google';
+    }
+  });
+
+  // Facebook login with better error handling
+  facebookLoginBtn.addEventListener("click", async () => {
+    try {
+      facebookLoginBtn.disabled = true;
+      facebookLoginBtn.innerHTML = '<i class="fab fa-facebook-f"></i> Connecting...';
+      
+      const result = await signInWithPopup(auth, facebookProvider);
+      showMessage("Facebook login successful! Redirecting...", "success");
+      setTimeout(() => window.location.href = "index.html", 1500);
+    } catch(err) { 
+      let errorMessage = err.message;
+      
+      if (err.code === 'auth/popup-blocked') {
+        errorMessage = "Popup blocked. Please allow popups for this site / Popup blockiert. Bitte Popups erlauben";
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = "Login cancelled / Anmeldung abgebrochen";
+      } else if (err.code === 'auth/unauthorized-domain') {
+        errorMessage = "Domain not authorized. Check Firebase console settings / Domain nicht autorisiert. Firebase Einstellungen prüfen";
+      } else if (err.code === 'auth/operation-not-allowed') {
+        errorMessage = "Facebook login not enabled. Check Firebase Auth settings / Facebook Login nicht aktiviert. Firebase Einstellungen prüfen";
+      } else if (err.code === 'auth/account-exists-with-different-credential') {
+        errorMessage = "Account exists with different credential / Konto existiert mit anderen Anmeldedaten";
+      }
+      
+      showMessage(errorMessage); 
+    } finally { 
+      facebookLoginBtn.disabled = false;
+      facebookLoginBtn.innerHTML = '<i class="fab fa-facebook-f"></i> Facebook';
+    }
+  });
+
+  // Forgot password modal
+  document.querySelector(".forgot-password").addEventListener("click", () => { 
+    modal.style.display = "flex"; 
+    resetEmailInput.focus(); 
+  });
+  
+  closeBtn.addEventListener("click", () => { 
+    modal.style.display = "none"; 
+    resetEmailInput.value = ''; 
+  });
+  
+  window.addEventListener("click", (e) => { 
+    if(e.target == modal) { 
+      modal.style.display = "none"; 
+      resetEmailInput.value = ''; 
+    } 
+  });
+  
+  resetBtn.addEventListener("click", async () => {
+    const email = resetEmailInput.value.trim();
+    if(!email) { 
+      showMessage("Enter email / Bitte E-Mail eingeben"); 
+      return; 
+    }
+    try { 
+      await sendPasswordResetEmail(auth, email); 
+      showMessage("Reset email sent / E-Mail gesendet", "success"); 
+      modal.style.display = "none"; 
+    } catch(err) { 
+      showMessage(err.message); 
+    }
+  });
+
+} catch (error) {
+  console.error('Firebase initialization error:', error);
+  showMessage('Firebase initialization failed. Please check configuration.', 'error');
+}
 </script>
 
 </body>
