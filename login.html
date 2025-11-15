@@ -1,183 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - JobsPerHourBerlin.de</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #ed563b;
-      --primary-hover: #f9735b;
-      --text-color: #232d39;
-      --bg-color: #f4f4f4;
-      --white: #fff;
-      --border-color: #ddd;
-      --error-color: #d32f2f;
-      --success-color: #388e3c;
-      --warning-color: #f57c00;
-    }
-    body {
-      margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color);
-    }
-    .login-container {
-      max-width: 400px; margin: 80px auto; padding: 40px; background: var(--white); border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    }
-    .login-container h2 { text-align: center; margin-bottom: 30px; }
-    .form-group { margin-bottom: 20px; }
-    .login-container input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 16px; }
-    .login-container button { width: 100%; padding: 12px; background: var(--primary-color); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s; }
-    .login-container button:hover { background: var(--primary-hover); }
-    .social-btn { display: flex; align-items: center; justify-content: center; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; margin-bottom: 10px; font-weight: 500; }
-    .social-btn i { margin-right: 8px; }
-    .google-btn { color: #DB4437; border-color: #DB4437; }
-    .facebook-btn { color: #4267B2; border-color: #4267B2; }
-    .message { padding: 10px; margin-bottom: 20px; border-radius: 8px; text-align: center; font-weight: 500; }
-    .error-msg { background: rgba(211,47,47,0.1); color: var(--error-color); border: 1px solid rgba(211,47,47,0.2); }
-    .success-msg { background: rgba(56,142,60,0.1); color: var(--success-color); border: 1px solid rgba(56,142,60,0.2); }
-    .forgot-password { display: block; text-align: right; font-size: 14px; cursor: pointer; color: var(--primary-color); margin-bottom: 20px; }
-    .signup-link { display: block; text-align: center; margin-top: 20px; color: var(--primary-color); text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - JobsPerHourBerlin.de</title>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body { font-family: 'Poppins', sans-serif; background: #f4f4f4; margin: 0; padding: 0; color: #232d39; }
+  .login-container { max-width: 450px; margin: 60px auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);}
+  .login-container h2 { text-align: center; margin-bottom: 30px; }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; margin-bottom: 8px; font-weight: 500; }
+  input { width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+  .password-input-container { position: relative; }
+  .toggle-password { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #777; cursor: pointer; font-size: 16px; }
+  .remember-forgot { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
+  .remember-me input { margin-right: 8px; }
+  .forgot-password { color: #ed563b; cursor: pointer; }
+  button { width: 100%; padding: 14px; background: #ed563b; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 600; display: flex; justify-content: center; align-items: center; }
+  button:hover { background-color: #f9735b; }
+  .button-loader { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; margin-right: 10px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .divider { display: flex; align-items: center; margin: 25px 0; }
+  .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid #ddd; }
+  .divider span { padding: 0 15px; color: #777; font-size: 14px; }
+  .social-login { display: flex; gap: 15px; margin-bottom: 25px; }
+  .social-btn { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s; font-size: 14px; font-weight: 500; }
+  .social-btn:hover { background-color: #f9f9f9; }
+  .social-btn i { margin-right: 8px; font-size: 18px; }
+  .google-btn { color: #DB4437; border-color: #DB4437; }
+  .facebook-btn { color: #4267B2; border-color: #4267B2; }
+  .message { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: 500; }
+  .error-msg { background-color: rgba(211,47,47,0.1); color: #d32f2f; border: 1px solid rgba(211,47,47,0.2); }
+  .success-msg { background-color: rgba(56,142,60,0.1); color: #388e3c; border: 1px solid rgba(56,142,60,0.2); }
+</style>
 </head>
 <body>
 
 <div class="login-container">
   <h2>Login / Anmelden</h2>
-
   <div id="message"></div>
-
   <form id="loginForm" novalidate>
     <div class="form-group">
-      <input type="email" id="email" placeholder="Email / E-Mail-Adresse" required autocomplete="email">
+      <label for="email">Email / E-Mail-Adresse</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
     </div>
     <div class="form-group">
-      <input type="password" id="password" placeholder="Password / Passwort" required autocomplete="current-password">
+      <label for="password">Password / Passwort</label>
+      <div class="password-input-container">
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+        <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+      </div>
     </div>
-    <span class="forgot-password" id="forgotPassword">Forgot Password? / Passwort vergessen?</span>
-    <button type="submit" id="loginBtn">Login / Anmelden</button>
+    <div class="remember-forgot">
+      <div class="remember-me">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember me / Angemeldet bleiben</label>
+      </div>
+      <span class="forgot-password">Forgot Password? / Passwort vergessen?</span>
+    </div>
+    <button type="submit" id="loginBtn">
+      <span id="loginText">Login / Anmelden</span>
+      <div id="loginLoader" class="button-loader" style="display: none;"></div>
+    </button>
   </form>
-
-  <div class="divider" style="text-align:center; margin: 20px 0;">Or / Oder</div>
-
-  <div>
-    <div class="social-btn google-btn" id="googleLogin"><i class="fab fa-google"></i> Google</div>
-    <div class="social-btn facebook-btn" id="facebookLogin"><i class="fab fa-facebook-f"></i> Facebook</div>
+  <div class="divider"><span>Or / Oder</span></div>
+  <div class="social-login">
+    <button class="social-btn google-btn" id="googleLogin"><i class="fab fa-google"></i> Google</button>
+    <button class="social-btn facebook-btn" id="facebookLogin"><i class="fab fa-facebook-f"></i> Facebook</button>
   </div>
-
   <a href="signup.html" class="signup-link">Don't have an account? Sign Up / Noch kein Konto? Registrieren</a>
 </div>
 
 <!-- Forgot Password Modal -->
-<div id="forgotModal" style="display:none; position:fixed; z-index:1000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
-  <div style="background:#fff; margin:15% auto; padding:30px; border-radius:12px; max-width:400px; text-align:center; position:relative;">
-    <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:22px;">&times;</span>
+<div id="forgotModal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:30px;border-radius:12px;width:90%;max-width:450px;position:relative;">
+    <span class="close" style="position:absolute;right:15px;top:10px;font-size:28px;cursor:pointer;">&times;</span>
     <h3>Reset Password / Passwort zurücksetzen</h3>
-    <input type="email" id="resetEmail" placeholder="Enter your email / E-Mail-Adresse eingeben" style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:1px solid #ddd;">
-    <button id="resetBtn" style="padding:12px; width:100%; border:none; border-radius:8px; background:#ed563b; color:#fff; cursor:pointer;">Send Reset Email / E-Mail senden</button>
+    <input type="email" id="resetEmail" placeholder="Enter your email / E-Mail-Adresse" style="width:100%;padding:12px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;">
+    <button id="resetBtn">Send Reset Email / E-Mail senden</button>
   </div>
 </div>
 
-<!-- Firebase SDK -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, setPersistence, browserSessionPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { firebaseConfig } from './firebase-config.js';
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
-    authDomain: "job-board-da315.firebaseapp.com",
-    projectId: "job-board-da315",
-    storageBucket: "job-board-da315.firebasestorage.app",
-    messagingSenderId: "908048807079",
-    appId: "1:908048807079:web:58f70af2e706f27684d782",
-    measurementId: "G-FHYPY906DE"
-  };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-  const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider();
+const loginForm = document.getElementById("loginForm");
+const messageDiv = document.getElementById("message");
+const loginBtn = document.getElementById("loginBtn");
+const loginText = document.getElementById("loginText");
+const loginLoader = document.getElementById("loginLoader");
+const togglePasswordBtn = document.querySelector(".toggle-password");
+const passwordInput = document.getElementById("password");
+const googleLoginBtn = document.getElementById("googleLogin");
+const facebookLoginBtn = document.getElementById("facebookLogin");
+const rememberCheckbox = document.getElementById("remember");
 
-  const loginForm = document.getElementById("loginForm");
-  const messageDiv = document.getElementById("message");
-  const googleLoginBtn = document.getElementById("googleLogin");
-  const facebookLoginBtn = document.getElementById("facebookLogin");
-  const forgotPassword = document.getElementById("forgotPassword");
-  const forgotModal = document.getElementById("forgotModal");
-  const closeModal = document.getElementById("closeModal");
-  const resetEmail = document.getElementById("resetEmail");
-  const resetBtn = document.getElementById("resetBtn");
+// Forgot password modal
+const modal = document.getElementById("forgotModal");
+const closeBtn = modal.querySelector(".close");
+const resetEmailInput = document.getElementById("resetEmail");
+const resetBtn = document.getElementById("resetBtn");
 
-  function showMessage(msg, type='error') {
-    messageDiv.innerHTML = `<div class="message ${type}-msg">${msg}</div>`;
-    if(type==='success'){setTimeout(()=>{messageDiv.innerHTML='';},5000);}
-  }
+function showMessage(msg,type='error'){ messageDiv.innerHTML = `<div class="message ${type}-msg">${msg}</div>`; if(type==='success') setTimeout(()=>{messageDiv.innerHTML='';},5000); }
+function setLoading(isLoading){ loginBtn.disabled=isLoading; loginText.style.display=isLoading?'none':'block'; loginLoader.style.display=isLoading?'block':'none'; }
 
-  // Email/Password login
-  loginForm.addEventListener("submit", async e=>{
-    e.preventDefault();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    if(!email || !password){ showMessage("Please fill in all fields / Bitte alle Felder ausfüllen"); return; }
+// Toggle password visibility
+togglePasswordBtn.addEventListener("click",()=>{ const type=passwordInput.type==='password'?'text':'password'; passwordInput.type=type; togglePasswordBtn.innerHTML=type==='password'?'<i class="far fa-eye"></i>':'<i class="far fa-eye-slash"></i>'; });
 
-    try{
-      await setPersistence(auth, browserLocalPersistence);
-      const userCredential = await signInWithEmailAndPassword(auth,email,password);
-      const user = userCredential.user;
-      if(!user.emailVerified){ showMessage("Verify your email / Bitte E-Mail bestätigen"); return; }
-      showMessage("Login successful! Redirecting... / Anmeldung erfolgreich!", "success");
-      setTimeout(()=>window.location.href="index.html",1500);
-    }catch(error){
-      console.error(error);
-      let msg = "Login failed / Anmeldung fehlgeschlagen";
-      if(error.code==="auth/user-not-found") msg="User not found / Benutzer nicht gefunden";
-      if(error.code==="auth/wrong-password") msg="Incorrect password / Falsches Passwort";
-      showMessage(msg);
-    }
-  });
+// Email/Password login
+loginForm.addEventListener("submit",async(e)=>{
+  e.preventDefault();
+  const email = loginForm.email.value.trim();
+  const password = loginForm.password.value;
+  const rememberMe = rememberCheckbox.checked;
+  if(!email||!password){ showMessage("Please fill all fields / Bitte alle Felder ausfüllen"); return; }
+  setLoading(true);
+  try{
+    await setPersistence(auth,rememberMe?browserLocalPersistence:browserSessionPersistence);
+    const userCredential = await signInWithEmailAndPassword(auth,email,password);
+    if(!userCredential.user.emailVerified){ showMessage("Please verify your email / Bitte E-Mail verifizieren","warning"); }
+    else{ showMessage("Login successful! Redirecting... / Anmeldung erfolgreich!","success"); setTimeout(()=>window.location.href="index.html",1500); }
+  }catch(err){ showMessage(err.message); }finally{ setLoading(false); }
+});
 
-  // Google login
-  googleLoginBtn.addEventListener("click", async ()=>{
-    try{
-      const result = await signInWithPopup(auth, googleProvider);
-      showMessage("Google login successful! Redirecting... / Google-Anmeldung erfolgreich!", "success");
-      setTimeout(()=>window.location.href="index.html",1500);
-    }catch(error){
-      console.error(error);
-      showMessage("Google login failed / Google-Anmeldung fehlgeschlagen");
-    }
-  });
+// Google login
+googleLoginBtn.addEventListener("click", async()=>{
+  try{
+    googleLoginBtn.disabled=true;
+    const result=await signInWithPopup(auth,googleProvider);
+    showMessage("Google login successful! Redirecting...","success");
+    setTimeout(()=>window.location.href="index.html",1500);
+  }catch(err){ showMessage(err.message); }finally{ googleLoginBtn.disabled=false; }
+});
 
-  // Facebook login
-  facebookLoginBtn.addEventListener("click", async ()=>{
-    try{
-      const result = await signInWithPopup(auth, facebookProvider);
-      showMessage("Facebook login successful! Redirecting... / Facebook-Anmeldung erfolgreich!", "success");
-      setTimeout(()=>window.location.href="index.html",1500);
-    }catch(error){
-      console.error(error);
-      showMessage("Facebook login failed / Facebook-Anmeldung fehlgeschlagen");
-    }
-  });
+// Facebook login
+facebookLoginBtn.addEventListener("click", async()=>{
+  try{
+    facebookLoginBtn.disabled=true;
+    const result=await signInWithPopup(auth,facebookProvider);
+    showMessage("Facebook login successful! Redirecting...","success");
+    setTimeout(()=>window.location.href="index.html",1500);
+  }catch(err){ showMessage(err.message); }finally{ facebookLoginBtn.disabled=false; }
+});
 
-  // Forgot password modal
-  forgotPassword.addEventListener("click", ()=>{ forgotModal.style.display="block"; resetEmail.focus(); });
-  closeModal.addEventListener("click", ()=>{ forgotModal.style.display="none"; });
-  window.addEventListener("click", e=>{ if(e.target==forgotModal) forgotModal.style.display="none"; });
-
-  resetBtn.addEventListener("click", async ()=>{
-    const email = resetEmail.value.trim();
-    if(!email){ showMessage("Enter your email / Bitte E-Mail eingeben"); return; }
-    try{
-      await sendPasswordResetEmail(auth,email);
-      showMessage("Password reset email sent / Passwort zurücksetzen E-Mail gesendet", "success");
-      forgotModal.style.display="none";
-    }catch(error){
-      console.error(error);
-      showMessage("Error sending reset email / Fehler beim Senden der E-Mail");
-    }
-  });
+// Forgot password modal
+document.querySelector(".forgot-password").addEventListener("click",()=>{ modal.style.display="flex"; resetEmailInput.focus(); });
+closeBtn.addEventListener("click",()=>{ modal.style.display="none"; resetEmailInput.value=''; });
+window.addEventListener("click",(e)=>{ if(e.target==modal){ modal.style.display="none"; resetEmailInput.value=''; } });
+resetBtn.addEventListener("click",async()=>{
+  const email=resetEmailInput.value.trim();
+  if(!email){ showMessage("Enter email / Bitte E-Mail eingeben"); return; }
+  try{ await sendPasswordResetEmail(auth,email); showMessage("Reset email sent / E-Mail gesendet","success"); modal.style.display="none"; }catch(err){ showMessage(err.message); }
+});
 </script>
 
 </body>
