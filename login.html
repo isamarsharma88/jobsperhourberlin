@@ -22,7 +22,6 @@
     min-height: 100vh;
   }
 
-  /* Header Banner Styles */
   .header-banner {
     background: linear-gradient(135deg, #ed563b 0%, #f9735b 100%);
     color: white;
@@ -80,7 +79,6 @@
     margin-top: 4px;
   }
 
-  /* Main Content Styles */
   .main-container {
     display: flex;
     min-height: calc(100vh - 120px);
@@ -328,7 +326,6 @@
     border: 1px solid rgba(255,152,0,0.2); 
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     .banner-content {
       flex-direction: column;
@@ -367,7 +364,6 @@
 </head>
 <body>
 
-<!-- Clean Header Banner -->
 <header class="header-banner">
   <div class="banner-content">
     <div class="logo-section">
@@ -382,7 +378,6 @@
   </div>
 </header>
 
-<!-- Main Content -->
 <div class="main-container">
   <div class="login-container">
     <h2>Login / Anmelden</h2>
@@ -444,22 +439,24 @@ import {
   browserSessionPersistence 
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-// Your Firebase configuration
+// Firebase configuration - REPLACE WITH YOUR ACTUAL CONFIG FROM FIREBASE CONSOLE
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-project.firebaseapp.com",
+  apiKey: "your-actual-api-key-here",
+  authDomain: "your-project-id.firebaseapp.com",
   projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
+  storageBucket: "your-project-id.appspot.com",
+  messagingSenderId: "your-sender-id",
   appId: "your-app-id"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
+// DOM elements
 const loginForm = document.getElementById("loginForm");
 const messageDiv = document.getElementById("message");
 const loginBtn = document.getElementById("loginBtn");
@@ -628,6 +625,5 @@ resetBtn.addEventListener("click", async () => {
   }
 });
 </script>
-
 </body>
 </html>
