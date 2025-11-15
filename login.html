@@ -5,254 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - JobsPerHourBerlin.de</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
+    /* --- Same CSS you pasted above --- */
+    :root {
+      --primary-color: #ed563b;
+      --primary-hover: #f9735b;
+      --text-color: #232d39;
+      --bg-color: #f4f4f4;
+      --white: #fff;
+      --border-color: #ddd;
+      --error-color: #d32f2f;
+      --success-color: #388e3c;
+      --warning-color: #f57c00;
+      --info-color: #1976d2;
     }
-
-    .login-container {
-      max-width: 400px;
-      margin: 80px auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #232d39;
-    }
-
-    .login-container label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background-color:var(--bg-color);margin:0;padding:0;line-height:1.6;color:var(--text-color)}
+    .login-container{max-width:450px;margin:60px auto;background:var(--white);padding:40px;border-radius:12px;box-shadow:0 5px 25px rgba(0,0,0,0.1)}
+    .login-container h2{text-align:center;margin-bottom:30px;color:var(--text-color);font-weight:600}
+    .form-group{margin-bottom:20px}
+    .login-container label{display:block;margin-bottom:8px;font-weight:500}
     .login-container input[type="email"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .login-container button {
-      width: 100%;
-      padding: 12px;
-      background-color: #ed563b;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .login-container button:hover {
-      background-color: #f9735b;
-    }
-
-    .login-container a {
-      display: block;
-      text-align: center;
-      margin-top: 15px;
-      color: #ed563b;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .login-container a:hover {
-      text-decoration: underline;
-    }
-
-    .error-msg {
-      color: red;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .success-msg {
-      color: green;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 15% auto;
-      padding: 30px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .modal-content input[type="email"] {
-      margin-bottom: 15px;
-    }
-
-    .modal-content button {
-      margin-top: 10px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #000;
-    }
+    .login-container input[type="password"],
+    .login-container input[type="text"]{width:100%;padding:14px 16px;border:1px solid var(--border-color);border-radius:8px;font-size:16px;transition:border 0.3s,box-shadow 0.3s}
+    .login-container input:focus{outline:none;border-color:var(--primary-color);box-shadow:0 0 0 3px rgba(237,86,59,0.2)}
+    .password-input-container{position:relative}
+    .toggle-password{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#777;cursor:pointer;font-size:16px}
+    .remember-forgot{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:14px}
+    .remember-me{display:flex;align-items:center}
+    .remember-me input{margin-right:8px}
+    .forgot-password{color:var(--primary-color);text-decoration:none;cursor:pointer}
+    .forgot-password:hover{text-decoration:underline}
+    .login-container button{width:100%;padding:14px;background-color:var(--primary-color);color:var(--white);border:none;border-radius:8px;font-size:16px;cursor:pointer;text-transform:uppercase;font-weight:600;transition:background-color 0.3s,transform 0.2s;display:flex;justify-content:center;align-items:center}
+    .login-container button:hover{background-color:var(--primary-hover)}
+    .login-container button:active{transform:scale(0.98)}
+    .login-container button:disabled{background-color:#cccccc;cursor:not-allowed;transform:none}
+    .button-loader{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:var(--white);animation:spin 1s ease-in-out infinite;margin-right:10px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .login-container .signup-link{display:block;text-align:center;margin-top:25px;color:var(--primary-color);text-decoration:none;cursor:pointer}
+    .login-container .signup-link:hover{text-decoration:underline}
+    .divider{display:flex;align-items:center;margin:25px 0}
+    .divider::before,.divider::after{content:"";flex:1;border-bottom:1px solid var(--border-color)}
+    .divider span{padding:0 15px;color:#777;font-size:14px}
+    .social-login{display:flex;gap:15px;margin-bottom:25px}
+    .social-btn{flex:1;padding:12px;border:1px solid var(--border-color);border-radius:8px;background:var(--white);cursor:pointer;display:flex;justify-content:center;align-items:center;transition:background-color 0.3s;font-size:14px;font-weight:500}
+    .social-btn:hover{background-color:#f9f9f9}
+    .social-btn i{margin-right:8px;font-size:18px}
+    .google-btn{color:#DB4437;border-color:#DB4437}
+    .google-btn:hover{background-color:rgba(219,68,55,0.1)}
+    .facebook-btn{color:#4267B2;border-color:#4267B2}
+    .facebook-btn:hover{background-color:rgba(66,103,178,0.1)}
+    .message{padding:12px 16px;border-radius:8px;margin-bottom:20px;text-align:center;font-weight:500}
+    .error-msg{background-color:rgba(211,47,47,0.1);color:var(--error-color);border:1px solid rgba(211,47,47,0.2)}
+    .success-msg{background-color:rgba(56,142,60,0.1);color:var(--success-color);border:1px solid rgba(56,142,60,0.2)}
+    .warning-msg{background-color:rgba(245,124,0,0.1);color:var(--warning-color);border:1px solid rgba(245,124,0,0.2)}
+    .info-msg{background-color:rgba(25,118,210,0.1);color:var(--info-color);border:1px solid rgba(25,118,210,0.2)}
+    .setup-instructions{background-color:#fff8e1;border:1px solid #ffd54f;border-radius:8px;padding:15px;margin:15px 0;font-size:14px}
+    .setup-instructions h4{margin-top:0;color:#ff8f00}
+    .setup-instructions ol{padding-left:20px;margin-bottom:10px}
+    .setup-instructions li{margin-bottom:8px}
+    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.5);animation:fadeIn 0.3s}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-content{background-color:var(--white);margin:15% auto;padding:30px;border-radius:12px;width:90%;max-width:450px;box-shadow:0 5px 25px rgba(0,0,0,0.2);animation:slideIn 0.3s}
+    @keyframes slideIn{from{transform:translateY(-50px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .modal-content h3{margin-top:0;margin-bottom:20px;text-align:center}
+    .modal-content input[type="email"]{margin-bottom:20px}
+    .modal-content button{margin-top:10px}
+    .close{color:#aaa;float:right;font-size:28px;font-weight:bold;cursor:pointer;line-height:1}
+    .close:hover{color:#000}
+    @media(max-width:480px){.login-container{margin:20px;padding:25px}.remember-forgot{flex-direction:column;align-items:flex-start;gap:10px}.social-login{flex-direction:column}}
   </style>
 </head>
 <body>
 
-  <div class="login-container">
-    <h2>Login / Anmelden</h2>
-    <div id="message"></div>
-    <form id="loginForm">
+<div class="login-container">
+  <h2>Login / Anmelden</h2>
+  <div id="message"></div>
+
+  <!-- Setup Instructions -->
+  <div id="setupInstructions" class="setup-instructions" style="display:none;">
+    <h4>🔧 Domain Configuration Required / Domain-Konfiguration erforderlich</h4>
+    <p>Add this domain in Firebase Console → Authentication → Authorized domains to enable social login.</p>
+  </div>
+
+  <form id="loginForm" novalidate>
+    <div class="form-group">
       <label for="email">Email / E-Mail-Adresse</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="password">Password / Passwort</label>
-      <input type="password" id="password" name="password" required>
-
-      <button type="submit">Login / Anmelden</button>
-
-      <a class="forgot-password">Forgot Password? / Passwort vergessen?</a>
-      <a href="signup.html">Don’t have an account? Sign Up</a>
-    </form>
-  </div>
-
-  <!-- Forgot Password Modal -->
-  <div id="forgotModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Reset Password / Passwort zurücksetzen</h3>
-      <input type="email" id="resetEmail" placeholder="Enter your email / E-Mail-Adresse eingeben">
-      <button id="resetBtn">Send Reset Email / E-Mail senden</button>
+      <input type="email" id="email" name="email" required autocomplete="email">
     </div>
+
+    <div class="form-group">
+      <label for="password">Password / Passwort</label>
+      <div class="password-input-container">
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+        <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="far fa-eye"></i></button>
+      </div>
+    </div>
+
+    <div class="remember-forgot">
+      <div class="remember-me">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember me / Angemeldet bleiben</label>
+      </div>
+      <a class="forgot-password" tabindex="0" role="button">Forgot Password? / Passwort vergessen?</a>
+    </div>
+
+    <button type="submit" id="loginBtn">
+      <span id="loginText">Login / Anmelden</span>
+      <div id="loginLoader" class="button-loader" style="display:none"></div>
+    </button>
+  </form>
+
+  <div class="divider"><span>Or / Oder</span></div>
+
+  <div class="social-login">
+    <button class="social-btn google-btn" id="googleLogin"><i class="fab fa-google"></i> Google</button>
+    <button class="social-btn facebook-btn" id="facebookLogin"><i class="fab fa-facebook-f"></i> Facebook</button>
   </div>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+  <a href="signup.html" class="signup-link">Don't have an account? Sign Up / Noch kein Konto? Registrieren</a>
+</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
-      authDomain: "job-board-da315.firebaseapp.com",
-      projectId: "job-board-da315",
-      storageBucket: "job-board-da315.firebasestorage.app",
-      messagingSenderId: "908048807079",
-      appId: "1:908048807079:web:58f70af2e706f27684d782",
-      measurementId: "G-FHYPY906DE"
-    };
+<!-- Forgot Password Modal -->
+<div id="forgotModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <span class="close" tabindex="0" role="button" aria-label="Close modal">&times;</span>
+    <h3 id="modalTitle">Reset Password / Passwort zurücksetzen</h3>
+    <input type="email" id="resetEmail" placeholder="Enter your email / E-Mail-Adresse eingeben" autocomplete="email">
+    <button id="resetBtn">Send Reset Email / E-Mail senden</button>
+  </div>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    signInWithPopup,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence
+  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-    const loginForm = document.getElementById("loginForm");
-    const messageDiv = document.getElementById("message");
-    const forgotLink = document.querySelector(".forgot-password");
+  const firebaseConfig = {
+    apiKey: "AIzaSyCNF0tg_Jrt-8iL8Azx2rY8zCVdaJU2l9g",
+    authDomain: "jobsperhourberlin.de",
+    projectId: "job-board-da315",
+    storageBucket: "job-board-da315.firebasestorage.app",
+    messagingSenderId: "908048807079",
+    appId: "1:908048807079:web:58f70af2e706f27684d782",
+    measurementId: "G-FHYPY906DE"
+  };
 
-    // Modal Elements
-    const modal = document.getElementById("forgotModal");
-    const closeBtn = document.querySelector(".close");
-    const resetEmailInput = document.getElementById("resetEmail");
-    const resetBtn = document.getElementById("resetBtn");
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    // LOGIN FUNCTION
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = loginForm.email.value;
-      const password = loginForm.password.value;
+  const googleProvider = new GoogleAuthProvider();
+  googleProvider.addScope('email'); googleProvider.addScope('profile'); googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          if (!user.emailVerified) {
-            messageDiv.innerHTML = `<p class="error-msg">Please verify your email before logging in / Bitte bestätigen Sie Ihre E-Mail-Adresse.</p>`;
-          } else {
-            messageDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
-            setTimeout(() => window.location.href = "index.html", 1500);
-          }
-        })
-        .catch((error) => {
-          let errorMessage = "";
-          if (error.code === "auth/user-not-found") 
-            errorMessage = "User not found / Benutzer nicht gefunden";
-          else if (error.code === "auth/wrong-password") 
-            errorMessage = "Incorrect password / Falsches Passwort";
-          else 
-            errorMessage = error.message;
-          messageDiv.innerHTML = `<p class="error-msg">${errorMessage}</p>`;
-        });
-    });
+  const facebookProvider = new FacebookAuthProvider();
+  facebookProvider.addScope('email'); facebookProvider.addScope('public_profile'); facebookProvider.setCustomParameters({ display: 'popup' });
 
-    // OPEN MODAL
-    forgotLink.addEventListener("click", () => {
-      modal.style.display = "block";
-    });
+  const loginForm = document.getElementById("loginForm");
+  const messageDiv = document.getElementById("message");
+  const setupInstructions = document.getElementById("setupInstructions");
+  const forgotLink = document.querySelector(".forgot-password");
+  const loginBtn = document.getElementById("loginBtn");
+  const loginText = document.getElementById("loginText");
+  const loginLoader = document.getElementById("loginLoader");
+  const togglePasswordBtn = document.querySelector(".toggle-password");
+  const passwordInput = document.getElementById("password");
+  const googleLoginBtn = document.getElementById("googleLogin");
+  const facebookLoginBtn = document.getElementById("facebookLogin");
+  const rememberCheckbox = document.getElementById("remember");
 
-    // CLOSE MODAL
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-      resetEmailInput.value = "";
-    });
+  const modal = document.getElementById("forgotModal");
+  const closeBtn = document.querySelector(".close");
+  const resetEmailInput = document.getElementById("resetEmail");
+  const resetBtn = document.getElementById("resetBtn");
 
-    window.addEventListener("click", (e) => {
-      if (e.target == modal) {
-        modal.style.display = "none";
-        resetEmailInput.value = "";
-      }
-    });
+  function showMessage(message,type='error'){
+    messageDiv.innerHTML=`<div class="message ${type}-msg">${message}</div>`;
+    if(type==='success'){setTimeout(()=>{messageDiv.innerHTML=''},5000)}
+  }
 
-    // RESET PASSWORD
-    resetBtn.addEventListener("click", () => {
-      const email = resetEmailInput.value.trim();
-      if (!email) {
-        alert("Please enter your email / Bitte geben Sie Ihre E-Mail-Adresse ein");
-        return;
-      }
-      sendPasswordResetEmail(auth, email)
-        .then(() => {
-          alert("Password reset email sent! Check your inbox / Passwort zurücksetzen E-Mail wurde gesendet!");
-          modal.style.display = "none";
-          resetEmailInput.value = "";
-        })
-        .catch((error) => {
-          alert("Error: " + error.message);
-        });
-    });
-  </script>
+  function setLoadingState(isLoading){
+    loginBtn.disabled=isLoading; loginText.style.display=isLoading?'none':'block'; loginLoader.style.display=isLoading?'block':'none';
+  }
 
+  function setSocialButtonLoading(button,isLoading){
+    if(isLoading){button.disabled=true;button.innerHTML='<div class="button-loader" style="margin-right:8px"></div> Loading...'}
+    else{button.disabled=false;if(button.id==='googleLogin'){button.innerHTML='<i class="fab fa-google"></i> Google'}else{button.innerHTML='<i class="fab fa-facebook-f"></i> Facebook'}}
+  }
+
+  togglePasswordBtn.addEventListener("click",()=>{
+    const type=passwordInput.getAttribute("type")==='password'?'text':'password';
+    passwordInput.setAttribute('type',type);
+    togglePasswordBtn.innerHTML=type==='password'?'<i class="far fa-eye"></i>':'<i class="far fa-eye-slash"></i>';
+  });
+
+  loginForm.addEventListener("submit",async(e)=>{
+    e.preventDefault();
+    const email=loginForm.email.value.trim();
+    const password=loginForm.password.value;
+    const rememberMe=rememberCheckbox.checked;
+    if(!email||!password){showMessage("Please fill in all fields / Bitte füllen Sie alle Felder aus");return;}
+    setLoadingState(true);
+    try{
+      await setPersistence(auth,rememberMe?browserLocalPersistence:browserSessionPersistence);
+      const userCredential=await signInWithEmailAndPassword(auth,email,password);
+      const user=userCredential.user;
+      if(!user.emailVerified){showMessage("Please verify your email before logging in / Bitte bestätigen Sie Ihre E-Mail-Adresse","warning")}
+      else{showMessage("Login successful! Redirecting... / Anmeldung erfolgreich! Weiterleitung...","success");setTimeout(()=>window.location.href="index.html",1500)}
+    }catch(error){console.error("Login error:",error);showMessage(error.message||"Login failed / Anmeldung fehlgeschlagen")}
+    finally{setLoadingState(false);}
+  });
+
+  googleLoginBtn.addEventListener("click",async()=>{
+    try{setSocialButtonLoading(googleLoginBtn,true);const result=await signInWithPopup(auth,googleProvider);showMessage("Google login successful! Redirecting... / Google-Anmeldung erfolgreich! Weiterleitung...","success");setTimeout(()=>window.location.href="index.html",1500)}
+    catch(error){console.error(error);showMessage("Google login failed / Google-Anmeldung fehlgeschlagen");setSocialButtonLoading(googleLoginBtn,false);}
+  });
+
+  facebookLoginBtn.addEventListener("click",async()=>{
+    try{setSocialButtonLoading(facebookLoginBtn,true);const result=await signInWithPopup(auth,facebookProvider);showMessage("Facebook login successful! Redirecting... / Facebook-Anmeldung erfolgreich! Weiterleitung...","success");setTimeout(()=>window.location.href="index.html",1500)}
+    catch(error){console.error(error);showMessage("Facebook login failed / Facebook-Anmeldung fehlgeschlagen");setSocialButtonLoading(facebookLoginBtn,false);}
+  });
+
+  forgotLink.addEventListener("click",()=>{modal.style.display="block";modal.setAttribute("aria-hidden","false");resetEmailInput.focus()});
+  closeBtn.addEventListener("click",()=>{modal.style.display="none";modal.setAttribute("aria-hidden","true");resetEmailInput.value=""});
+  window.addEventListener("click",e=>{if(e.target==modal){modal.style.display="none";modal.setAttribute("aria-hidden","true");resetEmailInput.value=""}});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.style.display==="block"){modal.style.display="none";modal.setAttribute("aria-hidden","true");resetEmailInput.value=""}});
+
+  resetBtn.addEventListener("click",async()=>{
+    const email=resetEmailInput.value.trim();
+    if(!email){showMessage("Please enter your email / Bitte geben Sie Ihre E-Mail-Adresse ein");return;}
+    try{await sendPasswordResetEmail(auth,email);showMessage("Password reset email sent! / Passwort zurücksetzen E-Mail wurde gesendet!","success");modal.style.display="none";resetEmailInput.value=""}
+    catch(error){console.error(error);showMessage("Error sending reset email / Fehler beim Senden der E-Mail")}
+  });
+
+</script>
 </body>
 </html>
